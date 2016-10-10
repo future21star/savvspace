@@ -1,0 +1,8 @@
+{
+  "name": "Savvspace",
+  "description": "Savvspace",
+  "image": "heroku/ruby",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
