@@ -202,11 +202,13 @@
 		display: none;
 		visibility: hidden;
 	}
-	
+
+/*	
 	.lj-overlay-image {
 		background-image: url('../img/dots.png');
 		background-repeat: repeat;
 	}
+*/
 	
 	.lj-overlay-color {
 	    background-color: rgba(0,0,0,0.3);
@@ -260,8 +262,8 @@
 	
 	.lj-logo a,
 	.lj-logo img {
-		width: 100px;
-		height: 60px;
+		width: 81px;
+		height:81px;
 	}
 	
 	.lj-logo a {
