@@ -3,7 +3,7 @@ web:
   command: 'bash -c ''bundle exec puma -C config/puma.rb'''
   working_dir: /app/user
   environment:
-    RACK_ENV:
+    RAILS_ENV:
     PORT: 8080
     DATABASE_URL: 'postgres://postgres:@herokuPostgresql:5432/postgres'
   ports:
@@ -17,7 +17,7 @@ shell:
   command: bash
   working_dir: /app/user
   environment:
-    RACK_ENV:
+    RAILS_ENV:
     PORT: 8080
     DATABASE_URL: 'postgres://postgres:@herokuPostgresql:5432/postgres'
   ports:
