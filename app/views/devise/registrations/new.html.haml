@@ -1,0 +1,17 @@
+.container-content-middle
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {role: "form", class: "m-x-auto text-center app-login-form"}) do |f|
+    = link_to(image_tag("/img/logo-1x.png"), "/", class: "app-brand m-b-lg")
+    %h2 Sign up
+    = devise_error_messages!
+    .form-group
+      = f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-Mail"
+    .form-group
+      = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
+    .form-group
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password Confirmation"
+    .actions.m-b-lg
+      = f.submit "Sign up", class: "btn btn-primary"
+      = link_to "Login", new_user_session_path, class: "btn btn-default"
+
+  /
+    = render "devise/shared/links"

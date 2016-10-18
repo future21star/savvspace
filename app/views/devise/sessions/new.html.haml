@@ -1,6 +1,7 @@
 .container-content-middle
   = form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: "form", class: "m-x-auto text-center app-login-form"}) do |f|
     = link_to(image_tag("/img/logo-1x.png"), "/", class: "app-brand m-b-lg")
+    = devise_error_messages!
     .form-group
       = f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-Mail"
     .form-group.m-b-md
