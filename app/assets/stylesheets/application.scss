@@ -22,3 +22,7 @@
 .app-brand {
   display: inline-block;
 }
+
+.container-fluid submit {
+  @extend .btn;
+}
