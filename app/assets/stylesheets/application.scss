@@ -11,18 +11,5 @@
  * file per style scope.
  *
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-.app-login-form {
-  max-width: 280px;
-  margin-top: -60px;
-}
-
-.app-brand {
-  display: inline-block;
-}
-
-.container-fluid submit {
-  @extend .btn;
-}
+@import "toolkit";
+@import "sessions";

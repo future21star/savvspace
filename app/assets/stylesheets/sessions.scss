@@ -1,0 +1,19 @@
+body.sessions, body.registrations {
+  #container {
+    @extend .container-fluid;
+    @extend .container-fill-height;
+  }
+
+  .app-login-form {
+    max-width: 280px;
+    margin-top: -60px;
+  }
+
+  .app-brand {
+    display: inline-block;
+  }
+
+  .container-fluid submit {
+    @extend .btn;
+  }
+}
