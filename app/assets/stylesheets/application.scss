@@ -13,3 +13,10 @@
  */
 @import "toolkit";
 @import "sessions";
+@import "navbar";
+@import "scaffolding";
+
+body #container {
+  @extend .with-top-navbar;
+  @extend .container;
+}

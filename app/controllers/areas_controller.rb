@@ -28,7 +28,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.save
-        format.html { redirect_to @area, notice: 'Area was successfully created.' }
+        format.html { redirect_to areas_url, notice: 'Area was successfully created.' }
         format.json { render :show, status: :created, location: @area }
       else
         format.html { render :new }

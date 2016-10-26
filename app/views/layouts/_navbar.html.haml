@@ -1,0 +1,59 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top.app-navbar
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#navbar-collapse-main", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "index.html"}
+        %img{:alt => "brand", :src => "/img/logo-1x.png", :height => 25}/
+    #navbar-collapse-main.navbar-collapse.collapse
+      %ul.nav.navbar-nav.hidden-xs
+        %li.active
+          = link_to("Areas", areas_path)
+        %li
+          %a{:href => "profile/index.html"} Authors
+        %li
+          %a{:href => "profile/index.html"} Become An Author
+        %li
+          %a{:href => "profile/index.html"} About
+        %li
+          %a{:href => "profile/index.html"} Contact
+        /
+          %li
+            %a{"data-toggle" => "modal", :href => "#msgModal"} Messages
+      %ul.nav.navbar-nav.navbar-right.m-r-0.hidden-xs
+        %li
+          %a.app-notifications{:href => "notifications/index.html"}
+            %span.icon.icon-bell
+        - if user_signed_in?
+          %li
+            %button.btn.btn-default.navbar-btn.navbar-btn-avitar{"data-toggle" => "popover"}
+              %img.img-circle{:src => "assets/img/avatar-dhg.png"}/
+      %form.navbar-form.navbar-right.app-search{:role => "search"}
+        .form-group
+          %input.form-control{"data-action" => "grow", :placeholder => "Search", :type => "text"}/
+      %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
+        %li
+          %a{:href => "index.html"} Home
+        %li
+          = link_to("Areas", areas_path)
+        %li
+          = link_to("Authors", "#")
+        %li
+          %a{:href => ""} Become an Author
+        %li
+          %a{:href => ""} About
+        %li
+          %a{:href => ""} Contact
+        /
+          %li
+            %a{"data-toggle" => "modal", :href => "#msgModal"} Messages
+        %li
+          = link_to("Logout", destroy_user_session_path, method: :delete)
+      %ul.nav.navbar-nav.hidden
+        %li
+          %a{"data-action" => "growl", :href => "#"} Growl
+        %li
+          %a{:href => "login/index.html"} Logout

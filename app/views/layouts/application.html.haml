@@ -12,6 +12,14 @@
     = csrf_meta_tags
 
   %body{class: controller.controller_name, id: controller.action_name}
+    - if flash[:notice].present?
+      #growl.growl.app-growl
+        .alert.alert-dark.alert-dismissable{role: "alert"}
+          %button.close{"data-dismiss" => "alert", "aria-label" => "Close"}
+            %span{"aria-hidden" => "true"} x
+          = notice
+
+    = render "layouts/navbar"
     #container= yield
 
     = javascript_include_tag '/dist/toolkit.min.js', 'data-turbolinks-track' => true
