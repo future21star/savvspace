@@ -1,3 +1,3 @@
 class Area < ActiveRecord::Base
-  has_many :ambassadorships, dependent: :destroy
+  has_one :ambassadorship, dependent: :destroy
 end
