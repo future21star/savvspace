@@ -11,12 +11,20 @@
  * file per style scope.
  *
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "toolkit";
+@import "colors";
 @import "sessions";
 @import "navbar";
 @import "scaffolding";
+@import "welcome";
+
+body {
+  background-color: white;
+}
 
 body #container {
-  @extend .with-top-navbar;
   @extend .container;
 }

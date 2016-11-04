@@ -1,0 +1,25 @@
+- multiline ||= false
+
+%p.attribution
+  %span.author
+    Posted by
+    = author
+  - if multiline
+    %br
+  - else
+    \|
+  %span.date
+    = date
+  \|
+  %span.category
+    = category
+  \|
+  %span.comments
+    = comments
+    %span.icon.icon-chat
+  \|
+  %span.rating
+    - rating.times do
+      %span.icon.icon-star
+    - (5 - rating).times do
+      %span.icon.icon-star-outlined

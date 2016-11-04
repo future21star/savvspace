@@ -1,1 +1,51 @@
-%h1 Coming soon
+.feature
+  %h1= t('homepage.heading_1')
+  %h2= t('homepage.heading_2')
+
+  %form
+    .form-group.has-feedback
+      %input.form-control.input-lg{type: "text", name: "search", placeholder: t('homepage.search_placeholder'), "aria-describedby": "search-icon"}
+      %span.glyphicon.glyphicon-search.form-control-feedback{"aria-hidden": "true"}
+      %span#search-icon.sr-only= t('search')
+
+  .tour
+    %h3= link_to(t('homepage.tour_link_text'), "#")
+
+.main_links
+  .link.first
+    %h4= link_to("Learn About Credit", "#")
+  .link
+    %h4= link_to("Shop", "#")
+
+.ads
+  %h4 Ad Space
+
+.blog_preview
+  #featured_article
+    %img.img-responsive{src: "http://theimpression.com/wp-content/uploads/new-street-style-day-spring-2016-the-impression-012.jpg"}
+    .blog-overlay
+      %p.title
+        = link_to("Women's Fashion in 2016", "#")
+      = render partial: "common/attribution", locals: { author: "Jim Jones", date: "Nov 4, 2016", category: "Design", comments: 0, rating: 4 }
+
+  .featured-category
+    .title Nature
+    .article-preview
+      .image
+        %img.img-responsive{src: "http://www.dezineguide.com/wp-content/uploads/2012/07/Green-Nature-Plants-Flat2.jpg"}
+      %p.title
+        Some other article
+      = render partial: "common/attribution", locals: { author: "Jim Jeffries", date: "Nov 5, 2016", category: "Nature", comments: 3, rating: 4, multiline: true }
+      %p.abstract
+        Suspendisse potenti.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  
+
+  .featured-category.highlighted
+    .title Culture
+    .article-preview
+      .image
+        %img.img-responsive{src: "http://codyapp.wpengine.netdna-cdn.com/wp-content/uploads/2012/12/medium_hiking_workout.jpg"}
+      %p.title
+        Hiking Trail Review
+      = render partial: "common/attribution", locals: { author: "Ferg Ferguson", date: "Nov 8, 2016", category: "Culture, Travel", comments: 2, rating: 3, multiline: true }
+      %p.abstract
+        Curabitur lacinia pulvinar nibh.  Sed id ligula quis est convallis tempor.  Vivamus id enim.  

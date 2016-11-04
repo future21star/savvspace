@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  search: search
+
+  homepage:
+    heading_1: |
+      Stay up-to-date on what's new around you.
+    heading_2: |
+      Bridging professionals and real estate with blogs by trusted professionals in cities all over america
+    search_placeholder: |
+      search, area, agent, topic (i.e. best restaurant)
+    tour_link_text: |
+      Show me around
