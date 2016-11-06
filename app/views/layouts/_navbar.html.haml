@@ -23,7 +23,7 @@
         %li
           %a{:href => "profile/index.html"} Contact
         %li
-          %a{:href => "profile/index.html"} Login
+          = link_to("Login", new_user_session_path)
       %form.navbar-form.navbar-right.app-search{:role => "search"}
         .form-group
           %input.form-control{"data-action" => "grow", :placeholder => "Search", :type => "text"}/

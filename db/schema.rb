@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018020538) do
+ActiveRecord::Schema.define(version: 20161104223401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20161018020538) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.integer  "area_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "articles", ["area_id"], name: "index_articles_on_area_id", using: :btree
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -50,6 +62,15 @@ ActiveRecord::Schema.define(version: 20161018020538) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   add_foreign_key "ambassadorships", "areas"
   add_foreign_key "ambassadorships", "users"
+  add_foreign_key "articles", "areas"
+  add_foreign_key "articles", "users"
 end

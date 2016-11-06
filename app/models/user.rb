@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :ambassadorships, dependent: :destroy
+  has_many :authored_articles, class_name: "Article"
 end
