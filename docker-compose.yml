@@ -5,7 +5,7 @@ web:
   environment:
     RAILS_ENV:
     PORT: 8080
-    DATABASE_URL: 'postgres://postgres:@herokuPostgresql:5432/postgres'
+#    DATABASE_URL: 'postgres://postgres:@herokuPostgresql:5432/postgres'
   ports:
     - '8080:8080'
   links:
@@ -19,7 +19,6 @@ shell:
   environment:
     RAILS_ENV:
     PORT: 8080
-    DATABASE_URL: 'postgres://postgres:@herokuPostgresql:5432/postgres'
   ports:
     - '8080:8080'
   links:

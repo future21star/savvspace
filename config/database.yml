@@ -17,13 +17,15 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  timeout: 5000
+  username: postgres
+  port: 5432
+  host: herokuPostgresql
 
 development:
   <<: *default
-  database: user_development
+  database: savvspace_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +59,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: user_test
+  database: savvspace_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: user_production
-  username: user
-  password: <%= ENV['USER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
