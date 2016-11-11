@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104223401) do
+ActiveRecord::Schema.define(version: 20161107133108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,27 @@ ActiveRecord::Schema.define(version: 20161104223401) do
   add_index "articles", ["area_id"], name: "index_articles_on_area_id", using: :btree
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
+  create_table "authorizations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "authorizable_id"
+    t.string   "authorizable_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "authorizations", ["authorizable_type", "authorizable_id"], name: "index_authorizations_on_authorizable_type_and_authorizable_id", using: :btree
+  add_index "authorizations", ["role_id"], name: "index_authorizations_on_role_id", using: :btree
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -73,4 +94,6 @@ ActiveRecord::Schema.define(version: 20161104223401) do
   add_foreign_key "ambassadorships", "users"
   add_foreign_key "articles", "areas"
   add_foreign_key "articles", "users"
+  add_foreign_key "authorizations", "roles"
+  add_foreign_key "authorizations", "users"
 end

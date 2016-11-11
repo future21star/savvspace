@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include Permissible
+
   has_many :ambassadorships, dependent: :destroy
   has_many :authored_articles, class_name: "Article"
 end
