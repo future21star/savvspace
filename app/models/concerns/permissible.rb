@@ -12,6 +12,11 @@ module Permissible
                        authorizable: authorizable).save
   end
 
+  def grant_role!(role_name, authorizable=nil)
+    role = Role.find_or_create_by(name: role_name)
+    grant_role(role.name, authorizable=nil)
+  end
+
   def has_role?(role_name, authorizable=nil)
     authorizations.exists?(roles: { name: role_name }, authorizable: authorizable)
   end

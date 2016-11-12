@@ -7,4 +7,12 @@ class ApplicationController < ActionController::Base
     # request.env['omniauth.origin'] || stored_location_for(resource) || root_path
     request.env['omniauth.origin'] || dashboard_path
   end
+
+  protected
+
+  def require_admin
+    return true if user_signed_in? && current_user.has_role?("admin")
+
+    redirect_to root_url, notice: "Access denied"
+  end
 end
