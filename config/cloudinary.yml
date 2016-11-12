@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: hudgq2erh
+  api_key: '451478318912269'
+  api_secret: mLCFcNwxz9TIGpwFnBl70_i2Ujs
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: hudgq2erh
+  api_key: '451478318912269'
+  api_secret: mLCFcNwxz9TIGpwFnBl70_i2Ujs
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hudgq2erh
+  api_key: '451478318912269'
+  api_secret: mLCFcNwxz9TIGpwFnBl70_i2Ujs
+  enhance_image_tag: true
+  static_image_support: false
