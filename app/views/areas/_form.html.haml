@@ -2,4 +2,7 @@
   = f.error_notification
   = f.input :name
   = f.input :description
+  = f.input :display_photo, as: :attachinary
   = f.button :submit
+  \|
+  = link_to("Cancel", areas_path)

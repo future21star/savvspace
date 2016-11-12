@@ -1,19 +1,19 @@
-%h1 Areas
+%h1
+  Areas
+  - if Area.authorized_for_create?(current_user)
+    %span.small= link_to("Create New...", new_area_path, class: "small")
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
+- @areas.in_groups_of(3, false) do |group|
+  .row
+    - group.each do |area|
+      .col-md-4
+        .panel.panel-default.panel-profile[area]
+          .panel-heading{background_image_url(area.display_photo)}
+          .panel-body.text-center
+            %h5.panel-title= link_to(area.name, area)
+            %p.m-b-md= area.description
 
-  %tbody
-    - @areas.each do |area|
-      %tr
-        %td= link_to(area.name, area)
-        %td= link_to 'Edit', edit_area_path(area)
-        %td= link_to 'Destroy', area, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Area', new_area_path, class: "new_object"
+            - if area.authorized_for_edit?(current_user)
+              = link_to(edit_area_path(area), class: "btn btn-sm btn-default") do
+                %span.icon.icon-edit
+                Edit

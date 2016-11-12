@@ -28,11 +28,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Savvspace additions:
 gem 'haml-rails'
+gem 'rdiscount'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'simple_form'
 gem 'cloudinary'
 gem 'attachinary'
+gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

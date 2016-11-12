@@ -18,4 +18,5 @@
 //= require jquery.fileupload
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+//= require bootstrap-wysihtml5
 //= require_tree .

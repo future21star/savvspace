@@ -1,3 +1,8 @@
 %h1
   Welcome
   = current_user.email
+
+.list-group
+  = link_to(areas_path, class: "list-group-item") do
+    %span.badge= Area.count
+    Areas

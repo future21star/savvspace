@@ -1,9 +1,16 @@
-%p#notice= notice
+%div.profile-header[@area]{background_image_url(@area.display_photo)}
+  .container-fluid
+    .container-inner
+      %h1{style: "text-shadow: 2px 2px 4px #000000;"}= @area.name
+      %p= @area.description
 
-%p
-  %b Name:
-  = @area.name
-
-= link_to 'Edit', edit_area_path(@area)
-\|
-= link_to 'Back', areas_path
+  %nav
+    %ul
+      %li.active
+        = link_to("Articles", "#")
+      %li
+        = link_to("Vendors", "#")
+      %li
+        = link_to("Photos", "#")
+      %li
+        = link_to("Map", "#")

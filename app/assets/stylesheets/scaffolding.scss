@@ -20,3 +20,25 @@ body#edit, body#new {
     @extend .btn-primary;
   }
 }
+
+// Profile defaults
+
+.profile-header .container-inner {
+  max-width: 90%;
+}
+
+.profile-header {
+  @extend .text-center;
+
+  h1, h2, h3 { @extend .profile-header-user; }
+  p { @extend .profile-header-bio; }
+
+  nav {
+    @extend .profile-header-nav;
+
+    ul {
+      @extend .nav;
+      @extend .nav-tabs;
+    }
+  }
+}
