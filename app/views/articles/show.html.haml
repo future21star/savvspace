@@ -1,11 +1,10 @@
-%p#notice= notice
+- if @article.feature_photo?
+  = cl_image_tag(@article.feature_photo.path, class: "img-responsive")
 
-%p
-  %b Title:
-  = @article.title
-%p
-  %b Body:
-  = @article.body
+%h1= @article.title
+
+:markdown
+  #{@article.body}
 
 = link_to 'Edit', edit_article_path(@article)
 \|
