@@ -35,9 +35,7 @@ RSpec.describe AreasController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # AreasController. Be sure to keep this updated too.
   let(:admin_user) do
-    user = User.create!(email: "foo@bar.com", password: "foobar123")
-    user.grant_role!("admin")
-    user
+    user = FactoryGirl.create(:user, :admin)
   end
 
   describe "GET #index" do
