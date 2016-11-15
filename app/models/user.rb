@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
 
   has_many :ambassadorships, dependent: :destroy
   has_many :authored_articles, class_name: "Article"
+  has_one :profile, as: :profiled, dependent: :destroy
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112012428) do
+ActiveRecord::Schema.define(version: 20161115221846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,22 @@ ActiveRecord::Schema.define(version: 20161112012428) do
   add_index "authorizations", ["authorizable_type", "authorizable_id"], name: "index_authorizations_on_authorizable_type_and_authorizable_id", using: :btree
   add_index "authorizations", ["role_id"], name: "index_authorizations_on_role_id", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "profiled_id"
+    t.string   "profiled_type"
+    t.string   "name"
+    t.text     "bio"
+    t.string   "contact_email"
+    t.string   "linked_in"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "instagram"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "profiles", ["profiled_type", "profiled_id"], name: "index_profiles_on_profiled_type_and_profiled_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
