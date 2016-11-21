@@ -10,9 +10,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def require_admin
-    return true if user_signed_in? && current_user.has_role?("admin")
-
+  def access_denied
     redirect_to root_url, notice: "Access denied"
+  end
+
+  def require_admin
+    user_signed_in? && current_user.has_role?("admin") || access_denied
   end
 end

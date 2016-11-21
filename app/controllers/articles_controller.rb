@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_create, only: [:new, :create]
   # GET /articles
   # GET /articles.json
   def index
@@ -69,6 +70,10 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body, :area_id, :feature_photo)
+      params.require(:article).permit(:title, :body, :area_id, :feature_photo, :user_id)
+    end
+
+    def authorize_create
+      access_denied and return unless Article.authorized_for_create?(current_user)
     end
 end

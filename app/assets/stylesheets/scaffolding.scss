@@ -42,3 +42,10 @@ body#edit, body#new {
     }
   }
 }
+
+// Attachinary
+.attachinary_container {
+  ul {
+    @extend .list-inline;
+  }
+}
