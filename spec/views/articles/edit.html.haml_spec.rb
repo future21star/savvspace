@@ -4,7 +4,8 @@ RSpec.describe "articles/edit", type: :view do
   before(:each) do
     @article = assign(:article, Article.create!(
       :title => "MyString",
-      :body => "MyText"
+      :body => "MyText",
+      :author => FactoryGirl.create(:user)
     ))
   end
 
