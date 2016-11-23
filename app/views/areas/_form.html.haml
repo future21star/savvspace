@@ -1,8 +1,8 @@
-%ul.nav.nav-tabs
-  %li.active{role: "presentation"}
-    = link_to("General", "#general", role: "tab", data: {toggle: "tab"}, aria: {controls: "general"})
-  %li{role: "presentation"}
-    = link_to("Ambassador", "#ambassador", role: "tab", data: {toggle: "tab"}, aria: {controls: "ambassador"})
+%ul{tab_nav_list}
+  %li.active{tab_nav_item}
+    = tab_link("General", "general")
+  %li{tab_nav_item}
+    = tab_link("Ambassador", "ambassador")
 
 .tab-content
   #general.tab-pane.active{role: "tabpanel"}
