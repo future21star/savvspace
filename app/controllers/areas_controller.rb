@@ -20,6 +20,7 @@ class AreasController < ApplicationController
 
   # GET /areas/1/edit
   def edit
+    @ambassadorship = @area.ambassadorship || @area.build_ambassadorship
   end
 
   # POST /areas

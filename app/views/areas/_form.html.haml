@@ -1,8 +1,10 @@
-%ul{tab_nav_list}
+%ul.no-border{tab_nav_list}
   %li.active{tab_nav_item}
     = tab_link("General", "general")
   %li{tab_nav_item}
     = tab_link("Ambassador", "ambassador")
+  %li{tab_nav_item}
+    = tab_link("Articles", "articles")
 
 .tab-content
   #general.tab-pane.active{role: "tabpanel"}
@@ -17,3 +19,26 @@
           .pull-right= f.button :submit
           = link_to("Cancel", areas_path, class: "btn btn-default")
   #ambassador.tab-pane{role: "tabpanel"}
+    .panel.panel-default
+      = simple_form_for(@ambassadorship) do |f|
+        .panel-body
+          = f.error_notification
+          = f.input :area_id, as: :hidden
+          = f.association :user, label_method: :email
+        .panel-footer
+          .pull-right= f.button :submit
+          = link_to("Cancel", areas_path, class: "btn btn-default")
+  #articles.tab-pane{role: "tabpanel"}
+    .panel.panel-default
+      .panel-heading.text-right
+        = link_to("New Article", new_article_path, class: "btn btn-primary icon icon-plus")
+      .panel-body
+        %ul.media-list
+          - @area.articles.each do |article|
+            %li.media
+              .media-left
+                - if article.feature_photo
+                  = link_to(cl_image_tag(article.feature_photo.path, size: '64x64', crop: :thumb), article_path(article))
+              .media-body
+                %h4.media-heading= link_to(article.title, article_path(article))
+                = article.body.truncate(256)

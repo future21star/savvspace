@@ -2,6 +2,14 @@
   = f.error_notification
 
   .form-inputs
+    = f.input :name
+    = f.input :contact_email
+    = f.input :bio
+    = f.input :linked_in
+    = f.input :facebook
+    = f.input :twitter
+    = f.input :instagram
+    = f.input :avatar, as: :attachinary
 
   .form-actions
     = f.button :submit

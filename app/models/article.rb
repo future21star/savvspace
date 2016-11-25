@@ -10,6 +10,6 @@ class Article < ActiveRecord::Base
 
   ## Authorizations
   def self.authorized_for_create?(user)
-    user && user.has_role?("author")
+    user && (user.has_role?("author") || user.ambassadorships.any?)
   end
 end

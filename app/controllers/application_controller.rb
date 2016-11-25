@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    user_signed_in? && current_user.has_role?("admin") || access_denied
+    current_user_admin? || access_denied
+  end
+
+  def current_user_admin?
+    user_signed_in? && current_user.has_role?("admin")
   end
 end

@@ -5,6 +5,7 @@ RSpec.describe "areas/new", type: :view do
     assign(:area, Area.new(
       :name => "MyString"
     ))
+    assign(:ambassadorship, Ambassadorship.new)
   end
 
   it "renders new area form" do

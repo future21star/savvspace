@@ -1,0 +1,19 @@
+%h1 Listing ambassadorships
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @ambassadorships.each do |ambassadorship|
+      %tr
+        %td= link_to 'Show', ambassadorship
+        %td= link_to 'Edit', edit_ambassadorship_path(ambassadorship)
+        %td= link_to 'Destroy', ambassadorship, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Ambassadorship', new_ambassadorship_path

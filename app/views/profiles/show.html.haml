@@ -1,6 +1,22 @@
-%p#notice= notice
+.row
+  .col-md-8.col-md-offset-2
+    .panel.panel-default.panel-profile
+      .panel-heading
+      .panel-body.text-center
+        - if @profile.avatar
+          = cl_image_tag(@profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
 
+        %h5.panel-title= @profile.name
+        %p.m-b-d= @profile.bio
 
-= link_to 'Edit', edit_profile_path(@profile)
-\|
-= link_to 'Back', profiles_path
+        .social-links
+          %h2
+            - if @profile.contact_email.present?
+              %a.icon.icon-mail-with-circle{href: "mailto:" + @profile.contact_email, title: "E-Mail"}
+
+            = facebook_link(@profile.facebook)
+            = instagram_link(@profile.instagram)
+            = twitter_link(@profile.twitter)
+            = linked_in_link(@profile.linked_in)
+
+= link_to("Edit", edit_profile_path(@profile))

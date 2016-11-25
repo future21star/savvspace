@@ -49,3 +49,7 @@ body#edit, body#new {
     @extend .list-inline;
   }
 }
+
+.nav-tabs.no-border {
+  border-bottom: 0;
+}
