@@ -18,16 +18,10 @@
         .panel-footer
           .pull-right= f.button :submit
           = link_to("Cancel", areas_path, class: "btn btn-default")
+
   #ambassador.tab-pane{role: "tabpanel"}
-    .panel.panel-default
-      = simple_form_for(@ambassadorship) do |f|
-        .panel-body
-          = f.error_notification
-          = f.input :area_id, as: :hidden
-          = f.association :user, label_method: :email
-        .panel-footer
-          .pull-right= f.button :submit
-          = link_to("Cancel", areas_path, class: "btn btn-default")
+    = render "ambassadorships/embedded_form"
+
   #articles.tab-pane{role: "tabpanel"}
     .panel.panel-default
       .panel-heading.text-right
@@ -35,7 +29,7 @@
       .panel-body
         %ul.media-list
           - @area.articles.each do |article|
-            %li.media
+            %li.media[article]
               .media-left
                 - if article.feature_photo
                   = link_to(cl_image_tag(article.feature_photo.path, size: '64x64', crop: :thumb), article_path(article))

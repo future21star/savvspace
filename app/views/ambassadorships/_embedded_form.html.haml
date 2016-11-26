@@ -1,0 +1,12 @@
+#ambassadorship_embedded_form
+  .panel.panel-default
+    = simple_form_for(@ambassadorship, remote: true) do |f|
+      .panel-body
+        = f.error_notification
+        = f.input :area_id, as: :hidden
+        = f.association :user, label_method: :email
+      .panel-footer.text-right
+        = f.button :submit
+        - if @ambassadorship.persisted?
+          .pull-left
+            = link_to("Delete Ambassadorship", ambassadorship_path(@ambassadorship), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"}, remote: true)

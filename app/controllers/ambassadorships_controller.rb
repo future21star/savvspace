@@ -1,7 +1,7 @@
 class AmbassadorshipsController < ApplicationController
   before_action :set_ambassadorship, only: [:show, :edit, :update, :destroy]
   before_action :require_admin
-  
+
   # GET /ambassadorships
   # GET /ambassadorships.json
   def index
@@ -31,9 +31,11 @@ class AmbassadorshipsController < ApplicationController
       if @ambassadorship.save
         format.html { redirect_to @ambassadorship, notice: 'Ambassadorship was successfully created.' }
         format.json { render :show, status: :created, location: @ambassadorship }
+        format.js { render :create }
       else
         format.html { render :new }
         format.json { render json: @ambassadorship.errors, status: :unprocessable_entity }
+        format.js { render :create }
       end
     end
   end
@@ -45,9 +47,11 @@ class AmbassadorshipsController < ApplicationController
       if @ambassadorship.update(ambassadorship_params)
         format.html { redirect_to @ambassadorship, notice: 'Ambassadorship was successfully updated.' }
         format.json { render :show, status: :ok, location: @ambassadorship }
+        format.js { render :update }
       else
         format.html { render :edit }
         format.json { render json: @ambassadorship.errors, status: :unprocessable_entity }
+        format.js { render :update }
       end
     end
   end
@@ -59,6 +63,10 @@ class AmbassadorshipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ambassadorships_url, notice: 'Ambassadorship was successfully destroyed.' }
       format.json { head :no_content }
+      format.js {
+        @ambassadorship = Ambassadorship.new(area: @ambassadorship.area)
+        render :destroy
+      }
     end
   end
 
