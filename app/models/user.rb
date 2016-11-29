@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   include Permissible
+  include Rateable
 
   has_many :ambassadorships, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   has_many :authored_articles, class_name: "Article"
   has_one :profile, as: :profiled, dependent: :destroy
 

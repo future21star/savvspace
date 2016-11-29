@@ -19,4 +19,5 @@
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require bootstrap-wysihtml5
+//= require jquery.barrating.min
 //= require_tree .

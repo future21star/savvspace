@@ -1,0 +1,8 @@
+.rateable[rateable]
+  - rating = user_signed_in? ? current_user.ratings.find_or_initialize_by(rateable: rateable) : Rating.new
+
+  = form_for(rating, remote: true) do |f|
+    = f.hidden_field :rateable_type, value: rateable.class.name
+    = f.hidden_field :rateable_id, value: rateable.id
+    Rating:
+    = f.select(:rating, rating_options(rateable), {include_blank: true}, {class: "rating", readonly: current_user.present? ? nil : "readonly"})

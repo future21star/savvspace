@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :ambassadorships
   resources :areas
   resources :profiles
+  resources :ratings
 
   resources :users do
     resource :profile

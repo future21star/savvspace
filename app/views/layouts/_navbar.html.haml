@@ -28,8 +28,8 @@
               - if current_user.profile.avatar
                 %button.btn.btn-default.navbar-btn.navbar-btn-avitar
                   = cl_image_tag(current_user.profile.avatar.path, {size: '35x35', crop: :thumb, gravity: :face, class: "img-circle"})
-            /
-              = link_to("Logout", destroy_user_session_path, method: :delete)
+              /
+                = link_to("Logout", destroy_user_session_path, method: :delete)
           - else
             = link_to("Login", new_user_session_path)
       %form.navbar-form.navbar-right.app-search{:role => "search"}
