@@ -8,6 +8,7 @@
 
         %h5.panel-title= @profile.name
         %p.m-b-d= @profile.bio
+        %p= render :partial => "common/rating", locals: {rateable: @profile}
 
         .social-links
           %h2
