@@ -9,3 +9,27 @@ p.profile-header-bio {
   border-radius: 10px;
 }
 
+body.areas {
+  #articles {
+    @extend .col-md-8;
+    @extend .m-t;
+  }
+
+  .article {
+    @extend .row;
+    @extend .m-b;
+
+    .image {
+      @extend .col-md-4;
+
+      img {
+        @extend .img-responsive;
+        @extend .img-rounded;
+      }
+    }
+
+    .synopsis {
+      h3 { @extend .m-t-0; }
+    }
+  }
+}

@@ -14,3 +14,6 @@
         = link_to("Photos", "#")
       %li
         = link_to("Map", "#")
+
+#articles
+  = render(partial: "article", collection: @area.articles) || "No articles"

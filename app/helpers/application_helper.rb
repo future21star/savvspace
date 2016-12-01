@@ -8,4 +8,10 @@ module ApplicationHelper
   def rating_options(rateable)
     options_for_select(1..5, rateable.rating)
   end
+
+  def display_datetime(datetime)
+    if datetime
+      datetime.strftime("%B %e, %Y")
+    end
+  end
 end

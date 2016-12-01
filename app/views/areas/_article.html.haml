@@ -1,0 +1,15 @@
+%div[article]
+  .image= link_to(cl_image_tag(article.feature_photo.path), article)
+  .synopsis.media-list-users
+    %h3= link_to(article.title, article)
+
+    .media
+      .media-left
+        = cl_image_tag(article.author.profile.avatar.path, {size: '42x42', crop: :thumb, gravity: :face, class: "img-circle media-object"})
+      .media-body.media-middle
+        %strong= article.author_name
+        %small
+          On
+          = display_datetime(article.updated_at)
+
+    %p.summary= article.body.truncate(100)
