@@ -10,6 +10,10 @@
     = f.input :twitter
     = f.input :instagram
     = f.input :avatar, as: :attachinary
+    = f.input :background, as: :attachinary
 
   .form-actions
     = f.button :submit
+    - if @profile.persisted?
+      \|
+      = link_to 'Cancel', @profile
