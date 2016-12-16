@@ -1,3 +1,4 @@
 $(document).on "turbolinks:load", ->
         $('.attachinary-input').attachinary()
-        $('.wysihtml5-sandbox').css("resize", "vertical");
+        $('.wysihtml5-sandbox').css("resize", "vertical")
+        $("[data-toggle=dropdown]").dropdown()

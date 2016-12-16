@@ -1,4 +1,4 @@
-%nav.navbar.navbar-static-top.app-navbar
+%nav.navbar.navbar-static-top.app-navbar.navbar-inverse
   .container
     .navbar-header
       %button.navbar-toggle.collapsed{"data-target" => "#navbar-collapse-main", "data-toggle" => "collapse", :type => "button"}
@@ -6,9 +6,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      /
-        %a.navbar-brand{:href => "index.html"}
+      %a.navbar-brand{:href => "index.html"}
+        /
           %img{:alt => "brand", :src => "/img/logo-1x.png", :height => 25}/
+        Savvspace
     #navbar-collapse-main.navbar-collapse.collapse
       %ul.nav.navbar-nav.hidden-xs.navbar-left
         %li
@@ -24,12 +25,15 @@
           %a{:href => "profile/index.html"} Contact
         %li
           - if user_signed_in?
-            %li
+            .dropdown
               - if current_user.profile.avatar
-                %button.btn.btn-default.navbar-btn.navbar-btn-avitar
+                %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{"type" => "button", "data-toggle" => "dropdown", "aria-haspopup" => true, "aria-expanded" => false}
                   = cl_image_tag(current_user.profile.avatar.path, {size: '35x35', crop: :thumb, gravity: :face, class: "img-circle"})
-              /
-                = link_to("Logout", destroy_user_session_path, method: :delete)
+                  %span.caret
+              %ul.dropdown-menu{aria: {labelledby: "avitar-label"}}
+                %li= link_to("Profile", user_profile_path(current_user))
+                %li= link_to("Logout", destroy_user_session_path, method: :delete)
+
           - else
             = link_to("Login", new_user_session_path)
       %form.navbar-form.navbar-right.app-search{:role => "search"}
