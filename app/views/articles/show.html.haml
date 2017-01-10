@@ -27,13 +27,13 @@
 
   %section
     - if @article.secondary_photo
-      = cl_image_tag(@article.secondary_photo.path, class: "img-responsive secondary-photo")
+      = cl_image_tag(@article.secondary_photo.path, class: "img-responsive secondary-photo", data: {action: "zoom"})
 
     :markdown
       #{@article.body}
 
     - if @article.tertiary_photo
-      = cl_image_tag(@article.tertiary_photo.path, class: "img-responsive tertiary-photo")
+      = cl_image_tag(@article.tertiary_photo.path, class: "img-responsive tertiary-photo", data: {action: "zoom"})
 
   = render partial: "common/rating", locals: {rateable: @article}
 
