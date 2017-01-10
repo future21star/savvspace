@@ -5,7 +5,11 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = if params[:article_category_id]
+                  Article.where(article_category_id: params[:article_category_id])
+                else
+                  Article.all
+                end
   end
 
   # GET /articles/1
@@ -71,7 +75,9 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body, :area_id, :feature_photo, :user_id)
+      params.require(:article).permit(:title, :body, :area_id, :article_category_id,
+                                      :feature_photo, :secondary_photo, :tertiary_photo,
+                                      :user_id)
     end
 
     def authorize_create

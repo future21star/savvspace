@@ -3,6 +3,11 @@
     = cl_image_tag(@article.feature_photo.path, class: "img-responsive")
 
   %header.media.m-b
+    - if @article.category
+      .category
+        &mdash;
+        = link_to(@article.category.name, article_category_articles_path(@article.category))
+
     %h1= @article.title
 
     .media-left
@@ -21,8 +26,14 @@
         Comments
 
   %section
+    - if @article.secondary_photo
+      = cl_image_tag(@article.secondary_photo.path, class: "img-responsive secondary-photo")
+
     :markdown
       #{@article.body}
+
+    - if @article.tertiary_photo
+      = cl_image_tag(@article.tertiary_photo.path, class: "img-responsive tertiary-photo")
 
   = render partial: "common/rating", locals: {rateable: @article}
 

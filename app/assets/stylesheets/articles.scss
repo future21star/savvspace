@@ -6,6 +6,23 @@ article.article {
   @extend .col-md-8;
 }
 
+article img {
+  @extend .img-rounded;
+}
+
+header .category {
+  font-weight: bold;
+}
+
 .author-profile {
   @extend .col-md-4;
+}
+
+.secondary-photo {
+  float: right;
+  margin-left: 1em;
+}
+
+.tertiary-photo {
+  width: 200px;
 }

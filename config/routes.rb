@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :vendors
   resources :articles
+  resources :article_categories do
+    resources :articles, only: :index
+  end
   resources :ambassadorships
   resources :areas
   resources :profiles
