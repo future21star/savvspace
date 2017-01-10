@@ -10,15 +10,7 @@
         %p.m-b-d= @profile.bio
         %p= render :partial => "common/rating", locals: {rateable: @profile}
 
-        .social-links
-          %h2
-            - if @profile.contact_email.present?
-              %a.icon.icon-mail-with-circle{href: "mailto:" + @profile.contact_email, title: "E-Mail"}
-
-            = facebook_link(@profile.facebook)
-            = instagram_link(@profile.instagram)
-            = twitter_link(@profile.twitter)
-            = linked_in_link(@profile.linked_in)
+        = render partial: "social_links", locals: {profile: @profile}
 
         .action-links
           - if @profile.authorized_for_edit?(current_user)

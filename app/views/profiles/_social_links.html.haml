@@ -1,0 +1,13 @@
+.social-links
+  %h2
+    - if profile.contact_email.present?
+      %a.icon.icon-mail-with-circle{href: "mailto:" + profile.contact_email, title: "E-Mail"}
+
+    - if profile.facebook.present?
+      = facebook_link(profile.facebook)
+    - if profile.instagram.present?
+      = instagram_link(profile.instagram)
+    - if profile.twitter.present?
+      = twitter_link(profile.twitter)
+    - if profile.linked_in.present?
+      = linked_in_link(profile.linked_in)
