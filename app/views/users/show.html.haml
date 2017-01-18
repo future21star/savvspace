@@ -1,6 +1,16 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+.jumbotron
+  %h1 Welcome!
+  %p.large
+    %ol
+      %li
+        Get started by
+        = link_to("filling out your profile", edit_user_profile_path(@user))
+        and telling us more about who you are.
+      %li
+        Are you interested in
+        = succeed "?" do
+          = link_to("becoming an Author")
+      %li
+        Are you a vendor interested in
+        = succeed "?" do
+          = link_to("selling on Savvspace")

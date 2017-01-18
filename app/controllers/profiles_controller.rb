@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin, only: [:index, :new]
+  before_action :authorize_edit, only: [:edit, :update, :destroy]
 
   # GET /profiles
   # GET /profiles.json
@@ -65,11 +67,7 @@ class ProfilesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = if params[:user_id]
-                   if current_user_admin?
-                     User.find(params[:user_id]).profile
-                   else
-                     current_user.profile
-                   end
+                   User.find(params[:user_id]).profile
                  else
                    Profile.find(params[:id])
                  end
@@ -80,5 +78,9 @@ class ProfilesController < ApplicationController
       params.require(:profile).
         permit(:name, :bio, :contact_email, :linked_in, :facebook, :twitter,
                :instagram, :avatar, :background)
+    end
+
+    def authorize_edit
+      access_denied unless @profile.authorized_for_edit?(current_user)
     end
 end

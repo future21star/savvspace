@@ -6,6 +6,6 @@ class Profile < ActiveRecord::Base
   has_attachment :background, accept: [:jpg, :png]
 
   def authorized_for_edit?(user)
-    user == profiled
+    user == profiled || user.has_role?("admin")
   end
 end
