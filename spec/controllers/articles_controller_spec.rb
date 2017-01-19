@@ -12,7 +12,7 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   let(:valid_attributes) {
-    { title: "Test Article", body: "Test Article Content", user_id: author.id }
+    { title: "Test Article", body: "Test Article Content", user_id: author.id, feature_photo_url: "spec/fixtures/images/cat.jpg" }
   }
 
   let(:invalid_attributes) {
