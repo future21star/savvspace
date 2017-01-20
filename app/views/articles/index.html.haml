@@ -4,20 +4,23 @@
   %thead
     %tr
       %th Title
-      %th Body
-      %th
-      %th
-      %th
+      - if Article.authorized_for_create?(current_user)
+        %th
+        %th
 
   %tbody
     - @articles.each do |article|
       %tr
-        %td= article.title
-        %td= article.body
-        %td= link_to 'Show', article
-        %td= link_to 'Edit', edit_article_path(article)
-        %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to(article.title, article)
+        - if Article.authorized_for_create?(current_user)
+          %td
+            - if article.authorized_for_edit?(current_user)
+              = link_to 'Edit', edit_article_path(article)
+          %td
+            - if article.authorized_for_edit?(current_user)
+              = link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Article', new_article_path
+- if Article.authorized_for_create?(current_user)
+  = link_to 'New Article', new_article_path

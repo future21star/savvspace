@@ -19,6 +19,10 @@ class Article < ActiveRecord::Base
     user && (user.has_role?("author") || user.ambassadorships.any?)
   end
 
+  def authorized_for_edit?(user)
+    user && (user.has_role?("admin") || user == author)
+  end
+
   def author_name
     author.profile.name
   end

@@ -1,0 +1,12 @@
+.author-profile
+  .panel.panel-default.panel-profile.m-b-md
+    .panel-heading{background_image_url(profile.background)}
+    .panel-body.text-center
+      - if profile.avatar
+        = cl_image_tag(profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
+
+      %h5.panel-title
+        = link_to(profile.name, profile_link)
+      %p.m-b-d= profile.bio
+
+      = render partial: "profiles/social_links", locals: {profile: profile}

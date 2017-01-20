@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :areas
   resources :profiles
   resources :ratings
-
+  resources :authors, only: [:index] do
+    resources :articles, only: [:index]
+  end
   resources :users do
     resource :profile
   end

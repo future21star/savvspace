@@ -7,6 +7,8 @@ class ArticlesController < ApplicationController
   def index
     @articles = if params[:article_category_id]
                   Article.where(article_category_id: params[:article_category_id])
+                elsif params[:author_id]
+                  Article.where(user_id: params[:author_id])
                 else
                   Article.all
                 end
@@ -82,5 +84,9 @@ class ArticlesController < ApplicationController
 
     def authorize_create
       access_denied and return unless Article.authorized_for_create?(current_user)
+    end
+
+    def authorize_edit
+      access_denied and return unless Article.authorized_for_edit?(current_user)
     end
 end
