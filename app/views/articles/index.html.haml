@@ -1,26 +1,6 @@
-%h1 Listing articles
+%h2 Latest articles
+.article-list.col-md-8
+  = render partial: "article", collection: @articles, spacer_template: 'article_spacer'
 
-%table
-  %thead
-    %tr
-      %th Title
-      - if Article.authorized_for_create?(current_user)
-        %th
-        %th
-
-  %tbody
-    - @articles.each do |article|
-      %tr
-        %td= link_to(article.title, article)
-        - if Article.authorized_for_create?(current_user)
-          %td
-            - if article.authorized_for_edit?(current_user)
-              = link_to 'Edit', edit_article_path(article)
-          %td
-            - if article.authorized_for_edit?(current_user)
-              = link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-- if Article.authorized_for_create?(current_user)
-  = link_to 'New Article', new_article_path
+.highlight-content.col-md-4.jumbotron.container-content-middle
+  %h3 Space to highlight other elements

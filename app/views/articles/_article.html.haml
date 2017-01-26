@@ -1,0 +1,30 @@
+.row[article]
+  .feature-photo.col-md-6
+    - if article.video
+      .well.well-sm
+        .embed-responsive.embed-responsive-16by9
+          = cl_video_tag(article.video.public_id, controls: true, preload: false)
+    - else
+      = link_to(cl_image_tag(article.feature_photo.path), article)
+  .synopsis.col-md-6
+    - if article.category
+      %p.category.m-b-0
+        %strong= link_to(article.category.name.upcase, article_category_articles_path(article.category))
+
+    %h3.m-y-0= link_to(article.title, article)
+    %p.author-byline
+      %span.icon.icon-new-message
+      = link_to(article.author.profile.name, article.author.profile, title: "Author Profile")
+      %span.icon.icon-clock
+      - if article.updated_at.today?
+        = article.updated_at.strftime("%l:%M %P")
+      - else
+        = article.updated_at.strftime("%b %d, %Y")
+      %span.icon.icon-chat
+      0
+    %p.summary= article.body.truncate(150)
+    %p.text-right
+      = link_to(article, class: "btn btn-info") do
+        Read More
+        %span.icon.icon-controller-fast-forward
+

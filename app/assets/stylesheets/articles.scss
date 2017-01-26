@@ -26,3 +26,17 @@ header .category {
 .tertiary-photo {
   width: 200px;
 }
+
+.article.row {
+  @extend .m-y;
+
+  img {
+    @extend .img-responsive;
+  }
+
+  .feature-photo {
+  }
+
+  .synopsis {
+  }
+}

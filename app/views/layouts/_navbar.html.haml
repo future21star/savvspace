@@ -15,9 +15,11 @@
         %li
           = link_to("Areas", areas_path)
         %li
+          = link_to("Articles", articles_path)
+        %li
           = link_to("Authors", authors_path)
         %li
-          %a{:href => "profile/index.html"} Become An Author
+          = link_to("Become An Author", new_user_registration_path)
       %ul.nav.navbar-nav.hidden-xs.navbar-right
         %li
           = link_to("About", about_path)
@@ -45,6 +47,8 @@
       %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
         %li
           = link_to("Areas", areas_path)
+        %li
+          = link_to("Articles", articles_path)
         %li
           = link_to("Authors", authors_path)
         %li

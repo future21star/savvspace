@@ -5,13 +5,14 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = if params[:article_category_id]
+    scope = if params[:article_category_id]
                   Article.where(article_category_id: params[:article_category_id])
                 elsif params[:author_id]
                   Article.where(user_id: params[:author_id])
                 else
                   Article.all
                 end
+    @articles = scope.order(updated_at: :desc)
   end
 
   # GET /articles/1
