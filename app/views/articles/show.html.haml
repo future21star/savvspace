@@ -26,6 +26,10 @@
         Comments
 
   %section
+    - if @article.video
+      .well
+        .embed-responsive.embed-responsive-16by9
+          = cl_video_tag(@article.video.public_id, controls: true, preload: false)
     - if @article.secondary_photo
       = cl_image_tag(@article.secondary_photo.path, class: "img-responsive secondary-photo", data: {action: "zoom"})
 

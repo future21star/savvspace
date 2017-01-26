@@ -79,7 +79,7 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :body, :area_id, :article_category_id,
                                       :feature_photo, :secondary_photo, :tertiary_photo,
-                                      :user_id)
+                                      :user_id, :video)
     end
 
     def authorize_create

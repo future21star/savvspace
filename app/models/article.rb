@@ -8,6 +8,7 @@ class Article < ActiveRecord::Base
   has_attachment :feature_photo, accept: [:jpg, :png]
   has_attachment :secondary_photo, accept: [:jpg, :png]
   has_attachment :tertiary_photo, accept: [:jpg, :png]
+  has_attachment :video, accept: [:mp4]
 
   validates_presence_of :author
   validates_presence_of :title
