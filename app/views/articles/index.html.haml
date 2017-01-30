@@ -1,4 +1,8 @@
-%h2 Latest articles
+%h1
+  Latest articles
+  - if Article.authorized_for_create?(current_user)
+    %span.small= link_to("Create New...", new_article_path, class: "small")
+
 .article-list.col-md-8
   = render partial: "article", collection: @articles, spacer_template: 'article_spacer'
 

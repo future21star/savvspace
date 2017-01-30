@@ -1,19 +1,18 @@
 .row
-  .col-md-8.col-md-offset-2
-    .panel.panel-default.panel-profile
-      .panel-heading{background_image_url(@profile.background)}
-      .panel-body.text-center
-        - if @profile.avatar
-          = cl_image_tag(@profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
+  .panel.panel-default.panel-profile
+    .panel-heading.large{background_image_url(@profile.background)}
+    .panel-body.text-center
+      - if @profile.avatar
+        = cl_image_tag(@profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
 
-        %h5.panel-title= @profile.name
-        %p.m-b-d= @profile.bio
-        %p= render :partial => "common/rating", locals: {rateable: @profile}
+      %h5.panel-title= @profile.name
+      %p.m-b-d= @profile.bio
+      %p= render :partial => "common/rating", locals: {rateable: @profile}
 
-        = render partial: "social_links", locals: {profile: @profile}
+      = render partial: "social_links", locals: {profile: @profile}
 
-        .action-links
-          - if @profile.authorized_for_edit?(current_user)
-            = link_to(edit_profile_path(@profile), class: "btn btn-sm btn-default") do
-              %span.icon.icon-edit
-              Edit
+      .action-links
+        - if @profile.authorized_for_edit?(current_user)
+          = link_to(edit_profile_path(@profile), class: "btn btn-sm btn-default") do
+            %span.icon.icon-edit
+            Edit
