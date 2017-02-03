@@ -1,18 +1,32 @@
-.row
-  .panel.panel-default.panel-profile
-    .panel-heading.large{background_image_url(@profile.background)}
-    .panel-body.text-center
-      - if @profile.avatar
-        = cl_image_tag(@profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
+.profile-header[@profile]{background_image_url(@profile.background)}
+  - if @profile.authorized_for_edit?(current_user)
+    .action-links.pull-right
+      = link_to(edit_profile_path(@profile), class: "btn btn-sm btn-default") do
+        %span.icon.icon-edit
+        %span.sr-only Edit
 
-      %h5.panel-title= @profile.name
-      %p.m-b-d= @profile.bio
-      %p= render :partial => "common/rating", locals: {rateable: @profile}
+  .container-fluid
+    .container-inner
+      .transparent-shaded-box
+        - if @profile.avatar
+          = cl_image_tag(@profile.avatar.path, class: "img-responsive img-circle rounded-circle media-object", crop: :thumb, gravity: :face, height: 110, width: 110)
+        %h2.profile-header-user= @profile.name
+        %p.profile-header-bio= @profile.bio
 
-      = render partial: "social_links", locals: {profile: @profile}
+        = render partial: "social_links", locals: {profile: @profile}
 
-      .action-links
-        - if @profile.authorized_for_edit?(current_user)
-          = link_to(edit_profile_path(@profile), class: "btn btn-sm btn-default") do
-            %span.icon.icon-edit
-            Edit
+  %nav
+    %ul
+      %li.active
+        = link_to("Articles", "#")
+      %li
+        = link_to("Products", "#")
+      %li
+        = link_to("Services", "#")
+      %li
+        = link_to("Photos", "#")
+      %li
+        = link_to("Properties", "#")
+
+#articles
+  = render(partial: "areas/article", collection: @profile.profiled.authored_articles) || "No articles"

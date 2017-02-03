@@ -1,8 +1,8 @@
-%div.profile-header[@area]{background_image_url(@area.display_photo)}
+.profile-header[@area]{background_image_url(@area.display_photo)}
   .container-fluid
     .container-inner
       %h1{style: "text-shadow: 2px 2px 4px #000000;"}= @area.name
-      %p= @area.description
+      %p.transparent-shaded-box= @area.description
 
   %nav
     %ul
