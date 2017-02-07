@@ -15,6 +15,10 @@ RSpec.describe ProfilesController, type: :routing do
       expect(:get => "/profiles/1").to route_to("profiles#show", :id => "1")
     end
 
+    it "routes to #show when given a username" do
+      expect(:get => "/u/testuser").to route_to("profiles#show", :username => "testuser")
+    end
+
     it "routes to #edit" do
       expect(:get => "/profiles/1/edit").to route_to("profiles#edit", :id => "1")
     end

@@ -10,7 +10,11 @@
       .transparent-shaded-box
         - if @profile.avatar
           = cl_image_tag(@profile.avatar.path, class: "img-responsive img-circle rounded-circle media-object", crop: :thumb, gravity: :face, height: 110, width: 110)
-        %h2.profile-header-user= @profile.name
+        %h2.profile-header-user
+          - if @profile.username
+            = link_to(@profile.name, public_profile_path(@profile.username))
+          - else
+            = @profile.name
         %p.profile-header-bio= @profile.bio
 
         = render partial: "social_links", locals: {profile: @profile}

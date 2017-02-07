@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :ambassadorships
   resources :areas
   resources :profiles
+  get '/u/:username', to: "profiles#show", as: :public_profile
   resources :ratings
   resources :authors, only: [:index] do
     resources :articles, only: [:index]

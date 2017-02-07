@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110220731) do
+ActiveRecord::Schema.define(version: 20170207061918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20170110220731) do
     t.string   "instagram"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "username"
   end
 
   add_index "profiles", ["profiled_type", "profiled_id"], name: "index_profiles_on_profiled_type_and_profiled_id", using: :btree
