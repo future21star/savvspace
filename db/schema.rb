@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207061918) do
+ActiveRecord::Schema.define(version: 20170210210032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,25 @@ ActiveRecord::Schema.define(version: 20170207061918) do
   add_index "authorizations", ["authorizable_type", "authorizable_id"], name: "index_authorizations_on_authorizable_type_and_authorizable_id", using: :btree
   add_index "authorizations", ["role_id"], name: "index_authorizations_on_role_id", using: :btree
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+
+  create_table "captioned_images", force: :cascade do |t|
+    t.string   "caption"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "captioned_images", ["owner_type", "owner_id"], name: "index_captioned_images_on_owner_type_and_owner_id", using: :btree
+
+  create_table "photo_albums", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "photo_albums", ["owner_type", "owner_id"], name: "index_photo_albums_on_owner_type_and_owner_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "profiled_id"
