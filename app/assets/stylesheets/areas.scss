@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.area.panel .panel-body p {
+  min-height: 7rem;
+  overflow: hidden;
+}
+
 body.areas#show, body.profiles#show {
   #articles {
     @extend .col-md-8;
