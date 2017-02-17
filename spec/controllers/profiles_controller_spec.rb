@@ -36,6 +36,10 @@ RSpec.describe ProfilesController, type: :controller do
   # ProfilesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:admin_user) do
+    user = FactoryGirl.create(:user, :admin)
+  end
+
   describe "GET #index" do
     it "assigns all profiles as @profiles" do
       profile = Profile.create! valid_attributes
@@ -53,6 +57,8 @@ RSpec.describe ProfilesController, type: :controller do
   end
 
   describe "GET #new" do
+    before { sign_in admin_user }
+
     it "assigns a new profile as @profile" do
       get :new, params: {}, session: valid_session
       expect(assigns(:profile)).to be_a_new(Profile)

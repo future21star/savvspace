@@ -36,6 +36,10 @@ RSpec.describe ArticleCategoriesController, type: :controller do
   # ArticleCategoriesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:admin_user) do
+    user = FactoryGirl.create(:user, :admin)
+  end
+
   describe "GET #index" do
     it "assigns all article_categories as @article_categories" do
       article_category = ArticleCategory.create! valid_attributes
@@ -53,6 +57,8 @@ RSpec.describe ArticleCategoriesController, type: :controller do
   end
 
   describe "GET #new" do
+    before { sign_in admin_user }
+
     it "assigns a new article_category as @article_category" do
       get :new, params: {}, session: valid_session
       expect(assigns(:article_category)).to be_a_new(ArticleCategory)
@@ -68,6 +74,8 @@ RSpec.describe ArticleCategoriesController, type: :controller do
   end
 
   describe "POST #create" do
+    before { sign_in admin_user }
+    
     context "with valid params" do
       it "creates a new ArticleCategory" do
         expect {

@@ -54,6 +54,7 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'syntax'
   gem 'database_cleaner'
+  gem 'fakeweb'
 end
 
 group :development do

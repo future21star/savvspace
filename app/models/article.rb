@@ -13,7 +13,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :author
   validates_presence_of :title
   validates_presence_of :body
-  validates_presence_of :feature_photo
+  validates_presence_of :feature_photo, unless: -> { Rails.env.test? }
 
   ## Authorizations
   def self.authorized_for_create?(user)
