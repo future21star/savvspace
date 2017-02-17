@@ -52,6 +52,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.0'
   gem 'cucumber-rails', :require => false
+  gem 'syntax'
   gem 'database_cleaner'
 end
 
