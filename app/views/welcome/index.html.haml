@@ -1,15 +1,41 @@
-.feature
-  %h1= t('homepage.heading_1')
-  %h2= t('homepage.heading_2')
+#homepage-carousel.carousel.slide
+  %ol.carousel-indicators
+    %li.active{data: {target: "#homepage-carousel", slide_to: "0"}}
+    %li{data: {target: "#homepage-carousel", slide_to: "1"}}
+    %li{data: {target: "#homepage-carousel", slide_to: "2"}}
+    %li{data: {target: "#homepage-carousel", slide_to: "3"}}
 
-  %form
-    .form-group.has-feedback
-      %input.form-control.input-lg{type: "text", name: "search", placeholder: t('homepage.search_placeholder'), "aria-describedby": "search-icon"}
-      %span.glyphicon.glyphicon-search.form-control-feedback{"aria-hidden": "true"}
-      %span#search-icon.sr-only= t('search')
+  .carousel-inner{role: "listbox"}
+    .item.active
+      = cl_image_tag('homepage-album/image-1.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
+    .item
+      = cl_image_tag('homepage-album/image-2.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
+    .item
+      = cl_image_tag('homepage-album/image-3.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
+    .item
+      = cl_image_tag('homepage-album/image-4.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
 
-  .tour
-    %h3= link_to(t('homepage.tour_link_text'), "#")
+  /
+    %a.left.carousel-control{href: "#homepage-carousel", data: {slide: "prev"}, role: "button"}
+      %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
+      %span.sr-only Previous
+
+    %a.right.carousel-control{href: "#homepage-carousel", data: {slide: "next"}, role: "button"}
+      %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
+      %span.sr-only Next
+
+  .feature
+    %h1.hidden-xs= t('homepage.heading_1')
+    %h2.hidden-xs= t('homepage.heading_2')
+
+    %form
+      .form-group.has-feedback
+        %input.form-control.input-lg{type: "text", name: "search", placeholder: t('homepage.search_placeholder'), "aria-describedby": "search-icon"}
+        %span.glyphicon.glyphicon-search.form-control-feedback{"aria-hidden": "true"}
+        %span#search-icon.sr-only= t('search')
+
+    .tour.hidden-xs
+      %h3= link_to(t('homepage.tour_link_text'), "#")
 
 .blog_preview
   #featured_article

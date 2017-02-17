@@ -6,12 +6,10 @@
 }
 
 .feature {
-  background-image: url(image_path('feature.jpg'));
-  background-repeat: no-repeat;
-  background-size: 100%;
-
+  position: absolute;
+  top: 0;
+  margin: 4rem 8rem;
   text-align: center;
-  padding: 4em;
 }
 
 .tour {

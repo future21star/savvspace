@@ -3,6 +3,8 @@ hideAlerts = () ->
 
 $(document).on "turbolinks:load", ->
         $('.attachinary-input').attachinary()
+        $('.carousel').carousel()
+        $.cloudinary.responsive()
         $('.wysihtml5-sandbox').css("resize", "vertical")
         $("[data-toggle=dropdown]").dropdown()
 
