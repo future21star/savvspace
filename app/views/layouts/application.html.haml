@@ -13,7 +13,7 @@
     = cloudinary_js_config
     = csrf_meta_tags
 
-  %body{class: controller.controller_name, id: controller.action_name}
+  %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
     - if flash[:notice].present?
       #growl.growl.app-growl
         .alert.alert-dark.alert-dismissable{role: "alert"}
