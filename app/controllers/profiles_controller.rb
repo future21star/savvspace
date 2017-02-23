@@ -68,6 +68,8 @@ class ProfilesController < ApplicationController
     def set_profile
       @profile = if params[:user_id]
                    User.find(params[:user_id]).profile
+                 elsif params[:vendor_id]
+                   Vendor.find(params[:vendor_id]).profile
                  elsif params[:username]
                    Profile.find_by(username: params[:username])
                  else

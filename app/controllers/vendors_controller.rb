@@ -1,5 +1,6 @@
 class VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /vendors
   # GET /vendors.json
@@ -28,7 +29,8 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        format.html { redirect_to @vendor, notice: 'Vendor was successfully created.' }
+        current_user.grant_role!("owner", @vendor)
+        format.html { redirect_to edit_vendor_profile_url(@vendor), notice: 'Vendor was successfully created.' }
         format.json { render :show, status: :created, location: @vendor }
       else
         format.html { render :new }

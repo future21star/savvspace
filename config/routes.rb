@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :vendors
+  resources :vendors do
+    resource :profile
+  end
   resources :articles
   resources :article_categories do
     resources :articles, only: :index

@@ -9,7 +9,7 @@ module Permissible
     return true if has_role?(role_name, authorizable)
 
     authorizations.new(role: Role.find_by(name: role_name),
-                       authorizable: authorizable).save
+                       authorizable: authorizable).save!
   end
 
   def grant_role!(role_name, authorizable=nil)

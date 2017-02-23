@@ -8,6 +8,8 @@ class Profile < ActiveRecord::Base
   validates :username, uniqueness: true, format: /\A[A-Za-z_-]+\z/i, allow_nil: true
 
   def authorized_for_edit?(user)
-    user == profiled || user.has_role?("admin")
+    user == profiled ||
+      user.has_role?("owner", profiled) ||
+      user.has_role?("admin")
   end
 end

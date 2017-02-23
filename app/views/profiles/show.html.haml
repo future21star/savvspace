@@ -19,18 +19,8 @@
 
         = render partial: "social_links", locals: {profile: @profile}
 
-  %nav
-    %ul
-      %li.active
-        = link_to("Articles", "#")
-      %li
-        = link_to("Products", "#")
-      %li
-        = link_to("Services", "#")
-      %li
-        = link_to("Photos", "#")
-      %li
-        = link_to("Properties", "#")
+  = render partial: "#{@profile.profiled.class.name.underscore}_navigation"
 
 #articles
-  = render(partial: "areas/article", collection: @profile.profiled.authored_articles) || "No articles"
+  - if @profile.profiled.respond_to?(:authored_articles)
+    = render(partial: "areas/article", collection: @profile.profiled.authored_articles) || "No articles"
