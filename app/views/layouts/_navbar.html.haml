@@ -19,6 +19,8 @@
         %li
           = link_to("Guides", authors_path)
         %li
+          = link_to("Vendors", vendors_path)
+        %li
           = link_to("Become A Guide", new_user_registration_path)
       %ul.nav.navbar-nav.hidden-xs.navbar-right
         %li
@@ -34,7 +36,11 @@
               %ul.dropdown-menu{aria: {labelledby: "avitar-label"}}
                 - if current_user.has_role?("admin")
                   %li= link_to("Site Admin", dashboard_path)
-                %li= link_to("Profile", user_profile_path(current_user))
+                - if current_user.profile.name
+                  %li= link_to("Profile", user_profile_path(current_user))
+                - else
+                  %li= link_to("Profile", edit_user_profile_path(current_user))
+
                 %li= link_to("Logout", destroy_user_session_path, method: :delete)
 
           - else
@@ -51,6 +57,8 @@
           = link_to("Articles", articles_path)
         %li
           = link_to("Guides", authors_path)
+        %li
+          = link_to("Vendors", vendors_path)
         %li
           %a{:href => ""} Become a Guide
         %li

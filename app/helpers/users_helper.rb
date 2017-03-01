@@ -6,4 +6,8 @@ module UsersHelper
       image_tag("blank-profile.png", height: 33, class: "img-rounded")
     end
   end
+
+  def user_profile_vendorships(user)
+    user.is_role_for_what("owner", Vendor)
+  end
 end

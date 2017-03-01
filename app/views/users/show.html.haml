@@ -11,6 +11,13 @@
         = succeed "?" do
           = link_to("becoming an Author")
       %li
-        Are you a vendor interested in
-        = succeed "?" do
-          = link_to("selling on Savvspace", new_vendor_path, id: "new_vendor")
+        - if user_profile_vendorships(@user).empty?
+          Are you a vendor interested in
+          = succeed "?" do
+            = link_to("selling on Savvspace", new_vendor_path, id: "new_vendor")
+        - else
+          Manage Your Savvspace Businesses
+          %ul
+            - user_profile_vendorships(@user).each do |vendorship|
+              %li= link_to(vendorship.name, vendorship.profile)
+            %li= link_to("Create New Business...", new_vendor_path, id: "new_vendor")

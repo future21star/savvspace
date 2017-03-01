@@ -1,12 +1,11 @@
 %nav
   %ul
-    %li.active
-      = link_to("Articles", "#")
-    %li
-      = link_to("Products", "#")
-    %li
-      = link_to("Services", "#")
-    %li
-      = link_to("Photos", "#")
-    %li
-      = link_to("Properties", "#")
+    %li{class: @tab == "articles" ? "active" : nil}
+      = link_to("Articles", profile_tab_path(@profile, "articles"))
+    - if user_profile_vendorships(@profile.profiled).any?
+      %li{class: @tab == "businesses" ? "active" : nil}
+        = link_to("Businesses", profile_tab_path(@profile, "businesses"))
+    %li{class: @tab == "photos" ? "active" : nil}
+      = link_to("Photos", profile_tab_path(@profile, "photos"))
+    %li{class: @tab == "properties" ? "active" : nil}
+      = link_to("Properties", profile_tab_path(@profile, "properties"))

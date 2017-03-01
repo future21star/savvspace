@@ -1,0 +1,8 @@
+#services
+  = render(partial: "vendors/service", collection: @profile.profiled.services)
+
+  - if @profile.profiled.services.authorized_for_create?(current_user)
+    = link_to(new_vendor_service_path(@profile.profiled), class: "btn btn-default") do
+      %span.icon.icon-plus
+      Add New Service
+

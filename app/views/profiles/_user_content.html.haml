@@ -1,0 +1,16 @@
+- case @tab
+- when "articles"
+  #articles
+    - if @profile.profiled.respond_to?(:authored_articles)
+      = render(partial: "areas/article", collection: @profile.profiled.authored_articles) || "No articles"
+
+- when "businesses"
+  #vendorships
+    - user_profile_vendorships(@profile.profiled).each do |vendor|
+      %div.media[vendor]
+        .media-left
+          = link_to(cl_image_tag(vendor.profile.avatar.path, class: "media-object", width: 64, height: 64, crop: :fill), vendor.profile)
+
+        .media-body
+          %h4.media-heading= link_to(vendor.name, vendor.profile)
+          %p.summary= vendor.profile.bio

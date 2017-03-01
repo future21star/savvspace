@@ -1,0 +1,12 @@
+= simple_form_for(@service) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :vendor
+    = f.input :name
+    = f.input :description
+    = f.input :feature_photo, as: :attachinary
+    = f.input :price, hint: "in dollars"
+
+  .form-actions
+    = f.button :submit

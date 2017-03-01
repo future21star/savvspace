@@ -1,0 +1,11 @@
+%div.media[service]
+  .media-left
+    = cl_image_tag(service.feature_photo.path, class: "media-object", width: 64, height: 64, crop: :fill)
+
+  .media-body
+    %h4.media-heading
+      = service.name
+      &mdash;
+      %span.price= number_to_currency(service.price)
+
+    %p.summary= service.description

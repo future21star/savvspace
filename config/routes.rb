@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :services
   devise_for :users
 
   resources :vendors do
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   resources :ambassadorships
   resources :areas
   resources :profiles
+  get '/profiles/:id/:tab', to: "profiles#show", as: :profile_tab
   get '/u/:username', to: "profiles#show", as: :public_profile
   resources :ratings
   resources :authors, only: [:index] do

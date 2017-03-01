@@ -15,12 +15,13 @@
             = link_to(@profile.name, public_profile_path(@profile.username))
           - else
             = @profile.name
-        %p.profile-header-bio= @profile.bio
+        %p.profile-header-bio
+          - if @profile.bio
+            = @profile.bio.truncate(200)
 
         = render partial: "social_links", locals: {profile: @profile}
 
-  = render partial: "#{@profile.profiled.class.name.underscore}_navigation"
+  = render partial: "#{@profile.profiled.class.name.underscore}_navigation", locals: {tab: @tab}
 
-#articles
-  - if @profile.profiled.respond_to?(:authored_articles)
-    = render(partial: "areas/article", collection: @profile.profiled.authored_articles) || "No articles"
+
+= render partial: "#{@profile.profiled.class.name.underscore}_content"
