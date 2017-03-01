@@ -36,6 +36,7 @@
               %ul.dropdown-menu{aria: {labelledby: "avitar-label"}}
                 - if current_user.has_role?("admin")
                   %li= link_to("Site Admin", dashboard_path)
+                %li= link_to("Home", user_path(current_user))
                 - if current_user.profile.name
                   %li= link_to("Profile", user_profile_path(current_user))
                 - else
