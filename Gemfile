@@ -36,6 +36,7 @@ gem 'cloudinary'
 gem 'attachinary'
 gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
 gem 'rollbar'
+gem 'pundit', '~> 1.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -56,6 +57,7 @@ group :development, :test do
   gem 'syntax'
   gem 'database_cleaner'
   gem 'fakeweb'
+  gem 'pundit-matchers', '~> 1.1.0'
 end
 
 group :development do

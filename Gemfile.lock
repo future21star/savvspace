@@ -160,6 +160,11 @@ GEM
     pg (0.19.0)
     public_suffix (2.0.4)
     puma (3.6.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
+    pundit-matchers (1.1.0)
+      pundit (~> 1.1, >= 1.1.0)
+      rspec-rails (>= 3.0.0)
     rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -301,6 +306,8 @@ DEPENDENCIES
   jquery-rails
   pg (~> 0.15)
   puma (~> 3.0)
+  pundit (~> 1.1)
+  pundit-matchers (~> 1.1.0)
   rails (= 4.2.8)
   rails_12factor
   rdiscount
