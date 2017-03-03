@@ -1,5 +1,5 @@
 .author-profile
-  .panel.panel-default.panel-profile.m-b-md
+  .panel.fixed-height.panel-default.panel-profile.m-b-md
     .panel-heading{background_image_url(profile.background)}
     .panel-body.text-center
       - if profile.avatar
@@ -7,6 +7,6 @@
 
       %h5.panel-title
         = link_to(profile.name, profile_link)
-      %p.m-b-d= profile.bio
+      %p.m-b-d= profile.bio.truncate(140)
 
       = render partial: "profiles/social_links", locals: {profile: profile}

@@ -7,7 +7,7 @@
   .row
     - group.each do |area|
       .col-md-4
-        .panel.panel-default.panel-profile[area]
+        .panel.fixed-height.panel-default.panel-profile[area]
           .panel-heading{background_image_url(area.display_photo), href: url_for(area)}
           .panel-body.text-center
             %h5.panel-title= link_to(area.name, area)
