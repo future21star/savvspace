@@ -1,4 +1,7 @@
-%h2 Vendors
+%h2
+  Vendors
+  %span.small= link_to("Create New...", new_vendor_path, class: "small")
+
 - @vendors.in_groups_of(3, false) do |group|
   .row
     - group.each do |vendor|
