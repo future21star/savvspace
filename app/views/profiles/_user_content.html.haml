@@ -9,7 +9,10 @@
     - user_profile_vendorships(@profile.profiled).each do |vendor|
       %div.media[vendor]
         .media-left
-          = link_to(cl_image_tag(vendor.profile.avatar.path, class: "media-object", width: 64, height: 64, crop: :fill), vendor.profile)
+          - if vendor.profile.avatar
+            = link_to(cl_image_tag(vendor.profile.avatar.path, class: "media-object", width: 64, height: 64, crop: :fill), vendor.profile)
+          - else
+            = link_to(image_tag("blank-profile.png", class: "media-object", width: 64, height: 64), vendor.profile)
 
         .media-body
           %h4.media-heading= link_to(vendor.name, vendor.profile)
