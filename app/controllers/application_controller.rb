@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || user_start_path
   end
@@ -29,5 +31,10 @@ class ApplicationController < ActionController::Base
 
   def current_user_admin?
     user_signed_in? && current_user.has_role?("admin")
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
   end
 end
