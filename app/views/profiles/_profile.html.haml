@@ -7,6 +7,6 @@
 
       %h5.panel-title
         = link_to(profile.name, profile_link)
-      %p.m-b-d= profile.bio.truncate(140)
+      %p.m-b-d= profile.bio.to_s.truncate(140)
 
       = render partial: "profiles/social_links", locals: {profile: profile}
