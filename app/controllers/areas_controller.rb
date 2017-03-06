@@ -1,6 +1,5 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin, except: [:index, :show]
 
   # GET /areas
   # GET /areas.json
@@ -11,15 +10,18 @@ class AreasController < ApplicationController
   # GET /areas/1
   # GET /areas/1.json
   def show
+    authorize @area
   end
 
   # GET /areas/new
   def new
     @area = Area.new
+    authorize @area
   end
 
   # GET /areas/1/edit
   def edit
+    authorize @area
     @ambassadorship = @area.ambassadorship || @area.build_ambassadorship
   end
 
@@ -27,6 +29,7 @@ class AreasController < ApplicationController
   # POST /areas.json
   def create
     @area = Area.new(area_params)
+    authorize @area
 
     respond_to do |format|
       if @area.save
@@ -42,6 +45,7 @@ class AreasController < ApplicationController
   # PATCH/PUT /areas/1
   # PATCH/PUT /areas/1.json
   def update
+    authorize @area
     respond_to do |format|
       if @area.update(area_params)
         format.html { redirect_to @area, notice: 'Area was successfully updated.' }
@@ -56,6 +60,7 @@ class AreasController < ApplicationController
   # DELETE /areas/1
   # DELETE /areas/1.json
   def destroy
+    authorize @area
     @area.destroy
     respond_to do |format|
       format.html { redirect_to areas_url, notice: 'Area was successfully destroyed.' }

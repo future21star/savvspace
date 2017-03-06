@@ -15,15 +15,6 @@ class Article < ActiveRecord::Base
   validates_presence_of :body
   validates_presence_of :feature_photo, unless: -> { Rails.env.test? }
 
-  ## Authorizations
-  def self.authorized_for_create?(user)
-    user && (user.has_role?("author") || user.ambassadorships.any?)
-  end
-
-  def authorized_for_edit?(user)
-    user && (user.has_role?("admin") || user == author)
-  end
-
   def author_name
     author.profile.name
   end

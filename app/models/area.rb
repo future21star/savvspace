@@ -7,16 +7,4 @@ class Area < ActiveRecord::Base
   validates_uniqueness_of :name
 
   has_attachment :display_photo, accept: [:jpg, :png]
-
-  ## Authorizations
-
-  def authorized_for_edit?(user)
-    return false unless user
-
-    user.has_role?("admin")
-  end
-
-  def self.authorized_for_create?(user)
-    user && user.has_role?("admin")
-  end
 end

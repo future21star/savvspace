@@ -6,10 +6,4 @@ class Profile < ActiveRecord::Base
   has_attachment :background, accept: [:jpg, :png]
 
   validates :username, uniqueness: true, format: /\A[0-9A-Za-z_-]+\z/i, allow_nil: true
-
-  def authorized_for_edit?(user)
-    user == profiled ||
-      user.has_role?("owner", profiled) ||
-      user.has_role?("admin")
-  end
 end

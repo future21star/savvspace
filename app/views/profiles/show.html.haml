@@ -1,5 +1,5 @@
 .profile-header[@profile]{background_image_url(@profile.background)}
-  - if @profile.authorized_for_edit?(current_user)
+  - if policy(@profile).edit?
     .action-links.pull-right
       = link_to(edit_profile_path(@profile), class: "btn btn-sm btn-default") do
         %span.icon.icon-edit

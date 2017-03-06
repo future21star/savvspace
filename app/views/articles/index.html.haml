@@ -1,6 +1,6 @@
 %h1
   Latest articles
-  - if Article.authorized_for_create?(current_user)
+  - if policy(Article).create?
     %span.small= link_to("Create New...", new_article_path, class: "small")
 
 .article-list.col-md-8
