@@ -13,10 +13,4 @@ class User < ActiveRecord::Base
   has_one :profile, as: :profiled, dependent: :destroy
 
   after_create :create_profile
-
-  ## Authorizations
-
-  def authorized_for_view?(user)
-    self == user || user.has_role?("admin")
-  end
 end
