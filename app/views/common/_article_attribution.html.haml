@@ -1,0 +1,25 @@
+- multiline ||= false
+
+%p.attribution
+  %span.author
+    Posted by
+    = link_to(article.author.profile.name, article.author.profile)
+  - if multiline
+    %br
+  - else
+    \|
+  %span.date
+    = article.updated_at.strftime("%b %d, %Y")
+  \|
+  %span.category
+    = article.category.name
+  \|
+  %span.comments
+    = comments
+    %span.icon.icon-chat
+  \|
+  %span.rating
+    - article.rating.times do
+      %span.icon.icon-star
+    - (5 - article.rating).times do
+      %span.icon.icon-star-outlined

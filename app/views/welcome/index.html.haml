@@ -39,9 +39,16 @@
 
 .blog_preview
   #featured_article
-    %img.img-responsive{src: "http://theimpression.com/wp-content/uploads/new-street-style-day-spring-2016-the-impression-012.jpg"}
-    .blog-overlay
-      %p.title
+    - if @feature_article
+      = cl_image_tag(@feature_article.feature_photo.path, class: "img-responsive")
+      .blog-overlay
+        %p.title
+          = link_to(@feature_article.title, @feature_article)
+        = render partial: "common/article_attribution", locals: { article: @feature_article, comments: 0 }
+    - else
+      %img.img-responsive{src: "http://theimpression.com/wp-content/uploads/new-street-style-day-spring-2016-the-impression-012.jpg"}
+      .blog-overlay
+        %p.title
         = link_to("Women's Fashion in 2016", "#")
       = render partial: "common/attribution", locals: { author: "Jim Jones", date: "Nov 4, 2016", category: "Design", comments: 0, rating: 4 }
 
