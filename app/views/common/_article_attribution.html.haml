@@ -12,7 +12,8 @@
     = article.updated_at.strftime("%b %d, %Y")
   \|
   %span.category
-    = article.category.name
+    - if article.category
+      = article.category.name
   \|
   %span.comments
     = comments
