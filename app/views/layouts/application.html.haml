@@ -12,6 +12,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = cloudinary_js_config
     = csrf_meta_tags
+    = render 'application/favicon'
 
   %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
     - if flash[:notice].present?

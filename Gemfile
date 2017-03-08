@@ -58,6 +58,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'fakeweb'
   gem 'pundit-matchers', '~> 1.1.0'
+  gem 'rails_real_favicon'
 end
 
 group :development do
