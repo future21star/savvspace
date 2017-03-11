@@ -1,0 +1,56 @@
+body.subscriptions {
+  text-align: center;
+  background-image: url(image_path('landing-page-opaque.jpg'));
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #474749;
+
+  .logo {
+    @extend .center-block;
+    margin-top: 60px;
+
+    img {
+      @extend .img-responsive;
+      margin: 0 auto;
+      width: 33%
+    }
+  }
+
+  h2.tag-line {
+    color: #474849;
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  h3.form-heading {
+    color: #474749;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11pt;
+  }
+
+  #mc_embed_signup {
+    @extend .col-md-offset-3;
+    @extend .col-md-6;
+
+    .submit-btn {
+      text-align: center;
+    }
+  }
+
+  #mc_embed_signup_scroll {
+    @extend .row;
+    @extend .col-md-offset-1;
+    @extend .col-md-10;
+  }
+
+  .mce-responses .response {
+    width: 100%;
+  }
+
+  #mce-success-response {
+    color: #1261ae;
+  }
+}

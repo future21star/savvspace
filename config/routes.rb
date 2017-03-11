@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :subscriptions, only: [:index]
+
   resources :services
   devise_for :users
 
@@ -27,7 +29,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'subscriptions#index'
   get '/dashboard' => 'welcome#dashboard', as: :dashboard
   get '/about' => 'welcome#about', as: :about
   get '/contact' => 'welcome#contact', as: :contact
