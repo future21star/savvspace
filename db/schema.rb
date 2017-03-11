@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223051149) do
+ActiveRecord::Schema.define(version: 20170311005709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20170223051149) do
     t.integer  "area_id"
     t.integer  "user_id"
     t.string   "title"
-    t.text     "body"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "article_category_id"
+    t.text     "body"
   end
 
   add_index "articles", ["area_id"], name: "index_articles_on_area_id", using: :btree
@@ -90,6 +90,22 @@ ActiveRecord::Schema.define(version: 20170223051149) do
   end
 
   add_index "captioned_images", ["owner_type", "owner_id"], name: "index_captioned_images_on_owner_type_and_owner_id", using: :btree
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "photo_albums", force: :cascade do |t|
     t.integer  "owner_id"
