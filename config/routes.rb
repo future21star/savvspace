@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'subscriptions#index'
   get '/dashboard' => 'welcome#dashboard', as: :dashboard
+  get '/home' => 'welcome#index', as: :home
   get '/about' => 'welcome#about', as: :about
   get '/contact' => 'welcome#contact', as: :contact
 
