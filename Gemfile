@@ -37,6 +37,8 @@ gem 'attachinary'
 gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
 gem 'rollbar'
 gem 'pundit', '~> 1.1'
+gem 'gibbon'
+gem 'delayed_job_active_record'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
