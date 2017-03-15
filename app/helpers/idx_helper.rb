@@ -1,0 +1,2 @@
+module IdxHelper
+end

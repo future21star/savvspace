@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'idx/', to: "idx#index"
+
   resources :subscriptions, only: [:index]
 
   resources :services
