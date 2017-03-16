@@ -17,3 +17,11 @@
         .media-body
           %h4.media-heading= link_to(vendor.name, vendor.profile)
           %p.summary= vendor.profile.bio
+- when "properties"
+  #properties
+    - 2.times do
+      .row
+        = render partial: 'idx/property'
+        = render partial: 'idx/property'
+        = render partial: 'idx/property'
+
