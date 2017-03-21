@@ -54,3 +54,18 @@ body.subscriptions {
     color: #1261ae;
   }
 }
+
+#login_button {
+  text-align: left;
+  margin-top: 1em;
+  a {
+    font-weight: bold;
+    border-color: hsla(221, 7.9462%, 76.6303%, 0.8748);
+    color: hsla(221, 7.9462%, 76.6303%, 0.8748);
+
+    &:hover {
+      background-color: hsla(221, 7.9462%, 76.6303%, 0.3748);
+      color: white;
+    }
+  }
+}
