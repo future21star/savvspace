@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b From:
+  = @phone_call.from
+%p
+  %b Profile:
+  = @phone_call.profile
+
+= link_to 'Edit', edit_phone_call_path(@phone_call)
+\|
+= link_to 'Back', phone_calls_path

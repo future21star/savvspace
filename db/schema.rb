@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311005709) do
+ActiveRecord::Schema.define(version: 20170323202235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,27 @@ ActiveRecord::Schema.define(version: 20170311005709) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "phone_calls", force: :cascade do |t|
+    t.integer  "from_phone_id"
+    t.integer  "profile_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "sid"
+  end
+
+  add_index "phone_calls", ["from_phone_id"], name: "index_phone_calls_on_from_phone_id", using: :btree
+  add_index "phone_calls", ["profile_id"], name: "index_phone_calls_on_profile_id", using: :btree
+
+  create_table "phones", force: :cascade do |t|
+    t.string   "number"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "phones", ["owner_type", "owner_id"], name: "index_phones_on_owner_type_and_owner_id", using: :btree
+
   create_table "photo_albums", force: :cascade do |t|
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -195,6 +216,7 @@ ActiveRecord::Schema.define(version: 20170311005709) do
   add_foreign_key "articles", "users"
   add_foreign_key "authorizations", "roles"
   add_foreign_key "authorizations", "users"
+  add_foreign_key "phone_calls", "profiles"
   add_foreign_key "ratings", "users"
   add_foreign_key "services", "vendors"
 end

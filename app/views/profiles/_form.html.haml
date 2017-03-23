@@ -5,6 +5,8 @@
     = f.input :name
     = f.input :username, hint: "Claim your personal URL: https://savvspace.com/u/your-username"
     = f.input :contact_email
+    = f.simple_fields_for :phone do |p|
+      = p.input :number
     = f.input :bio
     = f.input :linked_in
     = f.input :facebook

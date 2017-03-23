@@ -10,3 +10,7 @@ $(document).on "turbolinks:load", ->
         setProfileUrlHint()
         $("input#profile_username").keyup ->
                 setProfileUrlHint()
+
+        $("#new_call").on 'hidden.bs.modal', (e) ->
+                $.ajax({url: "/phone_calls/new.js", data: {profile_id: $("#new_call").data("profileId")}})
+                return

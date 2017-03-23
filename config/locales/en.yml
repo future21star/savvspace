@@ -31,3 +31,14 @@ en:
       search, area, agent, topic (i.e. best restaurant)
     tour_link_text: |
       Show me around
+
+  click_to_call:
+    welcome_message: "Hello!  Please hold while we connect you."
+  activerecord:
+    errors:
+      models:
+        phone:
+          attributes:
+            number:
+              not_a_number: "Please enter a valid 10 digit phone number"
+              wrong_length: "Please enter a valid 10 digit phone number"

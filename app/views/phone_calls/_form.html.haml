@@ -1,0 +1,16 @@
+= simple_form_for(@phone_call, remote: true, format: :js) do |f|
+  = f.input :profile_id, as: :hidden
+  = f.fields_for :from_phone, @phone_call.from_phone do |p|
+    = p.error :number, class: "alert alert-danger"
+    .input-group.input-group-lg
+      %span.input-group-addon +1
+      = p.input_field :number, placeholder: "XXX-XXX-XXXX", as: :tel, class: "form-control", disabled: @phone_call.persisted?
+      %span.input-group-btn
+        - if @phone_call.persisted?
+          %button.btn.btn-success{disabled: true}
+            %span.icon.icon-phone
+            Calling...
+        - else
+          %button.btn.btn-primary
+            %span.icon.icon-phone
+            Call Now

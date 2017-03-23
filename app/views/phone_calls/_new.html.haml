@@ -1,0 +1,14 @@
+.modal-dialog{role: "document"}
+  .modal-content
+    .modal-header
+      %button.close{type: "button", data: {dismiss: "modal"}, aria: {label: "Close"}}
+        %span{aria: {hidden: true}} &times;
+      %h4.modal-title#new_call_modal_label
+        Please enter the phone number we can reach you at
+    .modal-body
+      = render "phone_calls/form"
+    .modal-footer
+      %p.text-center
+        We will call you at the number of above and connect you to
+        %br
+        = @profile.name

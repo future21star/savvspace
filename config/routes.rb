@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  get 'ivr/click_to_call', format: :xml
+
   get 'idx/', to: "idx#index"
 
   resources :subscriptions, only: [:index]
 
-  resources :services
   devise_for :users
+
+  resources :phone_calls
+  resources :services
 
   resources :vendors do
     resource :profile

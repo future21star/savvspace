@@ -3,6 +3,8 @@
     - if profile.contact_email.present?
       %a.icon.icon-mail-with-circle{href: "mailto:" + profile.contact_email, title: "E-Mail"}
 
+    - if profile.phone.present?
+      %a.icon.icon-phone#click_to_call{href: "#", title: "E-Mail", data: {toggle: "modal", target: "#new_call"}}
     - if profile.facebook.present?
       = facebook_link(profile.facebook)
     - if profile.instagram.present?
@@ -11,3 +13,7 @@
       = twitter_link(profile.twitter)
     - if profile.linked_in.present?
       = linked_in_link(profile.linked_in)
+
+- if profile.phone.present?
+  #new_call.modal.fade{tabindex: "-1", role: "dialog", aria: {labelledby: "new_call_modal_label"}, data: {profile_id: profile.id}}
+    = render partial: "phone_calls/new"

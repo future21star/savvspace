@@ -2,3 +2,16 @@
   min-height: 7rem;
   overflow: hidden;
 }
+
+.modal-header {
+  background-color: $navbar-background;
+  @include border-top-radius(4px);
+}
+
+.modal-footer p {
+  color: $body-text;
+}
+
+.modal-body {
+  color: $body-text;
+}

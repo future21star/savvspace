@@ -1,0 +1,23 @@
+%h1 Listing phone_calls
+
+%table
+  %thead
+    %tr
+      %th From
+      %th Profile
+      %th
+      %th
+      %th
+
+  %tbody
+    - @phone_calls.each do |phone_call|
+      %tr
+        %td= phone_call.from
+        %td= phone_call.profile
+        %td= link_to 'Show', phone_call
+        %td= link_to 'Edit', edit_phone_call_path(phone_call)
+        %td= link_to 'Destroy', phone_call, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Phone call', new_phone_call_path

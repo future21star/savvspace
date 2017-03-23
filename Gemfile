@@ -39,6 +39,7 @@ gem 'rollbar'
 gem 'pundit', '~> 1.1'
 gem 'gibbon'
 gem 'delayed_job_active_record'
+gem 'twilio-ruby', '~> 4.11.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

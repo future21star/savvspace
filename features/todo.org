@@ -1,0 +1,7 @@
+* TODO: Talk about storage policy
+* TODO: An agent should be able to be a member of multiple MLS
+
+* TODO FEATURE: E-mailed updates for saved property searches
+* TODO FEATURE: As a user I should be able to follow an Agent and get e-mailed updates (blog, etc.)
+* TODO FEATURE: When e-mailing an open house listing, it should include a PDF version that can be branded by Savvspace, by the Agent (profile pic, contact info), Advertisor, 
+* $40 per month, discound 

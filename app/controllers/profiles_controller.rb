@@ -12,6 +12,10 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     authorize @profile
+    @phone_call = if @profile.phone
+                    PhoneCall.new(profile: @profile)
+                  end
+    @phone_call.build_from_phone if @phone_call
     @tab = params[:tab]
   end
 
@@ -24,6 +28,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1/edit
   def edit
     authorize @profile
+    @profile.build_phone unless @profile.phone
   end
 
   # POST /profiles
@@ -87,6 +92,6 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).
         permit(:name, :username, :bio, :contact_email, :linked_in, :facebook, :twitter,
-               :instagram, :avatar, :background)
+               :instagram, :avatar, :background, phone_attributes: [:number])
     end
 end
