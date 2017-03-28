@@ -1,0 +1,45 @@
+.col-md-4
+  /
+    = property.inspect
+  .panel.panel-default.panel-profile[]
+    - bgimg = property["listing"]["photos"][0].fetch("url", "") if property["listing"]["photos"]
+    - if bgimg
+      .panel-heading{style: "background-image: url(#{bgimg});", href: "#"}
+    - else
+      .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: "#"}
+    .panel-body
+      %h5.panel-title
+        = link_to("#") do
+          = property["StreetNumber"]
+          = property["StreetName"]
+          = property["StreetSuffix"]
+      .details
+        %p.neighborhood.m-b-0
+          - if property["MLSAreaMajor"]
+            = property["MLSAreaMajor"]
+            \-
+          = property["City"]
+          = property["StateOrProvince"]
+          = property["PostalCode"]
+        %p.pricing
+          %span.sale-price= number_to_currency(property["ListPrice"], precision: 0)
+
+          &nbsp;
+          %span.stats
+            %span.icon.icon-home
+            = "#{property["BedroomsTotal"]}bd"
+            = format("%s.%dba", property["BathroomsFull"], property["BathroomsHalf"])
+
+        %hr
+        %p.description= property["PublicRemarks"].truncate(100)
+        .controls
+          %p.pull-right
+            %span.icon.icon-heart
+            3
+            &nbsp;
+            &nbsp;
+            %span.glyphicon.glyphicon-share-alt
+          %p.updated
+            Updated
+            = distance_of_time_in_words(Time.parse(property["ModificationTimestamp"]), Time.current)
+            ago

@@ -1,0 +1,39 @@
+- property_search ||= PropertySearch.new
+= form_for(property_search, {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
+  .form-group
+    = f.label :sort_by
+    %br
+    = f.select :sort_by, property_sort_options, {}, {class: "form-control custom-select"}
+  .form-group
+    = f.label :min_price
+    %br
+    = f.select :min_price, property_price_options, {include_blank: "No Min"}, {class: "form-control custom-select"}
+    %span.hidden-xs
+      &nbsp;
+      to
+      &nbsp;
+  .form-group
+    = f.label :max_price
+    %br
+    = f.select :max_price, property_price_options, {include_blank: "No Max"}, {class: "form-control custom-select"}
+
+  .form-group.m-x.hidden-xs
+
+  .form-group
+    = f.label :min_beds
+    %br
+    = f.select :min_beds, property_bed_options, {include_blank: "No Min"}, {class: "form-control custom-select"}
+    %span.hidden-xs
+      &nbsp;
+      to
+      &nbsp;
+  .form-group
+    = f.label :max_beds
+    %br
+    = f.select :max_beds, property_bed_options, {include_blank: "No Max"}, {class: "form-control custom-select"}
+  .form-group
+    .hidden-xs
+      %label &nbsp;
+      %br
+    = f.submit "Search", class: "btn btn-primary"
+    = image_tag("dots.gif", height: 30, class: "ajax-spinner")

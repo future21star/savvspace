@@ -15,3 +15,11 @@
 .modal-body {
   color: $body-text;
 }
+
+form.with-spinner {
+  .ajax-spinner { display: none; }
+}
+
+form.with-spinner.processing {
+  .ajax-spinner { display: inline; }
+}
