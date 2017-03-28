@@ -1,6 +1,7 @@
 web:
   build: .
   command: 'bash -c ''bundle exec puma -C config/puma.rb'''
+  env_file: '.env'
   working_dir: /app/user
   env_file: '.env'
   environment:

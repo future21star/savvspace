@@ -19,9 +19,9 @@
           %p.summary= vendor.profile.bio
 - when "properties"
   #properties
-    - 2.times do
+    - @properties = Rets::PropertySearch.call
+    - @properties.in_groups_of(3, false) do |group|
       .row
-        = render partial: 'idx/property'
-        = render partial: 'idx/property'
-        = render partial: 'idx/property'
+        - group.each do |property|
+          = render partial: 'idx/property', object: property
 
