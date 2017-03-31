@@ -6,12 +6,29 @@
     = f.input :username, hint: "Claim your personal URL: https://savvspace.com/u/your-username"
     = f.input :contact_email
     = f.simple_fields_for :phone do |p|
-      = p.input :number
+      = p.input :number, label: "Mobile Phone Number"
     = f.input :bio
-    = f.input :linked_in
-    = f.input :facebook
-    = f.input :twitter
-    = f.input :instagram
+
+    = f.label :linked_in, "LinkedIn"
+    .input-group.m-b
+      %span.input-group-addon https://www.linkedin.com/in/
+      = f.input :linked_in, label: false
+
+    = f.label :facebook
+    .input-group.m-b
+      %span.input-group-addon https://www.facebook.com/
+      = f.input :facebook, label: false
+
+    = f.label :twitter
+    .input-group.m-b
+      %span.input-group-addon https://twitter.com/
+      = f.input :twitter, label: false
+
+    = f.label :instagram
+    .input-group.m-b
+      %span.input-group-addon https://instagram.com/
+      = f.input :instagram, label: false
+
     = f.input :avatar, as: :attachinary
     = f.input :background, as: :attachinary
 
