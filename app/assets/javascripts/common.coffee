@@ -1,7 +1,7 @@
 hideAlerts = () ->
         $('div.alert-dismissable').slideToggle()
 
-$(document).on "turbolinks:load", (event) ->
+$(document).on "turbolinks:load", ->
         $('.attachinary-input').attachinary()
         $('.carousel').carousel()
         $.cloudinary.responsive()
@@ -13,7 +13,3 @@ $(document).on "turbolinks:load", (event) ->
         $("div[href]").addClass("clickable")
         $("div[href]").click ->
                 window.location = $(this).attr("href")
-
-        if typeof ga is 'function'
-          ga('set', 'location', event.data.url)
-          ga('send', 'pageview')
