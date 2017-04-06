@@ -40,6 +40,7 @@ gem 'pundit', '~> 1.1'
 gem 'gibbon'
 gem 'delayed_job_active_record'
 gem 'twilio-ruby', '~> 4.11.1'
+gem 'rack-tracker'
 
 # RETS Rabbit dependencies
 gem 'httparty'
