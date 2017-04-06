@@ -10,6 +10,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    '//fonts.googleapis.com/css?family=Open+Sans:400,300,600'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    - if Rails.env.production?
+      = javascript_include_tag 'google.analytics.js'
     = cloudinary_js_config
     = csrf_meta_tags
     = render 'application/favicon'
