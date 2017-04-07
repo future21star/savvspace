@@ -2,7 +2,7 @@ class RetsProvider
   include HTTParty
 
   def self.access_token
-    Rails.cache.fetch("rets_access_token", expires_in: 302400) do
+    Rails.cache.fetch("rets_access_token_#{ENV.fetch('RETS_RABBIT_CLIENT_ID')}", expires_in: 302400) do
       if Rails.env.test?
         "test123"
       else
@@ -20,7 +20,7 @@ class RetsProvider
   base_uri ENV['RETS_RABBIT_URL']
   format :json
   headers  "Authorization" => "Bearer #{self.access_token}", "Accept" => "application/json"
-  # debug_output $stdout
+  debug_output $stdout
 
   def initialize
   end
@@ -29,9 +29,25 @@ class RetsProvider
     RetsProvider.get("/datasystem")
   end
 
-  def property_list(search)
+  def servers
+    RetsProvider.get("/v1/server")
+  end
+
+  def v1_property_list(search)
+    response = RetsProvider.get("/v1/4ddfb54ef491a7a1d383c0aba813e2ee/listing/search",
+                                query: v1_property_search_to_query(search)
+                                )
+    if response.parsed_response["results"].blank?
+      Rails.logger.error(response.inspect)
+      []
+    else
+      response.parsed_response["results"]
+    end
+  end
+
+  def v2_property_list(search)
     response = RetsProvider.get("/v2/property",
-                                query: property_search_to_query(search)
+                                query: v2_property_search_to_query(search)
                                 )
     if response.parsed_response["value"].blank?
       Rails.logger.error(response.inspect)
@@ -41,7 +57,46 @@ class RetsProvider
     end
   end
 
-  def property_search_to_query(property_search)
+  def v1_property_search_to_query(property_search)
+    query = {
+      "limit" => 12,
+      "offset" => 0,
+      "LIST_15" => "Active",
+      "LIST_9" => "Home/Estate"
+    }
+
+    if property_search.min_price.present? && property_search.max_price.present?
+      query["LIST_22"] = "#{property_search.min_price}-#{property_search.max_price}"
+    elsif property_search.min_price.present?
+      query["LIST_22"] = "#{property_search.min_price}+"
+    elsif property_search.max_price.present?
+      query["LIST_22"] = "#{property_search.max_price}-"
+    end
+
+    if property_search.min_beds.present? && property_search.max_beds.present?
+      query["LIST_66"] = "#{property_search.min_beds}-#{property_search.max_beds}"
+    elsif property_search.min_beds.present?
+      query["LIST_66"] = "#{property_search.min_beds}+"
+    elsif property_search.max_beds.present?
+      query["LIST_66"] = "#{property_search.max_beds}-"
+    end
+
+    case property_search.sort_by
+    when PropertySearch::SORT_PRICE_LOW_TO_HIGH
+      query["orderby"] = "LIST_22"
+      query["sort_order"] = "asc"
+    when PropertySearch::SORT_PRICE_HIGH_TO_LOW
+      query["orderby"] = "LIST_22"
+      query["sort_order"] = "desc"
+    else
+      query["orderby"] = "LIST_10"
+      query["sort_order"] = "desc"
+    end
+
+    query
+  end
+
+  def v2_property_search_to_query(property_search)
     query = {
       "$top" => 12,
       "$skip" => 0

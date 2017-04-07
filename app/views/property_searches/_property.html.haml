@@ -2,7 +2,7 @@
   /
     = property.inspect
   .panel.panel-default.panel-profile[]
-    - bgimg = property["listing"]["photos"][0].fetch("url", "") if property["listing"]["photos"]
+    - bgimg = property["photos"][0].fetch("url", "") unless property["photos"].empty?
     - if bgimg
       .panel-heading{style: "background-image: url(#{bgimg});", href: "#"}
     - else
@@ -10,28 +10,27 @@
     .panel-body
       %h5.panel-title
         = link_to("#") do
-          = property["StreetNumber"]
-          = property["StreetName"]
-          = property["StreetSuffix"]
+          = property["fields"]["LIST_31"]
+          = property["fields"]["LIST_34"]
       .details
         %p.neighborhood.m-b-0
-          - if property["MLSAreaMajor"]
-            = property["MLSAreaMajor"]
+          - if property["fields"]["LIST_77"].present?
+            = property["fields"]["LIST_77"]
             \-
-          = property["City"]
-          = property["StateOrProvince"]
-          = property["PostalCode"]
+          = property["fields"]["LIST_39"]
+          = property["fields"]["LIST_40"]
+          = property["fields"]["LIST_43"]
         %p.pricing
-          %span.sale-price= number_to_currency(property["ListPrice"], precision: 0)
+          %span.sale-price= number_to_currency(property["fields"]["LIST_22"], precision: 0)
 
           &nbsp;
           %span.stats
             %span.icon.icon-home
-            = "#{property["BedroomsTotal"]}bd"
-            = format("%s.%dba", property["BathroomsFull"], property["BathroomsHalf"])
+            = "#{property["fields"]["LIST_66"]}bd"
+            = format("%s.%dba", property["fields"]["LIST_68"], property["fields"]["LIST_69"].to_i)
 
         %hr
-        %p.description= property["PublicRemarks"].truncate(100)
+        %p.description= property["fields"]["LIST_78"].truncate(100)
         .controls
           %p.pull-right
             %span.icon.icon-heart
@@ -41,5 +40,5 @@
             %span.glyphicon.glyphicon-share-alt
           %p.updated
             Updated
-            = distance_of_time_in_words(Time.parse(property["ModificationTimestamp"]), Time.current)
+            = distance_of_time_in_words(Time.parse(property["fields"]["LIST_87"]), Time.current)
             ago

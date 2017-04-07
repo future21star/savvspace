@@ -8,3 +8,5 @@
 
 admin = User.create email: 'admin@savvspace.com', password: 'password123'
 admin.grant_role!("admin")
+
+sb_mls = MlsServer.create(name: "sbaor", server_hash: "4ddfb54ef491a7a1d383c0aba813e2ee")
