@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407223956) do
+ActiveRecord::Schema.define(version: 20170409231203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,13 +107,21 @@ ActiveRecord::Schema.define(version: 20170407223956) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "mls_adapters", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "mls_servers", force: :cascade do |t|
     t.string   "name"
     t.string   "server_hash"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "mls_adapter_id"
   end
 
+  add_index "mls_servers", ["mls_adapter_id"], name: "index_mls_servers_on_mls_adapter_id", using: :btree
   add_index "mls_servers", ["name"], name: "index_mls_servers_on_name", using: :btree
 
   create_table "open_house_searches", force: :cascade do |t|
@@ -252,6 +260,7 @@ ActiveRecord::Schema.define(version: 20170407223956) do
   add_foreign_key "articles", "users"
   add_foreign_key "authorizations", "roles"
   add_foreign_key "authorizations", "users"
+  add_foreign_key "mls_servers", "mls_adapters"
   add_foreign_key "open_house_searches", "mls_servers"
   add_foreign_key "phone_calls", "profiles"
   add_foreign_key "ratings", "users"
