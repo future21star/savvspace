@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407193518) do
+ActiveRecord::Schema.define(version: 20170407223956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,22 @@ ActiveRecord::Schema.define(version: 20170407193518) do
   end
 
   add_index "mls_servers", ["name"], name: "index_mls_servers_on_name", using: :btree
+
+  create_table "open_house_searches", force: :cascade do |t|
+    t.string   "neighborhood"
+    t.integer  "sort_by"
+    t.integer  "min_price"
+    t.integer  "max_price"
+    t.integer  "min_beds"
+    t.integer  "max_beds"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.integer  "mls_server_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "open_house_searches", ["mls_server_id"], name: "index_open_house_searches_on_mls_server_id", using: :btree
 
   create_table "phone_calls", force: :cascade do |t|
     t.integer  "from_phone_id"
@@ -236,6 +252,7 @@ ActiveRecord::Schema.define(version: 20170407193518) do
   add_foreign_key "articles", "users"
   add_foreign_key "authorizations", "roles"
   add_foreign_key "authorizations", "users"
+  add_foreign_key "open_house_searches", "mls_servers"
   add_foreign_key "phone_calls", "profiles"
   add_foreign_key "ratings", "users"
   add_foreign_key "services", "vendors"

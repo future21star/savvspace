@@ -34,8 +34,24 @@ class RetsProvider
   end
 
   def v1_property_list(search)
-    response = RetsProvider.get("/v1/4ddfb54ef491a7a1d383c0aba813e2ee/listing/search",
-                                query: v1_property_search_to_query(search)
+    query = v1_property_search_to_query(search)
+
+    Rails.cache.fetch("property_search_#{query.hash.to_s}", expires_in: 10.minutes) do
+      response = RetsProvider.get("/v1/4ddfb54ef491a7a1d383c0aba813e2ee/listing/search",
+                                  query: v1_property_search_to_query(search))
+
+      if response.parsed_response["results"].blank?
+        Rails.logger.error(response.inspect)
+        []
+      else
+        response.parsed_response["results"]
+      end
+    end
+  end
+
+  def v1_open_house_list(search)
+    response = RetsProvider.get("/v1/4ddfb54ef491a7a1d383c0aba813e2ee/open_house/search",
+                                query: v1_open_house_search_to_query(search)
                                 )
     if response.parsed_response["results"].blank?
       Rails.logger.error(response.inspect)
@@ -85,11 +101,41 @@ class RetsProvider
     when PropertySearch::SORT_PRICE_LOW_TO_HIGH
       query["orderby"] = "LIST_22"
       query["sort_order"] = "asc"
+      query["sort_option"] = "numeric"
     when PropertySearch::SORT_PRICE_HIGH_TO_LOW
       query["orderby"] = "LIST_22"
       query["sort_order"] = "desc"
+      query["sort_option"] = "numeric"
     else
       query["orderby"] = "LIST_10"
+      query["sort_order"] = "desc"
+      query["sort_option"] = "date"
+    end
+
+    query
+  end
+
+  def v1_open_house_search_to_query(property_search)
+    query = {
+      "limit" => 12,
+      "offset" => 0,
+      "ADD10" => "CA"
+    }
+
+    if property_search.min_price.present? && property_search.max_price.present?
+      query["LIST_22"] = "#{property_search.min_price}-#{property_search.max_price}"
+    elsif property_search.min_price.present?
+      query["LIST_22"] = "#{property_search.min_price}+"
+    elsif property_search.max_price.present?
+      query["LIST_22"] = "#{property_search.max_price}-"
+    end
+
+    case property_search.sort_by
+    when PropertySearch::SORT_PRICE_LOW_TO_HIGH
+      query["orderby"] = "LIST_22"
+      query["sort_order"] = "asc"
+    when PropertySearch::SORT_PRICE_HIGH_TO_LOW
+      query["orderby"] = "LIST_22"
       query["sort_order"] = "desc"
     end
 

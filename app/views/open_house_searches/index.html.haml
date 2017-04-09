@@ -1,0 +1,37 @@
+%h1 Listing open_house_searches
+
+%table
+  %thead
+    %tr
+      %th Neighborhood
+      %th Sort by
+      %th Min price
+      %th Max price
+      %th Min beds
+      %th Max beds
+      %th From date
+      %th To date
+      %th Mls server
+      %th
+      %th
+      %th
+
+  %tbody
+    - @open_house_searches.each do |open_house_search|
+      %tr
+        %td= open_house_search.neighborhood
+        %td= open_house_search.sort_by
+        %td= open_house_search.min_price
+        %td= open_house_search.max_price
+        %td= open_house_search.min_beds
+        %td= open_house_search.max_beds
+        %td= open_house_search.from_date
+        %td= open_house_search.to_date
+        %td= open_house_search.mls_server
+        %td= link_to 'Show', open_house_search
+        %td= link_to 'Edit', edit_open_house_search_path(open_house_search)
+        %td= link_to 'Destroy', open_house_search, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Open house search', new_open_house_search_path

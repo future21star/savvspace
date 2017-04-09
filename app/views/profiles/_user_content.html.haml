@@ -26,3 +26,12 @@
       - @properties = Rets::PropertySearch.call
       = render partial: "property_searches/index", locals: {properties: @properties}
 
+- when "open_houses"
+  #open_houses
+    .property-search.m-b
+      = render partial: "open_house_searches/form"
+
+    #property-list
+      - @properties = Rets::OpenHouseSearch.call
+      = render partial: "open_house_searches/index", locals: {properties: @properties}
+

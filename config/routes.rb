@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :open_house_searches
   resources :property_searches
   get 'ivr/click_to_call', format: :xml
 

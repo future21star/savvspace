@@ -9,3 +9,5 @@
       = link_to("Photos", profile_tab_path(@profile, "photos"))
     %li{class: @tab == "properties" ? "active" : nil}
       = link_to("Properties", profile_tab_path(@profile, "properties"))
+    %li{class: @tab == "open_houses" ? "active" : nil}
+      = link_to("Open Houses", profile_tab_path(@profile, "open_houses"))

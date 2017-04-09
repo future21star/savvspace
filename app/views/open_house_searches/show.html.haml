@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Neighborhood:
+  = @open_house_search.neighborhood
+%p
+  %b Sort by:
+  = @open_house_search.sort_by
+%p
+  %b Min price:
+  = @open_house_search.min_price
+%p
+  %b Max price:
+  = @open_house_search.max_price
+%p
+  %b Min beds:
+  = @open_house_search.min_beds
+%p
+  %b Max beds:
+  = @open_house_search.max_beds
+%p
+  %b From date:
+  = @open_house_search.from_date
+%p
+  %b To date:
+  = @open_house_search.to_date
+%p
+  %b Mls server:
+  = @open_house_search.mls_server
+
+= link_to 'Edit', edit_open_house_search_path(@open_house_search)
+\|
+= link_to 'Back', open_house_searches_path
