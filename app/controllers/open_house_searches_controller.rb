@@ -1,7 +1,13 @@
 class OpenHouseSearchesController < ApplicationController
   def create
-    @property_search = OpenHouseSearch.new(search_params)
-    @results = Rets::OpenHouseSearch.call(@property_search)
+    @property_search = OpenHouseSearch.new(open_house_search_params)
+    @property_search.mls_server = MlsServer.first
+    if @property_search.valid?
+      @results = @property_search.results
+    else
+      @results = []
+    end
+
 
     respond_to do |format|
       format.js
