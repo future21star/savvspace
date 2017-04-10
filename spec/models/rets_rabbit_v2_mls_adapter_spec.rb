@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe RetsProvider, type: :model do
-  let(:rets_provider) { RetsProvider.new }
+RSpec.describe RetsRabbitV2MlsAdapter, type: :model do
+  let(:rets_provider) { RetsRabbitV2MlsAdapter.new }
 
-  describe "#v2_property_search_to_query" do
+  describe "#property_search_to_query" do
     let(:property_search) { PropertySearch.new }
 
-    subject { rets_provider.v2_property_search_to_query(property_search) }
+    subject { rets_provider.property_search_to_query(property_search) }
 
     context "when the property search is new" do
       it { is_expected.to be_kind_of(Hash) }

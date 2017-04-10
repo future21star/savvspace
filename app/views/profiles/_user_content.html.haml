@@ -23,7 +23,7 @@
       = render partial: "property_searches/form"
 
     #property-list
-      - @properties = Rets::PropertySearch.call
+      - @properties = PropertySearch.new(mls_server: MlsServer.first).results
       = render partial: "property_searches/index", locals: {properties: @properties}
 
 - when "open_houses"

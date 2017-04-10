@@ -1,7 +1,12 @@
 class PropertySearchesController < ApplicationController
   def create
     @property_search = PropertySearch.new(search_params)
-    @results = Rets::PropertySearch.call(@property_search)
+    @property_search.mls_server = MlsServer.first
+    if @property_search.valid?
+      @results = @property_search.results
+    else
+      @results = []
+    end
 
     respond_to do |format|
       format.js
