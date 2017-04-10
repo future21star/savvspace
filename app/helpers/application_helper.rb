@@ -2,7 +2,7 @@ module ApplicationHelper
   def background_image_url(image)
     return {} unless image
 
-    { style: "background-image: url(#{image.fullpath});" }
+    { style: "background-image: url(#{cl_image_path(image.path, width: 1200, crop: :lfill, quality: :auto)});" }
   end
 
   def rating_options(rateable)
