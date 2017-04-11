@@ -143,6 +143,9 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
                   list_office_name: struct["fields"]["OFC3"],
                   comments: struct["fields"]["OPEN_HOUSE_COMMENT"],
                   list_agent_phone: struct["fields"]["PHONE0"],
-                  list_office_phone: struct["fields"]["PHONE1"])
+                  list_office_phone: struct["fields"]["PHONE1"],
+                  starts_at: Time.zone.parse(struct["fields"]["EVENT100"]),
+                  ends_at: Time.zone.parse(struct["fields"]["EVENT200"]),
+                  )
   end
 end

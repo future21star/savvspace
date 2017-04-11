@@ -30,5 +30,17 @@ RSpec.describe RetsRabbitV1MlsAdapter, type: :model do
                                      list_agent_phone: struct["fields"]["PHONE0"],
                                      list_office_phone: struct["fields"]["PHONE1"],)
     end
+
+    it "formats the starts_at time in Pacific timezone (for now)" do
+      starts_at = subject.starts_at
+      expect(starts_at).to eq(Time.zone.parse(struct["fields"]["EVENT100"]))
+      expect(starts_at.zone).to eq("PDT")
+    end
+
+    it "formats the ends_at time in Pacific timezone (for now)" do
+      ends_at = subject.ends_at
+      expect(ends_at).to eq(Time.zone.parse(struct["fields"]["EVENT200"]))
+      expect(ends_at.zone).to eq("PDT")
+    end
   end
 end

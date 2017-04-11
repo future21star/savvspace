@@ -6,15 +6,17 @@
     .panel-body
       %h5.panel-title
         = link_to("#") do
-          = property["fields"]["ADD_0"]
+          = property.street_address
+        .pull-right
+          = event_date(property)
       .details
         %p.neighborhood.m-b-0
-          = property["fields"]["ADD_5"]
+          = property.area
         %p.pricing
-          %span.sale-price= number_to_currency(property["fields"]["LIST_22"], precision: 0)
+          %span.sale-price= number_to_currency(property.list_price, precision: 0)
 
         %hr
-        %p.description= property["fields"]["OPEN_HOUSE_COMMENT"].to_s.truncate(100)
+        %p.description= property.comments.to_s.truncate(100)
         .controls
           %p.pull-right
             %span.icon.icon-heart
