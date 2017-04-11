@@ -7,7 +7,7 @@
       - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 150, width: 378, quality: 100)
       .panel-heading{style: "background-image: url(#{img_path});", href: "#"}
     - else
-      .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: "#"}
+      .panel-heading{style: "background-image: url(#{image_path('no_property_photo.png')});", href: "#"}
     .panel-body
       %h5.panel-title
         = link_to("#") do
