@@ -41,6 +41,7 @@ gem 'gibbon'
 gem 'delayed_job_active_record'
 gem 'twilio-ruby', '~> 4.11.1'
 gem 'rack-tracker'
+gem 'ransack'
 
 # RETS Rabbit dependencies
 gem 'httparty'
