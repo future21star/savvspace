@@ -1,0 +1,2 @@
+class OpenHousesController < ApplicationController
+end

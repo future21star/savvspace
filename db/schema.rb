@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409235931) do
+ActiveRecord::Schema.define(version: 20170410055443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,37 @@ ActiveRecord::Schema.define(version: 20170409235931) do
 
   add_index "open_house_searches", ["mls_server_id"], name: "index_open_house_searches_on_mls_server_id", using: :btree
 
+  create_table "open_houses", force: :cascade do |t|
+    t.integer  "mls_server_id"
+    t.string   "street_address"
+    t.string   "state"
+    t.string   "city"
+    t.string   "area"
+    t.string   "mls_event_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "mls_updated_at"
+    t.string   "host_name"
+    t.string   "host_phone"
+    t.string   "mls_property_id"
+    t.integer  "list_price"
+    t.string   "list_agent_id"
+    t.string   "list_agent_first_name"
+    t.string   "list_agent_last_name"
+    t.string   "list_office_id"
+    t.string   "list_office_name"
+    t.text     "comments"
+    t.string   "list_agent_phone"
+    t.string   "list_office_phone"
+    t.string   "photo_url"
+    t.jsonb    "raw_listing"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "open_houses", ["area"], name: "index_open_houses_on_area", using: :btree
+  add_index "open_houses", ["mls_server_id"], name: "index_open_houses_on_mls_server_id", using: :btree
+
   create_table "phone_calls", force: :cascade do |t|
     t.integer  "from_phone_id"
     t.integer  "profile_id"
@@ -265,6 +296,7 @@ ActiveRecord::Schema.define(version: 20170409235931) do
   add_foreign_key "authorizations", "users"
   add_foreign_key "mls_servers", "mls_adapters"
   add_foreign_key "open_house_searches", "mls_servers"
+  add_foreign_key "open_houses", "mls_servers"
   add_foreign_key "phone_calls", "profiles"
   add_foreign_key "property_searches", "mls_servers"
   add_foreign_key "ratings", "users"

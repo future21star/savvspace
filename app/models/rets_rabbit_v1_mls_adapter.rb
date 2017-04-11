@@ -54,7 +54,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
       Rails.logger.error(response.inspect)
       []
     else
-      response.parsed_response["results"]
+      response.parsed_response["results"].map { |s| build_open_house(s) }
     end
   end
 
@@ -125,5 +125,24 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
     end
 
     query
+  end
+
+  def build_open_house(struct)
+    OpenHouse.new(street_address: struct["fields"]["ADD0"],
+                  state: struct["fields"]["ADD10"],
+                  area: struct["fields"]["ADD5"],
+                  mls_event_id: struct["fields"]["EVENT0"],
+                  host_name: struct["fields"]["EVENT8"],
+                  host_phone: struct["fields"]["EVENT9"],
+                  mls_property_id: struct["fields"]["LIST1"],
+                  list_price: struct["fields"]["LIST22"],
+                  list_agent_id: struct["fields"]["MBR0"],
+                  list_agent_first_name: struct["fields"]["MBR5"],
+                  list_agent_last_name: struct["fields"]["MBR7"],
+                  list_office_id: struct["fields"]["OFC0"],
+                  list_office_name: struct["fields"]["OFC3"],
+                  comments: struct["fields"]["OPEN_HOUSE_COMMENT"],
+                  list_agent_phone: struct["fields"]["PHONE0"],
+                  list_office_phone: struct["fields"]["PHONE1"])
   end
 end
