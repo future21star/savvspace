@@ -20,7 +20,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   base_uri ENV['RETS_RABBIT_URL']
   format :json
   headers  "Authorization" => "Bearer #{self.access_token}", "Accept" => "application/json"
-  debug_output $stdout
+#  debug_output $stdout
 
   def metadata
     self.class.get("/datasystem")
@@ -54,7 +54,20 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
       Rails.logger.error(response.inspect)
       []
     else
-      response.parsed_response["results"].map { |s| build_open_house(s) }
+      response.parsed_response["results"].map { |s| build_open_house(search.mls_server, s) }
+    end
+  end
+
+  def listing(mls_server, id)
+    self.class.get("/v1/#{mls_server.server_hash}/listing/#{id}").parsed_response
+  end
+
+  def photo_for_listing(mls_server, id)
+    listing = listing(mls_server, id)
+    if listing["photos"].empty?
+      nil
+    else
+      listing["photos"].first["url"]
     end
   end
 
@@ -127,8 +140,18 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
     query
   end
 
-  def build_open_house(struct)
-    OpenHouse.new(street_address: struct["fields"]["ADD0"],
+  def open_houses_list(mls, offset=0, result_set = [])
+    results = self.class.get("/v1/#{mls.server_hash}/open_house/search",
+                             query: {
+                               "offset" => 0,
+                               "EVENT100:date" => Date.today.to_s + "+"
+                             })
+    results.parsed_response["results"].map { |r| build_open_house(mls, r) }
+  end
+
+  def build_open_house(mls, struct)
+    OpenHouse.new(mls_server_id: mls.id,
+                  street_address: struct["fields"]["ADD0"],
                   state: struct["fields"]["ADD10"],
                   area: struct["fields"]["ADD5"],
                   mls_event_id: struct["fields"]["EVENT0"],
@@ -146,6 +169,6 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
                   list_office_phone: struct["fields"]["PHONE1"],
                   starts_at: Time.zone.parse(struct["fields"]["EVENT100"]),
                   ends_at: Time.zone.parse(struct["fields"]["EVENT200"]),
-                  )
+                  photo_url: photo_for_listing(mls, struct["fields"]["LIST1"]))
   end
 end

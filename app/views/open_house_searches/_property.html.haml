@@ -2,7 +2,12 @@
   /
     = property.inspect
   .panel.panel-default.panel-profile[]
-    .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: "#"}
+    - bgimg = property.photo_url
+    - if bgimg
+      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 150, width: 378, quality: 100)
+      .panel-heading{style: "background-image: url(#{img_path});", href: "#"}
+    - else
+      .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: "#"}
     .panel-body
       %h5.panel-title
         = link_to("#") do
