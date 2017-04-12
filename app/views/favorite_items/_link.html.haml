@@ -1,0 +1,15 @@
+.favorite-link[item]
+  - if ! current_user
+    %span.icon.icon-heart-outlined
+  - else
+    - favorite = current_user.favorite_items.find_or_initialize_by(favorite: item)
+    - if favorite.new_record?
+      = form_for(favorite, remote: true) do |f|
+        = f.hidden_field :favorite_type
+        = f.hidden_field :favorite_id
+        %button.btn.link-unstyled{type: 'submit'}
+          %span.sr-only Create Favorite
+          %span.icon.icon-heart-outlined
+    - else
+      = link_to(favorite, method: :delete, remote: true) do
+        %span.icon.icon-heart

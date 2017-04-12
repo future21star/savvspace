@@ -20,12 +20,12 @@
         %p.pricing
           %span.sale-price= number_to_currency(property.list_price, precision: 0)
 
-        %hr
         %p.description= property.comments.to_s.truncate(100)
+
+        %hr
         .controls
           %p.pull-right
-            %span.icon.icon-heart
-            3
+            = render partial: "favorite_items/link", locals: {item: property}
             &nbsp;
             &nbsp;
             %span.glyphicon.glyphicon-share-alt

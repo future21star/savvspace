@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410055443) do
+ActiveRecord::Schema.define(version: 20170411232011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(version: 20170410055443) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "favorite_items", force: :cascade do |t|
+    t.integer  "favorite_id"
+    t.string   "favorite_type"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "favorite_items", ["favorite_type", "favorite_id"], name: "index_favorite_items_on_favorite_type_and_favorite_id", using: :btree
+  add_index "favorite_items", ["user_id"], name: "index_favorite_items_on_user_id", using: :btree
 
   create_table "mls_adapters", force: :cascade do |t|
     t.string   "type"
@@ -294,6 +305,7 @@ ActiveRecord::Schema.define(version: 20170410055443) do
   add_foreign_key "articles", "users"
   add_foreign_key "authorizations", "roles"
   add_foreign_key "authorizations", "users"
+  add_foreign_key "favorite_items", "users"
   add_foreign_key "mls_servers", "mls_adapters"
   add_foreign_key "open_house_searches", "mls_servers"
   add_foreign_key "open_houses", "mls_servers"

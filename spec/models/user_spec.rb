@@ -5,6 +5,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:authored_articles) }
   it { is_expected.to have_many(:authorizations) }
   it { is_expected.to have_many(:ratings) }
+  it { is_expected.to have_many(:favorite_items) }
   it { is_expected.to have_one(:profile) }
 
   describe "after create" do
