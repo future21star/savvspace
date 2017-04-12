@@ -34,6 +34,11 @@ en:
 
   click_to_call:
     welcome_message: "Hello!  Please hold while we connect you."
+
+  open_house_mailer:
+    favorites:
+      subject: "Savvspace: Your Selected Open Houses"
+
   activerecord:
     errors:
       models:

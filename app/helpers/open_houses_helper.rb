@@ -3,6 +3,6 @@ module OpenHousesHelper
     format("%s %s-%s",
            open_house.starts_at.strftime("%a"),
            open_house.starts_at.strftime("%l"),
-           open_house.ends_at.strftime("%l"))
+           open_house.ends_at.strftime("%l %p").strip)
   end
 end

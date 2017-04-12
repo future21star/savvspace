@@ -1,0 +1,41 @@
+%container
+  %spacer{:size => "16"}
+  %row
+    %columns
+      %center
+        = image_tag("savvspace-logo-with-tag.jpg", height: 200)
+  %row
+    %columns
+      %center
+        %h2 Your Open House List
+
+  - @open_houses.each do |open_house|
+    %row
+      %columns{:large => "4"}
+        = cl_image_tag(open_house.photo_url, type: :fetch, width: 170, class: "small-float-center")
+        %p.text-center
+          %small= event_date(open_house)
+          %br
+          %small
+            %a{:href => "#"} Property Details
+      %columns{:large => "8"}
+        %h4= open_house.street_address
+        %p= number_to_currency(open_house.list_price)
+        %p
+          = open_house.area
+          \-
+          = open_house.comments
+
+  %hr
+  %row
+    %columns
+      %p.text-center
+        %small
+          Savvspace |
+          = link_to("www.savvspace.com", "https://www.savvspace.com")
+          \|
+          1805 Chapala, Santa Barbara CA 93101
+      %p.text-center
+        %small
+          You received this email because you're signed up to receive updates from us.
+          %a{:href => "#"} Click here to unsubscribe.
