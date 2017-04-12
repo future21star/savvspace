@@ -8,8 +8,9 @@
         = f.hidden_field :favorite_type
         = f.hidden_field :favorite_id
         %button.btn.link-unstyled{type: 'submit'}
-          %span.sr-only Create Favorite
           %span.icon.icon-heart-outlined
+          Favorite
     - else
-      = link_to(favorite, method: :delete, remote: true) do
+      = link_to(favorite, method: :delete, remote: true, class: "btn link-unstyled") do
         %span.icon.icon-heart
+        Favorite

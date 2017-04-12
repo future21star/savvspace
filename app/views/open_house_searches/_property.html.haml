@@ -1,6 +1,4 @@
 .col-md-4
-  /
-    = property.inspect
   .panel.panel-default.panel-profile[]
     - bgimg = property.photo_url
     - if bgimg
@@ -22,10 +20,5 @@
 
         %p.description= property.comments.to_s.truncate(100)
 
-        %hr
-        .controls
-          %p.pull-right
-            = render partial: "favorite_items/link", locals: {item: property}
-            &nbsp;
-            &nbsp;
-            %span.glyphicon.glyphicon-share-alt
+    .panel-footer
+      = render partial: "favorite_items/link", locals: {item: property}
