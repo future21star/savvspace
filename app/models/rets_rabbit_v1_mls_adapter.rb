@@ -20,7 +20,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   base_uri ENV['RETS_RABBIT_URL']
   format :json
   headers  "Authorization" => "Bearer #{self.access_token}", "Accept" => "application/json"
-  debug_output $stdout
+  # debug_output $stdout
 
   def metadata
     self.class.get("/datasystem")
