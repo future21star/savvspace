@@ -17,13 +17,18 @@
         %span.sqft
           = number_with_delimiter(@property.square_feet.to_i)
           sq. ft.
-      %p.status_and_open_houses
+      %p.status_and_open_houses.m-b-0
         %span.status
           - if @property.new_listing?
             %span.icon.icon-flag
             New Listing
           - else
             = @property.status
+        - if @property.open_houses.any?
+          &nbsp;
+          %span.icon.icon-calendar
+          Open House
+          = event_date(@property.open_houses.first)
 
   %hr
   .row
@@ -55,6 +60,19 @@
             %span.address= @property.listing_office_address
             %br
             %span.phone= @property.listing_office_phone
+
+          %p.name
+            %strong= @property.listing_member_name
+            %br
+            %span.phone
+              = @property.listing_member_phone
+            %br
+            %span.email
+              %a{href: "mailto:#{@property.listing_member_email}"}
+                = @property.listing_member_email
+            %br
+            %span.url
+              = link_to(@property.listing_member_url, @property.listing_member_url, popup: true)
 
       .row.m-t
         .col-md-12
@@ -124,6 +142,10 @@
                   %dt MLS Area
                   %dd= @property.area
 
+          - if @property.lat && @property.lng
+            .map
+              %h3 Map
+              .google-map{data: {zoom: 15, lat: @property.lat, lng: @property.lng}}
 
     - if profile = Profile.find_by(id: params[:profile_id])
       = render partial: "profiles/embedded_profile", object: profile

@@ -79,6 +79,22 @@ class Property < ActiveRecord::Base
     mls_data["fields"]["listing_office_phone"]
   end
 
+  def listing_member_name
+    mls_data["fields"]["listing_member_name"]
+  end
+
+  def listing_member_phone
+    mls_data["fields"]["listing_member_phone"]
+  end
+
+  def listing_member_email
+    mls_data["fields"]["listing_member_email"]
+  end
+
+  def listing_member_url
+    mls_data["fields"]["listing_member_url"]
+  end
+
   def public_remarks
     mls_data["fields"]["LIST_78"]
   end
@@ -125,5 +141,11 @@ class Property < ActiveRecord::Base
 
   def mls_id
     mls_data["fields"]["LIST_105"]
+  end
+
+  def open_houses
+    @open_houses ||= mls_data["open_houses"].map { |oh| mls_server.mls_adapter.build_open_house(mls_server, oh) }.
+      sort_by(&:starts_at).
+      reject { |oh| oh.starts_at < Time.current }
   end
 end
