@@ -20,7 +20,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   base_uri ENV['RETS_RABBIT_URL']
   format :json
   headers  "Authorization" => "Bearer #{self.access_token}", "Accept" => "application/json"
-#  debug_output $stdout
+  debug_output $stdout
 
   def metadata
     self.class.get("/datasystem")
@@ -59,7 +59,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   end
 
   def listing(mls_server, id)
-    self.class.get("/v1/#{mls_server.server_hash}/listing/#{id}").parsed_response
+    mls_server.properties.new(mls_data: self.class.get("/v1/#{mls_server.server_hash}/listing/#{id}").parsed_response)
   end
 
   def photo_for_listing(mls_server, id)

@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :services
   end
 
+  resources :mls_servers do
+    resources :properties
+  end
+
   resources :articles
   resources :article_categories do
     resources :articles, only: :index

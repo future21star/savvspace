@@ -1,0 +1,11 @@
+.embedded-profile
+  .panel.panel-default.panel-profile.m-b-md
+    .panel-heading{background_image_url(embedded_profile.background)}
+    .panel-body.text-center
+      - if embedded_profile.avatar
+        = cl_image_tag(embedded_profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
+
+      %h5.panel-title= embedded_profile.name
+      %p.m-b-d= embedded_profile.bio
+
+      = render partial: "profiles/social_links", locals: {profile: embedded_profile}

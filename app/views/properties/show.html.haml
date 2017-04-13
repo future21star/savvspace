@@ -1,0 +1,129 @@
+.property
+  .row
+    .col-md-8
+      %p.lead.m-b-0
+        %strong= [@property.street_address, @property.city, @property.state, @property.zip5].join(", ")
+      %p.price_and_bed_bath.m-b-0
+        %span.price
+          %strong= number_to_currency(@property.list_price, precision: 0)
+        %span.rooms
+          = @property.bedrooms
+          beds,
+          = @property.full_baths
+          full baths
+          - unless @property.half_baths.to_i.zero?
+            = @property.half_baths
+            half baths
+        %span.sqft
+          = number_with_delimiter(@property.square_feet.to_i)
+          sq. ft.
+      %p.status_and_open_houses
+        %span.status
+          - if @property.new_listing?
+            %span.icon.icon-flag
+            New Listing
+          - else
+            = @property.status
+
+  %hr
+  .row
+    .col-md-8
+      .row
+        - if @property.photos.present?
+          #property-carousel.carousel.slide.col-md-9
+            %ol.carousel-indicators
+              - @property.photos.each_with_index do |photo, index|
+                %li{data: {target: "#property-carousel", slide_to: index}, class: index.zero? ? "active" : nil}
+
+            .carousel-inner{role: "listbox"}
+              - @property.photos.each_with_index do |photo, index|
+                .item{class: index.zero? ? "active" : nil}
+                  = cl_image_tag(photo, type: :fetch, height: 390, width: 615, crop: :lfill, responsive: true, responsive_placeholder: "blank")
+
+            %a.left.carousel-control{href: "#property-carousel", data: {slide: "prev"}, role: "button"}
+              %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
+              %span.sr-only Previous
+
+            %a.right.carousel-control{href: "#property-carousel", data: {slide: "next"}, role: "button"}
+              %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
+              %span.sr-only Next
+
+        .broker-info.col-md-3
+          %p.name
+            %strong= @property.listing_office_name
+            %br
+            %span.address= @property.listing_office_address
+            %br
+            %span.phone= @property.listing_office_phone
+
+      .row.m-t
+        .col-md-12
+          .remarks
+            %h3 Agent Remarks
+            %p= @property.public_remarks
+
+          .details
+            %h3 Details
+
+            .row
+              .col-md-6
+                %dl.dl-horizontal
+                  %dt Property Type
+                  %dd= @property.type
+
+                  %dt Status
+                  %dd= @property.status
+
+                  %dt MLS #
+                  %dd= @property.mls_id
+
+                  %dt List Price
+                  %dd= number_to_currency(@property.list_price, precision: 0)
+
+                  %dt Beds
+                  %dd= @property.bedrooms
+
+                  %dt Baths
+                  %dd
+                    = @property.full_baths
+                    Full
+                    - unless @property.half_baths.to_i.zero?
+                      \/
+                      = @property.half_baths
+                      Half
+
+                  %dt Built In
+                  %dd= @property.year_built
+
+                  %dt Square Ft.
+                  %dd= number_with_delimiter(@property.square_feet.to_i)
+
+              .col-md-6
+                %dl.dl-horizontal
+                  %dt Topography
+                  %dd= @property.topography
+
+                  %dt County
+                  %dd= @property.county
+
+                  %dt Style
+                  %dd= @property.style
+
+                  %dt Zoning
+                  %dd= @property.zoning
+
+                  %dt Construction
+                  %dd= @property.construction
+
+                  %dt Parking
+                  %dd= @property.parking
+
+                  %dt Heating
+                  %dd= @property.heating
+
+                  %dt MLS Area
+                  %dd= @property.area
+
+
+    - if profile = Profile.find_by(id: params[:profile_id])
+      = render partial: "profiles/embedded_profile", object: profile

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411232011) do
+ActiveRecord::Schema.define(version: 20170412234325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,6 +229,15 @@ ActiveRecord::Schema.define(version: 20170411232011) do
 
   add_index "profiles", ["profiled_type", "profiled_id"], name: "index_profiles_on_profiled_type_and_profiled_id", using: :btree
 
+  create_table "properties", force: :cascade do |t|
+    t.integer  "mls_server_id"
+    t.jsonb    "mls_data"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "properties", ["mls_server_id"], name: "index_properties_on_mls_server_id", using: :btree
+
   create_table "property_searches", force: :cascade do |t|
     t.integer  "min_price"
     t.integer  "max_price"
@@ -310,6 +319,7 @@ ActiveRecord::Schema.define(version: 20170411232011) do
   add_foreign_key "open_house_searches", "mls_servers"
   add_foreign_key "open_houses", "mls_servers"
   add_foreign_key "phone_calls", "profiles"
+  add_foreign_key "properties", "mls_servers"
   add_foreign_key "property_searches", "mls_servers"
   add_foreign_key "ratings", "users"
   add_foreign_key "services", "vendors"

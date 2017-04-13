@@ -44,14 +44,4 @@
 
   = render partial: "common/rating", locals: {rateable: @article}
 
-.author-profile
-  .panel.panel-default.panel-profile.m-b-md
-    .panel-heading{background_image_url(@article.author.profile.background)}
-    .panel-body.text-center
-      - if @article.author.profile.avatar
-        = cl_image_tag(@article.author.profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
-
-      %h5.panel-title= @article.author.profile.name
-      %p.m-b-d= @article.author.profile.bio
-
-      = render partial: "profiles/social_links", locals: {profile: @article.author.profile}
+= render partial: "profiles/embedded_profile", object: @article.author.profile

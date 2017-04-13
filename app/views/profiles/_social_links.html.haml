@@ -14,6 +14,6 @@
     - if profile.linked_in.present?
       = linked_in_link(profile.linked_in)
 
-- if profile.phone.present?
+- if @phone_call && profile.phone.present?
   #new_call.modal.fade{tabindex: "-1", role: "dialog", aria: {labelledby: "new_call_modal_label"}, data: {profile_id: profile.id}}
     = render partial: "phone_calls/new"
