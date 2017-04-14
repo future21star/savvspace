@@ -2,7 +2,7 @@
 
 .container-content-middle{class: has_error ? "has-error" : nil}
   = form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: "form", class: "m-x-auto text-center app-login-form"}) do |f|
-    = link_to(image_tag("/img/logo-1x.png"), "/", class: "app-brand m-b-lg")
+    = link_to(image_tag("savvspace-logo-with-tag.jpg"), "/", class: "app-brand m-b-lg")
     - if has_error
       .alert.alert-danger{role: "alert"}
         %p
