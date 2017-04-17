@@ -270,6 +270,10 @@ ActiveRecord::Schema.define(version: 20170414004821) do
     t.string   "zip5"
     t.string   "zoning"
     t.datetime "mls_updated_at"
+    t.string   "parcel_number"
+    t.string   "elementary_school"
+    t.string   "junior_high_school"
+    t.string   "high_school"
   end
 
   add_index "properties", ["mls_server_id"], name: "index_properties_on_mls_server_id", using: :btree

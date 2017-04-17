@@ -36,5 +36,9 @@ class AddFieldsToProperty < ActiveRecord::Migration
     add_column :properties, :zip5, :string
     add_column :properties, :zoning, :string
     add_column :properties, :mls_updated_at, :datetime, index: true
+    add_column :properties, :parcel_number, :string
+    add_column :properties, :elementary_school, :string
+    add_column :properties, :junior_high_school, :string
+    add_column :properties, :high_school, :string
   end
 end

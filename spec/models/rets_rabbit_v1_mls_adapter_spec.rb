@@ -14,7 +14,7 @@ RSpec.describe RetsRabbitV1MlsAdapter, type: :model do
         to receive(:listing).
         and_return({"photos" => []})
     end
-    
+
     subject { rets_provider.build_open_house(mls_server, struct) }
 
     it { is_expected.to be_kind_of(OpenHouse) }
@@ -60,7 +60,7 @@ RSpec.describe RetsRabbitV1MlsAdapter, type: :model do
     subject { rets_provider.build_property(mls_server, struct) }
 
     it { is_expected.to be_kind_of(Property) }
-    
+
     it do
       is_expected.to have_attributes(mls_server_id: mls_server.id,
                                      mls_data: struct,
@@ -97,6 +97,10 @@ RSpec.describe RetsRabbitV1MlsAdapter, type: :model do
                                      parking: struct["fields"]["GF20010504203132400453000000"],
                                      heating: struct["fields"]["GF20010504203911247356000000"],
                                      area: struct["fields"]["LIST_77"],
+                                     parcel_number: struct["fields"]["LIST_26"],
+                                     elementary_school: struct["fields"]["LIST_95"],
+                                     junior_high_school: struct["fields"]["LIST_96"],
+                                     high_school: struct["fields"]["LIST_97"],
                                      mls_updated_at: Time.parse(struct["fields"]["LIST_87"]))
     end
 

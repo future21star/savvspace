@@ -1,4 +1,6 @@
 .property
+  /
+    = @property.mls_data.inspect
   .row
     .col-md-8
       %p.lead.m-b-0
@@ -95,6 +97,12 @@
                   %dt Square Ft.
                   %dd= number_with_delimiter(@property.square_feet.to_i)
 
+                  %dt Zoning
+                  %dd= @property.zoning
+
+                  %dt Parcel Number
+                  %dd= @property.parcel_number
+
               .col-md-6
                 %dl.dl-horizontal
                   %dt Topography
@@ -105,9 +113,6 @@
 
                   %dt Style
                   %dd= @property.style
-
-                  %dt Zoning
-                  %dd= @property.zoning
 
                   %dt Construction
                   %dd= @property.construction
@@ -120,6 +125,15 @@
 
                   %dt MLS Area
                   %dd= @property.area
+
+                  %dt Elementary School
+                  %dd= @property.elementary_school
+
+                  %dt Junior High School
+                  %dd= @property.junior_high_school
+
+                  %dt High School
+                  %dd= @property.high_school
 
           - if @property.lat && @property.lng
             .map
