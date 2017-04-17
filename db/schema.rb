@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412234325) do
+ActiveRecord::Schema.define(version: 20170414004821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,8 +232,44 @@ ActiveRecord::Schema.define(version: 20170412234325) do
   create_table "properties", force: :cascade do |t|
     t.integer  "mls_server_id"
     t.jsonb    "mls_data"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "area"
+    t.integer  "bedrooms"
+    t.string   "city"
+    t.string   "construction"
+    t.string   "county"
+    t.integer  "days_on_market"
+    t.integer  "full_baths"
+    t.integer  "half_baths"
+    t.string   "heating"
+    t.integer  "list_price"
+    t.string   "listing_member_email"
+    t.string   "listing_member_name"
+    t.string   "listing_member_phone"
+    t.string   "listing_member_url"
+    t.string   "listing_office_address"
+    t.string   "listing_office_name"
+    t.string   "listing_office_phone"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "internal_mls_id"
+    t.string   "listing_id"
+    t.jsonb    "open_houses"
+    t.string   "parking"
+    t.text     "photos",                 default: [],              array: true
+    t.string   "public_remarks"
+    t.integer  "square_feet"
+    t.string   "state"
+    t.string   "status"
+    t.string   "street_address"
+    t.string   "style"
+    t.string   "topography"
+    t.string   "property_type"
+    t.string   "year_built"
+    t.string   "zip5"
+    t.string   "zoning"
+    t.datetime "mls_updated_at"
   end
 
   add_index "properties", ["mls_server_id"], name: "index_properties_on_mls_server_id", using: :btree

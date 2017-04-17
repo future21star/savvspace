@@ -1,35 +1,34 @@
 .col-md-4.property
   .panel.panel-default.panel-profile[]
-    - bgimg = property["photos"][0].fetch("url", "") unless property["photos"].empty?
+    - bgimg = property.photos.first
     - if bgimg
       - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: 100)
-      .panel-heading{style: "background-image: url(#{img_path});", href: "#"}
+      .panel-heading{style: "background-image: url(#{img_path});", href: url_for(mls_server_property_path(property.mls_server, property.internal_mls_id, profile_id: @profile.to_param))}
     - else
       .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: "#"}
     .panel-body
       %h5.panel-title
         = link_to("#") do
-          = property["fields"]["LIST_31"]
-          = property["fields"]["LIST_34"]
+          = property.street_address
       .details
         %p.neighborhood.m-b-0
-          - if property["fields"]["LIST_77"].present?
-            = property["fields"]["LIST_77"]
+          - if property.area.present?
+            = property.area
             \-
-          = property["fields"]["LIST_39"]
-          = property["fields"]["LIST_40"]
-          = property["fields"]["LIST_43"]
+          = property.city
+          = property.state
+          = property.zip5
         %p.pricing
-          %span.sale-price= number_to_currency(property["fields"]["LIST_22"], precision: 0)
+          %span.sale-price= number_to_currency(property.list_price, precision: 0)
 
           &nbsp;
           %span.stats
             %span.icon.icon-home
-            = "#{property["fields"]["LIST_66"]}bd"
-            = format("%s.%dba", property["fields"]["LIST_68"], property["fields"]["LIST_69"].to_i)
+            = "#{property.bedrooms}bd"
+            = format("%s full | %s half", property.full_baths, property.half_baths)
 
         %hr
-        %p.description= property["fields"]["LIST_78"].truncate(100)
+        %p.description= property.public_remarks.truncate(100)
         .controls
           %p.pull-right
             %span.icon.icon-heart
@@ -39,5 +38,5 @@
             %span.glyphicon.glyphicon-share-alt
           %p.updated
             Updated
-            = distance_of_time_in_words(Time.parse(property["fields"]["LIST_87"]), Time.current)
+            = distance_of_time_in_words(property.mls_updated_at, Time.current)
             ago

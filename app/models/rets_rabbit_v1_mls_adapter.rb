@@ -41,7 +41,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
         Rails.logger.error(response.inspect)
         []
       else
-        response.parsed_response["results"]
+        response.parsed_response["results"].map { |s| build_property(search.mls_server, s) }
       end
     end
   end
@@ -59,7 +59,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   end
 
   def listing(mls_server, id)
-    mls_server.properties.new(mls_data: self.class.get("/v1/#{mls_server.server_hash}/listing/#{id}").parsed_response)
+    build_property(mls_server, self.class.get("/v1/#{mls_server.server_hash}/listing/#{id}").parsed_response)
   end
 
   def photo_for_listing(mls_server, id)
@@ -170,5 +170,56 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
                   starts_at: Time.zone.parse(struct["fields"]["EVENT100"]),
                   ends_at: Time.zone.parse(struct["fields"]["EVENT200"]),
                   photo_url: photo_for_listing(mls, struct["fields"]["LIST1"]))
+  end
+
+  def build_property(mls, struct)
+    Property.new(mls_server_id: mls.id,
+                 mls_data: struct,
+                 internal_mls_id: struct["fields"]["LIST_1"],
+                 listing_id: struct["fields"]["LIST_105"],
+                 bedrooms: struct["fields"]["LIST_66"].to_i,
+                 full_baths: struct["fields"]["LIST_68"].to_i,
+                 half_baths: struct["fields"]["LIST_69"].to_i,
+                 list_price: struct["fields"]["LIST_22"].to_i,
+                 square_feet: struct["fields"]["LIST_48"].to_i,
+                 photos: struct["photos"].map { |p| p["url"] },
+                 lat: struct["fields"]["LIST_46"],
+                 lng: struct["fields"]["LIST_47"],
+                 status: struct["fields"]["LIST_15"],
+                 days_on_market: struct["fields"]["LIST_137"].to_i,
+                 street_address: format_street_address(struct),
+                 city: struct["fields"]["LIST_39"].to_s.titleize,
+                 state: struct["fields"]["LIST_40"],
+                 zip5: struct["fields"]["LIST_43"],
+                 listing_office_name: struct["fields"]["listing_office_name"],
+                 listing_office_address: struct["fields"]["listing_office_address"],
+                 listing_office_phone: struct["fields"]["listing_office_phone"],
+                 listing_member_name: struct["fields"]["listing_member_name"],
+                 listing_member_phone: struct["fields"]["listing_member_phone"],
+                 listing_member_email: struct["fields"]["listing_member_email"],
+                 listing_member_url: struct["fields"]["listing_member_url"],
+                 public_remarks: struct["fields"]["LIST_78"],
+                 property_type: struct["fields"]["LIST_8"],
+                 year_built: struct["fields"]["LIST_53"],
+                 topography: struct["fields"]["GF20010504203332657000000000"],
+                 county: struct["fields"]["LIST_41"],
+                 style: struct["fields"]["GF20010504202751553457000000"],
+                 zoning: struct["fields"]["GF20010504204208569501000000"],
+                 construction: struct["fields"]["GF20010504202807758598000000"],
+                 parking: struct["fields"]["GF20010504203132400453000000"],
+                 heating: struct["fields"]["GF20010504203911247356000000"],
+                 area: struct["fields"]["LIST_77"],
+                 mls_updated_at: Time.parse(struct["fields"]["LIST_87"]))
+  end
+
+  private
+
+  def format_street_address(struct)
+    [
+     struct["fields"]["LIST_31"],
+     struct["fields"]["LIST_34"],
+     struct["fields"]["LIST_37"],
+     struct["fields"]["LIST_35"]
+    ].reject(&:blank?).join(" ")
   end
 end

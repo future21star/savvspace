@@ -66,13 +66,13 @@
               .col-md-6
                 %dl.dl-horizontal
                   %dt Property Type
-                  %dd= @property.type
+                  %dd= @property.property_type
 
                   %dt Status
                   %dd= @property.status
 
                   %dt MLS #
-                  %dd= @property.mls_id
+                  %dd= @property.listing_id
 
                   %dt List Price
                   %dd= number_to_currency(@property.list_price, precision: 0)
