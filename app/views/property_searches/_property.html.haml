@@ -1,10 +1,8 @@
-.col-md-4
-  /
-    = property.inspect
+.col-md-4.property
   .panel.panel-default.panel-profile[]
     - bgimg = property["photos"][0].fetch("url", "") unless property["photos"].empty?
     - if bgimg
-      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 150, width: 378, quality: 100)
+      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: 100)
       .panel-heading{style: "background-image: url(#{img_path});", href: "#"}
     - else
       .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: "#"}

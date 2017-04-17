@@ -1,8 +1,8 @@
-.col-md-4
+.col-md-4.property
   .panel.panel-default.panel-profile[]
     - bgimg = property.photo_url
     - if bgimg
-      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 150, width: 378, quality: 100)
+      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: 100)
       .panel-heading{style: "background-image: url(#{img_path});", href: url_for(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param))}
     - else
       .panel-heading{style: "background-image: url(#{image_path('no_property_photo.png')});", href: url_for(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param))}

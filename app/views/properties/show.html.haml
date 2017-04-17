@@ -35,7 +35,7 @@
     .col-md-8
       .row
         - if @property.photos.present?
-          #property-carousel.carousel.slide.col-md-9
+          #property-carousel.carousel.slide.p-x-0
             %ol.carousel-indicators
               - @property.photos.each_with_index do |photo, index|
                 %li{data: {target: "#property-carousel", slide_to: index}, class: index.zero? ? "active" : nil}
@@ -43,7 +43,7 @@
             .carousel-inner{role: "listbox"}
               - @property.photos.each_with_index do |photo, index|
                 .item{class: index.zero? ? "active" : nil}
-                  = cl_image_tag(photo, type: :fetch, height: 390, width: 615, crop: :lfill, responsive: true, responsive_placeholder: "blank")
+                  = cl_image_tag(photo, type: :fetch, height: 615, width: 820, crop: :lfill, responsive: true, responsive_placeholder: "blank")
 
             %a.left.carousel-control{href: "#property-carousel", data: {slide: "prev"}, role: "button"}
               %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
@@ -52,27 +52,6 @@
             %a.right.carousel-control{href: "#property-carousel", data: {slide: "next"}, role: "button"}
               %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
               %span.sr-only Next
-
-        .broker-info.col-md-3
-          %p.name
-            %strong= @property.listing_office_name
-            %br
-            %span.address= @property.listing_office_address
-            %br
-            %span.phone= @property.listing_office_phone
-
-          %p.name
-            %strong= @property.listing_member_name
-            %br
-            %span.phone
-              = @property.listing_member_phone
-            %br
-            %span.email
-              %a{href: "mailto:#{@property.listing_member_email}"}
-                = @property.listing_member_email
-            %br
-            %span.url
-              = link_to(@property.listing_member_url, @property.listing_member_url, popup: true)
 
       .row.m-t
         .col-md-12
