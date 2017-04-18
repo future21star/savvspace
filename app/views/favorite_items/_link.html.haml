@@ -1,6 +1,8 @@
 .favorite-link[item]
   - if ! current_user
-    %span.icon.icon-heart-outlined
+    = link_to(new_user_session_path) do
+      %span.icon.icon-heart-outlined
+        Favorite
   - else
     - favorite = current_user.favorite_items.find_or_initialize_by(favorite: item)
     - if favorite.new_record?

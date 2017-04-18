@@ -7,11 +7,17 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action :store_current_location, :unless => :devise_controller?
+
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || user_start_path
   end
 
   protected
+
+  def store_current_location
+    store_location_for(:user, request.url) if request.get?
+  end
 
   def user_start_path
     if request.referrer.ends_with?(new_user_registration_path)

@@ -64,10 +64,10 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
 
   def photo_for_listing(mls_server, id)
     listing = listing(mls_server, id)
-    if listing["photos"].blank?
+    if listing.photos.empty?
       nil
     else
-      listing["photos"].first["url"]
+      listing.photos.first
     end
   end
 

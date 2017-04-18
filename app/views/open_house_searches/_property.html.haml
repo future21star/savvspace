@@ -20,5 +20,15 @@
 
         %p.description= property.comments.to_s.truncate(100)
 
-    .panel-footer
-      = render partial: "favorite_items/link", locals: {item: property}
+    .panel-footer.p-x-0
+      .btn-group.btn-group-justified
+        .btn-group{role: "group"}
+          = render partial: "favorite_items/link", locals: {item: property}
+        .btn-group{role: "group"}
+          %button.btn.link-unstyled
+            %span.icon.icon-new-message
+            Notes
+        .btn-group{role: "group"}
+          %button.btn.link-unstyled
+            %span.icon.icon-share
+            Share
