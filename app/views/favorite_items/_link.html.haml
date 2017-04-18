@@ -1,6 +1,6 @@
 .favorite-link[item]
   - if ! current_user
-    = link_to(new_user_session_path) do
+    = link_to(new_user_session_path, class: "btn link-unstyled") do
       %span.icon.icon-heart-outlined
         Favorite
   - else
