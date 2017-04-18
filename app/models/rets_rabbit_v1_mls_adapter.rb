@@ -20,7 +20,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   base_uri ENV['RETS_RABBIT_URL']
   format :json
   headers  "Authorization" => "Bearer #{self.access_token}", "Accept" => "application/json"
-  # debug_output $stdout
+  # debug_output Rails.logger
 
   def metadata
     self.class.get("/datasystem")
@@ -73,8 +73,8 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
 
   def property_search_to_query(property_search)
     query = {
-      "limit" => 12,
-      "offset" => 0,
+      "limit" => property_search.limit,
+      "offset" => property_search.offset,
       "LIST_15" => "Active",
       "LIST_9" => "Home/Estate"
     }
@@ -149,6 +149,27 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
     results.parsed_response["results"].map { |r| build_open_house(mls, r) }
   end
 
+  def fetch_property_list(mls_server, offset=0, result_set = [])
+    Rails.logger.debug("Fetching 250 properties starting from #{offset}")
+
+    response = self.class.get("/v1/#{mls_server.server_hash}/listing/search",
+                              query: { "limit" => 250, "offset" => offset, "LIST_15" => "Active" })
+
+    if response.parsed_response["results"].nil?
+      Rails.logger.error(response.parsed_response.inspect)
+      raise "Invalid responsw from MLS Server"
+    end
+
+    result_set.concat(response.parsed_response["results"].map { |s| build_property(mls_server, s) })
+
+    if response.parsed_response["total_records"] > result_set.size
+      Rails.logger.debug("#{response.parsed_response["total_records"] - result_set.size} more to go...")
+      fetch_property_list(mls_server, result_set.size, result_set)
+    else
+      result_set
+    end
+  end
+
   def build_open_house(mls, struct)
     OpenHouse.new(mls_server_id: mls.id,
                   street_address: struct["fields"]["ADD0"],
@@ -199,7 +220,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
                  listing_member_email: struct["fields"]["listing_member_email"],
                  listing_member_url: struct["fields"]["listing_member_url"],
                  public_remarks: struct["fields"]["LIST_78"],
-                 property_type: struct["fields"]["LIST_8"],
+                 property_type: struct["fields"]["LIST_9"],
                  year_built: struct["fields"]["LIST_53"],
                  topography: struct["fields"]["GF20010504203332657000000000"],
                  county: struct["fields"]["LIST_41"],

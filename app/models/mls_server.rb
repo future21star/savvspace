@@ -9,6 +9,10 @@ class MlsServer < ActiveRecord::Base
     mls_adapter.open_houses_list(self)
   end
 
+  def fetch_property_list
+    mls_adapter.fetch_property_list(self)
+  end
+
   def fetch_property(property_id)
     mls_adapter.listing(self, property_id)
   end

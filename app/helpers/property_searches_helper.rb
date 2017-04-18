@@ -32,4 +32,18 @@ module PropertySearchesHelper
      ["Price (High to Low)", PropertySearch::SORT_PRICE_HIGH_TO_LOW],
     ]
   end
+
+  def property_type_options(mls_server)
+    mls_server.properties.
+      select(:property_type).distinct.
+      map(&:property_type).reject(&:blank?)
+  end
+
+  def property_area_options(mls_server)
+    mls_server.properties.
+      select(:area).distinct.
+      map(&:area).reject(&:blank?).
+      map { |a| [a.sub(/^\d+ - /, ""), a] }. # Remove numeric prefix
+      sort
+  end
 end

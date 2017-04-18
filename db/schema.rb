@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414004821) do
+ActiveRecord::Schema.define(version: 20170418013049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -288,9 +288,13 @@ ActiveRecord::Schema.define(version: 20170414004821) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "mls_server_id"
+    t.integer  "profile_id"
+    t.string   "property_type"
+    t.string   "area"
   end
 
   add_index "property_searches", ["mls_server_id"], name: "index_property_searches_on_mls_server_id", using: :btree
+  add_index "property_searches", ["profile_id"], name: "index_property_searches_on_profile_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "user_id"
@@ -361,6 +365,7 @@ ActiveRecord::Schema.define(version: 20170414004821) do
   add_foreign_key "phone_calls", "profiles"
   add_foreign_key "properties", "mls_servers"
   add_foreign_key "property_searches", "mls_servers"
+  add_foreign_key "property_searches", "profiles"
   add_foreign_key "ratings", "users"
   add_foreign_key "services", "vendors"
 end

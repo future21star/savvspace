@@ -87,7 +87,7 @@ RSpec.describe RetsRabbitV1MlsAdapter, type: :model do
                                      listing_member_email: struct["fields"]["listing_member_email"],
                                      listing_member_url: struct["fields"]["listing_member_url"],
                                      public_remarks: struct["fields"]["LIST_78"],
-                                     property_type: struct["fields"]["LIST_8"],
+                                     property_type: struct["fields"]["LIST_9"],
                                      year_built: struct["fields"]["LIST_53"],
                                      topography: struct["fields"]["GF20010504203332657000000000"],
                                      county: struct["fields"]["LIST_41"],
