@@ -44,6 +44,7 @@ gem 'rack-tracker'
 gem 'ransack'
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
+gem 'newrelic_rpm'
 
 # RETS Rabbit dependencies
 gem 'httparty'
