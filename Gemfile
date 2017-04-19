@@ -45,6 +45,7 @@ gem 'ransack'
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 gem 'newrelic_rpm'
+gem 'jquery-ui-rails'
 
 # RETS Rabbit dependencies
 gem 'httparty'

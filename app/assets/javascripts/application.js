@@ -17,6 +17,7 @@
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require jquery.googlemap
+//= require jquery-ui/effect.all
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require bootstrap-wysihtml5
