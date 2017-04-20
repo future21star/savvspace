@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :open_houses do
     get :new_property_email
     post :send_property_email
+    get :new_favorites_email
+    post :send_favorites_email
   end
   resources :open_house_searches
   resources :property_searches

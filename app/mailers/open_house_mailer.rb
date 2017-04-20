@@ -6,8 +6,9 @@ class OpenHouseMailer < ApplicationMailer
   #
   #   en.open_house.favorites.subject
   #
-  def favorites(user)
+  def favorites(user, referrer)
     @open_houses = user.favorite_items.open_houses.collect(&:favorite).sort_by(&:starts_at)
+    @referrer = referrer
 
     mail to: user.email
   end

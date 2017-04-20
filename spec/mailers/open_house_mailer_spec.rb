@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe OpenHouseMailer, type: :mailer do
   describe "favorites" do
     let(:user) { FactoryGirl.create(:user) }
-    let(:mail) { OpenHouseMailer.favorites(user) }
+    let(:referrer) { FactoryGirl.create(:profile) }
+    let(:mail) { OpenHouseMailer.favorites(user, referrer) }
 
     it "renders the headers" do
       expect(mail.subject).to eq(I18n.t('open_house_mailer.favorites.subject'))

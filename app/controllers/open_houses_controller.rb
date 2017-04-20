@@ -11,4 +11,13 @@ class OpenHousesController < ApplicationController
     @referrer = Profile.find_by(id: params[:referrer_id])
     OpenHouseMailer.single_property(current_user, @property, @referrer).deliver_later
   end
+
+  def new_favorites_email
+    @referrer_id = params[:referrer_id]
+  end
+
+  def send_favorites_email
+    @referrer = Profile.find_by(id: params[:referrer_id])
+    OpenHouseMailer.favorites(current_user, @referrer).deliver_later
+  end
 end

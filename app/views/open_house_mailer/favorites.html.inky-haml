@@ -1,7 +1,7 @@
 %container
   %spacer{:size => "16"}
   %row
-    - if @referrer
+    - if @referrer.try(:avatar)
       %columns{:large => "4"}
         = cl_image_tag(@referrer.avatar.path, width: 170, height: 170, crop: :lfill, gravity: :face, quality: "auto:best")
       %columns{:large => "8"}
@@ -55,7 +55,7 @@
 
   %hr
 
-  - if @referrer
+  - if @referrer.try(:avatar)
     %row
       %columns
         %center

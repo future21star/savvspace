@@ -12,7 +12,7 @@ RSpec.describe RetsRabbitV1MlsAdapter, type: :model do
     before do
       expect(rets_provider).
         to receive(:listing).
-        and_return({"photos" => []})
+        and_return(Property.new)
     end
 
     subject { rets_provider.build_open_house(mls_server, struct) }
