@@ -14,4 +14,13 @@ class OpenHouseMailerPreview < ActionMailer::Preview
     OpenHouseMailer.favorites(user)
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/open_house/favorites
+  def single_property
+    user = User.find_by(email: "openhousepreview@example.com") || FactoryGirl.create(:user, email: "openhousepreview@example.com")
+    mls_server = MlsServer.first || FactoryGirl.create(:mls_server)
+    open_house = FactoryGirl.create(:open_house, mls_server: mls_server)
+
+    OpenHouseMailer.single_property(user, open_house)
+  end
+
 end

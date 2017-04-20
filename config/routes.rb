@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :favorite_items
-  resources :open_houses
+  resources :open_houses do
+    get :new_property_email
+    post :send_property_email
+  end
   resources :open_house_searches
   resources :property_searches
   get 'ivr/click_to_call', format: :xml

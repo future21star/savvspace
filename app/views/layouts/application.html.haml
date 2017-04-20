@@ -24,7 +24,10 @@
           = notice
 
     = render "layouts/navbar"
-    #container= yield
+    #container
+      #modal.modal.fade{role: "dialog", tabindex: "-1"}
+
+      = yield
     = render "layouts/bottom_links"
 
     = javascript_include_tag '/dist/toolkit.min.js', 'data-turbolinks-track' => true

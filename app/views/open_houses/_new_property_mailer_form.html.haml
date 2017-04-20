@@ -1,0 +1,15 @@
+.modal-dialog.modal-sm{role: "document"}
+  .modal-content
+    .modal-header
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+      %h4.modal-title Sending E-mail To:
+    .modal-body
+      %h4.text-center= current_user.email
+    .modal-actions
+      %button.btn-link.modal-action{"data-dismiss" => "modal", :type => "button"} Cancel
+      = link_to(open_house_send_property_email_path(@property), method: :post, remote: true) do
+        %button.btn-link.modal-action{"data-dismiss" => "modal", :type => "button"}
+          %strong
+            %span.icon.icon-paper-plane
+            Send
