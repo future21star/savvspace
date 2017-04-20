@@ -3,12 +3,12 @@ class OpenHousesController < ApplicationController
 
   def new_property_email
     @property = OpenHouse.find(params[:open_house_id])
+    @referrer_id = params[:referrer_id]
   end
 
   def send_property_email
     @property = OpenHouse.find(params[:open_house_id])
-    OpenHouseMailer.single_property(current_user, @property).deliver_later
-
-    render nothing: true
+    @referrer = Profile.find_by(id: params[:referrer_id])
+    OpenHouseMailer.single_property(current_user, @property, @referrer).deliver_later
   end
 end

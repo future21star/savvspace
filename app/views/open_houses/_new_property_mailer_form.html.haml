@@ -8,8 +8,9 @@
       %h4.text-center= current_user.email
     .modal-actions
       %button.btn-link.modal-action{"data-dismiss" => "modal", :type => "button"} Cancel
-      = link_to(open_house_send_property_email_path(@property), method: :post, remote: true) do
-        %button.btn-link.modal-action{"data-dismiss" => "modal", :type => "button"}
+      = form_tag(open_house_send_property_email_path(@property), method: :post, remote: true) do
+        = hidden_field_tag :referrer_id, @referrer_id
+        %button.btn-link.modal-action{:type => "submit"}
           %strong
             %span.icon.icon-paper-plane
             Send

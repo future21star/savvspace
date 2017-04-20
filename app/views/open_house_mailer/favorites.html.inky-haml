@@ -1,9 +1,33 @@
 %container
   %spacer{:size => "16"}
   %row
-    %columns
-      %center
-        = image_tag("savvspace-logo-with-tag.jpg", height: 200)
+    - if @referrer
+      %columns{:large => "4"}
+        = cl_image_tag(@referrer.avatar.path, width: 170, height: 170, crop: :lfill, gravity: :face, quality: "auto:best")
+      %columns{:large => "8"}
+        %h4
+          = link_to(@referrer.name, @referrer)
+        %p
+          - if @referrer.username
+            = link_to(public_profile_url(@referrer.username), public_profile_url(@referrer.username))
+            %br
+          - if @referrer.contact_email
+            = @referrer.contact_email
+            %br
+          - if @referrer.phone
+            Ph.
+            = @referrer.phone
+        - if @referrer.bio
+          %p{style: "font-family: Serif;"}
+            %small
+              %cite= @referrer.bio
+
+
+    - else
+      %columns
+        %center
+          = image_tag("savvspace-logo-with-tag.jpg", height: 200)
+
   %row
     %columns
       %center
@@ -30,6 +54,13 @@
           = open_house.comments
 
   %hr
+
+  - if @referrer
+    %row
+      %columns
+        %center
+          = image_tag("savvspace-logo-with-tag.jpg", height: 200)
+
   %row
     %columns
       %p.text-center

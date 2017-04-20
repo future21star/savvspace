@@ -12,8 +12,9 @@ class OpenHouseMailer < ApplicationMailer
     mail to: user.email
   end
 
-  def single_property(user, property)
+  def single_property(user, property, referrer)
     @open_houses = [property]
+    @referrer = referrer
     mail to: user.email, template_name: "favorites"
   end
 end
