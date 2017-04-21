@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418013049) do
+ActiveRecord::Schema.define(version: 20170421003425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,10 +177,12 @@ ActiveRecord::Schema.define(version: 20170418013049) do
     t.jsonb    "raw_listing"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.integer  "property_id"
   end
 
   add_index "open_houses", ["area"], name: "index_open_houses_on_area", using: :btree
   add_index "open_houses", ["mls_server_id"], name: "index_open_houses_on_mls_server_id", using: :btree
+  add_index "open_houses", ["property_id"], name: "index_open_houses_on_property_id", using: :btree
 
   create_table "phone_calls", force: :cascade do |t|
     t.integer  "from_phone_id"
@@ -278,6 +280,17 @@ ActiveRecord::Schema.define(version: 20170418013049) do
 
   add_index "properties", ["mls_server_id"], name: "index_properties_on_mls_server_id", using: :btree
 
+  create_table "property_notes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "property_id"
+    t.text     "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "property_notes", ["property_id"], name: "index_property_notes_on_property_id", using: :btree
+  add_index "property_notes", ["user_id"], name: "index_property_notes_on_user_id", using: :btree
+
   create_table "property_searches", force: :cascade do |t|
     t.integer  "min_price"
     t.integer  "max_price"
@@ -362,8 +375,11 @@ ActiveRecord::Schema.define(version: 20170418013049) do
   add_foreign_key "mls_servers", "mls_adapters"
   add_foreign_key "open_house_searches", "mls_servers"
   add_foreign_key "open_houses", "mls_servers"
+  add_foreign_key "open_houses", "properties"
   add_foreign_key "phone_calls", "profiles"
   add_foreign_key "properties", "mls_servers"
+  add_foreign_key "property_notes", "properties"
+  add_foreign_key "property_notes", "users"
   add_foreign_key "property_searches", "mls_servers"
   add_foreign_key "property_searches", "profiles"
   add_foreign_key "ratings", "users"

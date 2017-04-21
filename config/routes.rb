@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :property_notes
   resources :favorite_items
   resources :open_houses do
     get :new_property_email
@@ -26,6 +27,10 @@ Rails.application.routes.draw do
 
   resources :mls_servers do
     resources :properties
+  end
+
+  resources :properties do
+    resources :property_notes
   end
 
   resources :articles

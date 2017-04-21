@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @property_note.user
+%p
+  %b Property:
+  = @property_note.property
+%p
+  %b Text:
+  = @property_note.text
+
+= link_to 'Edit', edit_property_note_path(@property_note)
+\|
+= link_to 'Back', property_notes_path

@@ -5,3 +5,13 @@
 .property .panel-profile .panel-heading {
   height: 230px;
 }
+
+.open_house .panel-body {
+  .notes { display: none; }
+  .property-info { display: block; }
+
+  &.notes {
+    .notes { display: block; }
+    .property-info { display: none; }
+  }
+}

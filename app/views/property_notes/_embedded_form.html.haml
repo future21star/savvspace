@@ -1,0 +1,8 @@
+= simple_form_for(@property_note, remote: true) do |f|
+  = f.input :property_id, as: :hidden
+  = f.input :text, label: "Property Notes:"
+  .pull-right
+    = f.button :submit, "Save", class: "btn-primary btn-xs"
+    %small
+      \|
+      = link_to "Cancel", "#", class: "cancel-notes"

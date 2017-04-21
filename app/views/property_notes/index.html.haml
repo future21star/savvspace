@@ -1,0 +1,25 @@
+%h1 Listing property_notes
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Property
+      %th Text
+      %th
+      %th
+      %th
+
+  %tbody
+    - @property_notes.each do |property_note|
+      %tr
+        %td= property_note.user
+        %td= property_note.property
+        %td= property_note.text
+        %td= link_to 'Show', property_note
+        %td= link_to 'Edit', edit_property_note_path(property_note)
+        %td= link_to 'Destroy', property_note, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Property note', new_property_note_path

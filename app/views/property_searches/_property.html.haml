@@ -3,7 +3,7 @@
     - bgimg = property.photos.first
     - property_url = url_for(mls_server_property_path(property.mls_server, property.internal_mls_id, profile_id: @profile.to_param))
     - if bgimg
-      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: 100)
+      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: "auto", flags: "lossy")
       .panel-heading{style: "background-image: url(#{img_path});", href: property_url}
     - else
       .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: property_url}

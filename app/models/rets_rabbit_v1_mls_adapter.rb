@@ -146,6 +146,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
                                "offset" => 0,
                                "EVENT100:date" => Date.today.to_s + "+"
                              })
+
     results.parsed_response["results"].map { |r| build_open_house(mls, r) }
   end
 
@@ -171,7 +172,12 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   end
 
   def build_open_house(mls, struct)
+    property = mls.properties.find_by(internal_mls_id: struct["fields"]["LIST1"]) ||
+      listing(mls, struct["fields"]["LIST1"])
+    property.save
+
     OpenHouse.new(mls_server_id: mls.id,
+                  property: property,
                   street_address: struct["fields"]["ADD0"],
                   state: struct["fields"]["ADD10"],
                   area: struct["fields"]["ADD5"],
@@ -190,7 +196,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
                   list_office_phone: struct["fields"]["PHONE1"],
                   starts_at: Time.zone.parse(struct["fields"]["EVENT100"]),
                   ends_at: Time.zone.parse(struct["fields"]["EVENT200"]),
-                  photo_url: photo_for_listing(mls, struct["fields"]["LIST1"]))
+                  photo_url: property.photos.first)
   end
 
   def build_property(mls, struct)

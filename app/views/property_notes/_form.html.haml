@@ -1,0 +1,10 @@
+= simple_form_for(@property_note) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.association :property
+    = f.input :text
+
+  .form-actions
+    = f.button :submit
