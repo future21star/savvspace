@@ -1,46 +1,47 @@
-.col-md-4[property]
-  .panel.panel-default.panel-profile
-    - bgimg = property.photo_url
-    - if bgimg
-      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: "auto", flags: "lossy")
-      .panel-heading{style: "background-image: url(#{img_path});", href: url_for(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param))}
-    - else
-      .panel-heading{style: "background-image: url(#{image_path('no_property_photo.png')});", href: url_for(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param))}
-    .panel-body
-      .property-info
-        %h5.panel-title
-          = link_to(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param)) do
-            = property.street_address
-          .pull-right
-            = event_date(property)
-        .details
-          %p.neighborhood.m-b-0
-            = property.area
-          %p.pricing
-            %span.sale-price= number_to_currency(property.list_price, precision: 0)
+- cache [property, user_signed_in?] do
+  .col-md-4[property]
+    .panel.panel-default.panel-profile
+      - bgimg = property.photo_url
+      - if bgimg
+        - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: "auto", flags: "lossy")
+        .panel-heading{style: "background-image: url(#{img_path});", href: url_for(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param))}
+      - else
+        .panel-heading{style: "background-image: url(#{image_path('no_property_photo.png')});", href: url_for(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param))}
+      .panel-body
+        .property-info
+          %h5.panel-title
+            = link_to(mls_server_property_path(property.mls_server, property.mls_property_id, profile_id: @profile.to_param)) do
+              = property.street_address
+            .pull-right
+              = event_date(property)
+          .details
+            %p.neighborhood.m-b-0
+              = property.area
+            %p.pricing
+              %span.sale-price= number_to_currency(property.list_price, precision: 0)
 
-          %p.description= property.comments.to_s.truncate(100)
-      .notes[property.property, :notes]
-    .panel-footer.p-x-0
-      .btn-group.btn-group-justified
-        .btn-group{role: "group"}
-          = render partial: "favorite_items/link", locals: {item: property}
-        .btn-group{role: "group"}
-          /
-            %button.btn.link-unstyled.show-notes
-              %span.icon.icon-new-message
-              Notes
-          - if property.property
-            = link_to(new_property_property_note_path(property.property), remote: true, class: "btn link-unstyled") do
-              %span.icon.icon-new-message
-              Notes
+            %p.description= property.comments.to_s.truncate(100)
+        .notes[property.property, :notes]
+      .panel-footer.p-x-0
+        .btn-group.btn-group-justified
+          .btn-group{role: "group"}
+            = render partial: "favorite_items/link", locals: {item: property}
+          .btn-group{role: "group"}
+            - if ! user_signed_in?
+              = link_to(new_user_session_path, class: "btn link-unstyled") do
+                %span.icon.icon-new-message
+                Notes
+            - elsif property.property
+              = link_to(new_property_property_note_path(property.property), remote: true, class: "btn link-unstyled") do
+                %span.icon.icon-new-message
+                Notes
 
-        .btn-group{role: "group"}
-          %button.btn.link-unstyled.dropdown-toggle[property, :email]{data: {toggle: "dropdown"}, aria: {has_popup: true, expanded: true}}
-            %span.icon.icon-mail
-            E-mail
-          %ul.dropdown-menu
-            %li
-              = link_to("This Property", open_house_new_property_email_path(property, referrer_id: @profile.try(:id)), class: "single-open-house-email", remote: true)
-            %li
-              = link_to("All Favorites", open_house_new_favorites_email_path(property, referrer_id: @profile.try(:id)), class: "favorite-open-house-email", remote: true)
+          .btn-group{role: "group"}
+            %button.btn.link-unstyled.dropdown-toggle[property, :email]{data: {toggle: "dropdown"}, aria: {has_popup: true, expanded: true}}
+              %span.icon.icon-mail
+              E-mail
+            %ul.dropdown-menu
+              %li
+                = link_to("This Property", open_house_new_property_email_path(property, referrer_id: @profile.try(:id)), class: "single-open-house-email", remote: true)
+              %li
+                = link_to("All Favorites", open_house_new_favorites_email_path(property, referrer_id: @profile.try(:id)), class: "favorite-open-house-email", remote: true)
