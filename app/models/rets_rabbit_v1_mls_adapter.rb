@@ -2,18 +2,16 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   include HTTParty
 
   def self.access_token
-    Rails.cache.fetch("rets_access_token_#{ENV.fetch('RETS_RABBIT_CLIENT_ID')}", expires_in: 302400) do
-      if Rails.env.test?
-        "test123"
-      else
-        response = post("/oauth/access_token",
-                        body: {
-                          grant_type: "client_credentials",
-                          client_id: ENV.fetch('RETS_RABBIT_CLIENT_ID'),
-                          client_secret: ENV.fetch('RETS_RABBIT_SECRET')
-                        })
-        response["access_token"]
-      end
+    if Rails.env.test?
+      "test123"
+    else
+      response = post("/oauth/access_token",
+                      body: {
+                        grant_type: "client_credentials",
+                        client_id: ENV.fetch('RETS_RABBIT_CLIENT_ID'),
+                        client_secret: ENV.fetch('RETS_RABBIT_SECRET')
+                      })
+      response["access_token"]
     end
   end
 
