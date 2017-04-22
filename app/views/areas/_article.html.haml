@@ -1,11 +1,11 @@
 %div[article]
-  .image= link_to(cl_image_tag(article.feature_photo.path), article)
+  .image= link_to(cl_image_tag(article.feature_photo.path, quality: :auto, flags: "lossy", width: :auto, responsive: true), article)
   .synopsis.media-list-users
     %h3= link_to(article.title, article)
 
     .media
       .media-left
-        = cl_image_tag(article.author.profile.avatar.path, {size: '42x42', crop: :thumb, gravity: :face, class: "img-circle media-object"})
+        = cl_image_tag(article.author.profile.avatar.path, {width: 42, height: 42, crop: :thumb, gravity: :face, class: "img-circle media-object"})
       .media-body.media-middle
         %strong= article.author_name
         %small

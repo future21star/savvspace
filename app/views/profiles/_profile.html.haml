@@ -3,7 +3,7 @@
     .panel-heading{background_image_url(profile.background)}
     .panel-body.text-center
       - if profile.avatar
-        = cl_image_tag(profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100)
+        = cl_image_tag(profile.avatar.path, class: "panel-profile-img", crop: :thumb, gravity: :face, height: 100, width: 100, quality: :auto, flags: "lossy")
 
       %h5.panel-title
         = link_to(profile.name, profile_link)

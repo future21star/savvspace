@@ -9,7 +9,7 @@
     .container-inner
       .transparent-shaded-box
         - if @profile.avatar
-          = cl_image_tag(@profile.avatar.path, class: "img-responsive img-circle rounded-circle media-object", crop: :thumb, gravity: :face, height: 110, width: 110)
+          = cl_image_tag(@profile.avatar.path, class: "img-responsive img-circle rounded-circle media-object", crop: :thumb, gravity: :face, height: 110, width: 110, quality: :auto, flags: "lossy")
         %h2.profile-header-user
           - if @profile.username
             = link_to(@profile.name, public_profile_path(@profile.username))
