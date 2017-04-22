@@ -13,4 +13,8 @@ class Property < ActiveRecord::Base
       sort_by(&:starts_at).
       reject { |oh| oh.starts_at < Time.current }
   end
+
+  def open_houses=(array=[])
+    # do nothing for now, we'll read it out of the mls_data
+  end
 end
