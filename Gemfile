@@ -51,6 +51,9 @@ gem 'mandrill-api'
 # RETS Rabbit dependencies
 gem 'httparty'
 
+# Caching
+gem 'dalli'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
