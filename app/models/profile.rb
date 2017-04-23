@@ -10,4 +10,5 @@ class Profile < ActiveRecord::Base
   validates :username, uniqueness: true, format: /\A[0-9A-Za-z_-]+\z/i, allow_nil: true
 
   accepts_nested_attributes_for :phone
+
 end

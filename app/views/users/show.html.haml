@@ -6,6 +6,11 @@
         Get started by
         = link_to("filling out your profile", edit_user_profile_path(@user))
         and telling us more about who you are.
+      - if feature_enabled?("idx")
+        %li
+          Are you a REALTOR interested in
+          = link_to("showing your properties", new_feature_request_link("idx"), id: "idx-signup")
+          on Savvspace?
       %li
         Are you interested in
         = succeed "?" do

@@ -1,0 +1,17 @@
+= simple_form_for([@feature, @feature_request]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :feature_id, as: :hidden
+
+  .form-inputs
+    = f.input :agent_name, as: :string
+
+  .form-inputs
+    = f.input :broker_name, as: :string
+
+  .form-inputs
+    = f.input :broker_email, as: :string
+
+  .form-actions
+    = f.button :submit, "Request Access"

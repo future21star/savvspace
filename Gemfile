@@ -47,6 +47,7 @@ gem 'premailer-rails'
 gem 'newrelic_rpm'
 gem 'jquery-ui-rails'
 gem 'mandrill-api'
+gem 'stripe-rails'
 
 # RETS Rabbit dependencies
 gem 'httparty'

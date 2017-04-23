@@ -316,6 +316,11 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (2.1.0)
+      faraday (~> 0)
+    stripe-rails (0.3.1)
+      rails (>= 3)
+      stripe
     syntax (1.2.1)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
@@ -392,6 +397,7 @@ DEPENDENCIES
   shoulda-matchers (~> 3.0)
   simple_form
   spring
+  stripe-rails
   syntax
   therubyracer
   turbolinks

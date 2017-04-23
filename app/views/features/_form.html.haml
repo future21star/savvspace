@@ -1,0 +1,11 @@
+= simple_form_for(@feature) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.input :enabled
+    = f.input :disabled
+
+  .form-actions
+    = f.button :submit

@@ -27,5 +27,7 @@ module Savvspace
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    config.stripe.publishable_key = "pk_test_iKKuGcD4G0QDM0pD3u4Py2uA"
   end
 end

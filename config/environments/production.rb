@@ -105,4 +105,6 @@ Rails.application.configure do
   config.middleware.use(Rack::Tracker) do
     handler :google_analytics, { tracker: 'UA-96909907-1', position: :body }
   end
+
+  config.stripe.publishable_key = "pk_live_kFPK1VofcSR3Nhl5RaROzp3r"
 end

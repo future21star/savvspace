@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'stripe/create_customer'
+
   resources :property_notes
   resources :favorite_items
   resources :open_houses do
@@ -8,6 +10,11 @@ Rails.application.routes.draw do
     post :send_favorites_email
   end
   resources :open_house_searches
+
+  resources :features do
+    resources :feature_requests, shallow: true
+  end
+
   resources :property_searches
   get 'ivr/click_to_call', format: :xml
 

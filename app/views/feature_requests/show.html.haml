@@ -1,0 +1,31 @@
+%h1 Thanks
+
+- if current_user.stripe_customer_id.blank?
+  %p
+    Your request is being processed.  To complete your request, please
+    enter your billing information below.  Once your request has been
+    approved, you will have 30 days to evaluate the feature and then
+    you will be billed.
+
+
+  .row
+    .col-md-6.well
+      = form_tag(stripe_create_customer_path, id: "payment-form") do
+        = hidden_field_tag :intent_class, "FeatureRequest"
+        = hidden_field_tag :intent_id, @feature_request.id
+
+        - if Rails.env.test?
+          = text_field_tag :stripe_token
+        .form-row
+          %label{for: "card-element"}
+            Credit or debit card
+          #card-element
+          #card-errors
+
+        .form-row.m-t
+          %button#payment-button.btn.btn-primary Save Payment Information
+- else
+  %p
+    Your payment information has been stored!  When your IDX request
+    has been approved we will send you an e-mail.  At that time you
+    will have 30 days to evaluate the feature and then you will be billed.
