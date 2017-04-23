@@ -12,6 +12,11 @@
   = link_to(article_categories_path, class: "list-group-item") do
     %span.badge= ArticleCategory.count
     Article Categories
+  - if feature_enabled?("idx")
+    - idx = Feature.find_by(name: "idx")
+    = link_to(feature_feature_requests_path(idx), class: "list-group-item") do
+      %span.badge= FeatureRequest.count
+      IDX Feature Requests
   = link_to(users_path, class: "list-group-item") do
     %span.badge= User.count
     Users

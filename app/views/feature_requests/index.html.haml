@@ -1,25 +1,32 @@
-%h1 Listing feature_requests
+%h1 IDX Feature Requests
 
-%table
+%table.table
   %thead
     %tr
-      %th Feature
-      %th User
-      %th Profile
-      %th
-      %th
+      %th User Status
+      %th User E-Mail
+      %th Agent Name
+      %th Broker Name
+      %th Broker E-Mail
       %th
 
   %tbody
     - @feature_requests.each do |feature_request|
       %tr
-        %td= feature_request.feature
-        %td= feature_request.user
-        %td= feature_request.profile
-        %td= link_to 'Show', feature_request
-        %td= link_to 'Edit', edit_feature_request_path(feature_request)
-        %td= link_to 'Destroy', feature_request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          - if ! feature_request.user.confirmed?
+            %span.label.label-success Confirmed
+          - else
+            %span.label.label-warning Unconfirmed
+        %td= feature_request.user.email
+        %td= feature_request.agent_name
+        %td= feature_request.broker_name
+        %td= feature_request.broker_email
 
-%br
-
-= link_to 'New Feature request', new_feature_request_path
+        %td
+          = link_to '#', class: "btn btn-primary" do
+            %span.icon.icon-thumbs-up
+            Approve
+          = link_to '#', class: "btn btn-default" do
+            %span.icon.icon-thumbs-down
+            Deny
