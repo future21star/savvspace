@@ -9,7 +9,7 @@ RSpec.describe OpenHouseMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.subject).to eq(I18n.t('open_house_mailer.favorites.subject'))
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["no-reply@savvspace.com"])
+      expect(mail.from).to eq(["account@savvspace.com"])
     end
 
     it "renders the body" do
