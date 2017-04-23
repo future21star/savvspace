@@ -1,6 +1,6 @@
 
 {
-    "master_picture": "public/img/logo-2x.png",
+    "master_picture": "app/assets/images/savvspace-favicon.png",
     "favicon_design": {
         "ios": {
             "picture_aspect": "background_and_margin",
@@ -18,8 +18,8 @@
 
         ],
         "windows": {
-            "picture_aspect": "no_change",
-            "background_color": "#2b5797",
+            "picture_aspect": "white_silhouette",
+            "background_color": "#2d89ef",
             "on_conflict": "override",
             "assets": {
                 "windows_80_ie_10_tile": false,
@@ -33,7 +33,9 @@
             "app_name": "Savvspace"
         },
         "android_chrome": {
-            "picture_aspect": "no_change",
+            "picture_aspect": "background_and_margin",
+            "margin": "17%",
+            "background_color": "#ffffff",
             "theme_color": "#ffffff",
             "manifest": {
                 "name": "Savvspace",
