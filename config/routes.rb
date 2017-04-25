@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :messages
   post 'stripe/create_customer'
 
   resources :property_notes
@@ -46,7 +47,12 @@ Rails.application.routes.draw do
   end
   resources :ambassadorships
   resources :areas
-  resources :profiles
+  resources :profiles do
+    resources :conversations
+  end
+  resources :conversations do
+    resources :messages
+  end
   get '/profiles/:id/:tab', to: "profiles#show", as: :profile_tab
   get '/u/:username', to: "profiles#show", as: :public_profile
   resources :ratings

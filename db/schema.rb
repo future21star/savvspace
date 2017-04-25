@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170423221221) do
+ActiveRecord::Schema.define(version: 20170424174708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 20170423221221) do
 
   add_index "captioned_images", ["owner_type", "owner_id"], name: "index_captioned_images_on_owner_type_and_owner_id", using: :btree
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "initiator_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "conversations", ["initiator_id"], name: "index_conversations_on_initiator_id", using: :btree
+  add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -141,6 +151,18 @@ ActiveRecord::Schema.define(version: 20170423221221) do
   end
 
   add_index "features", ["name"], name: "index_features_on_name", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.integer  "conversation_id"
+    t.text     "body"
+    t.datetime "read_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
 
   create_table "mls_adapters", force: :cascade do |t|
     t.string   "type"
@@ -406,6 +428,7 @@ ActiveRecord::Schema.define(version: 20170423221221) do
   add_foreign_key "feature_requests", "features"
   add_foreign_key "feature_requests", "profiles"
   add_foreign_key "feature_requests", "users"
+  add_foreign_key "messages", "conversations"
   add_foreign_key "mls_servers", "mls_adapters"
   add_foreign_key "open_house_searches", "mls_servers"
   add_foreign_key "open_houses", "mls_servers"

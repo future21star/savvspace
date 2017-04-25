@@ -1,0 +1,18 @@
+- if message.previous.nil? || message.previous.from != message.from
+  %li.media.m-b-md{class: message.from.profiled == current_user ? "media-current-user" : nil}
+    - if message.from.profiled != current_user
+      %a.media-left{href: "#"}
+        = profile_image(message.from.profiled)
+    .media-body
+
+.media-body-text= message.body
+
+- if message.previous.nil? || message.previous.from != message.from
+  .media-footer
+    %small.text-muted
+      = link_to(message.from.name, message.from)
+      at
+      = message.created_at.strftime("%l:%M%P")
+    - if message.from.profiled == current_user
+      %a.media-right{href: "#"}
+        = profile_image(message.from.profiled)

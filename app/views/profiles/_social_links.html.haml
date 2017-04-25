@@ -3,6 +3,11 @@
     - if profile.contact_email.present?
       %a.icon.icon-mail-with-circle{href: "mailto:" + profile.contact_email, title: "E-Mail"}
 
+    - if user_signed_in?
+      = link_to(new_profile_conversation_path(profile), remote: true, id: "send-message", class: "message") do
+        %span.icon.icon-chat
+        %span.sr-only Message
+
     - if profile.phone.present?
       %a.icon.icon-phone#click_to_call{href: "#", title: "E-Mail", data: {toggle: "modal", target: "#new_call"}}
     - if profile.facebook.present?

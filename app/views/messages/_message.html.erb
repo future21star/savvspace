@@ -1,0 +1,24 @@
+<% if message.previous.nil? || message.previous.from != message.from %>
+  <li class="media m-b-md <%= message.from.profiled == current_user ? "media-current-user" : nil %>">
+    <% if message.from.profiled != current_user %>
+      <a href="#" class="media-left">
+	<%= profile_image(message.from.profiled) %>
+      </a>
+    <% end %>
+
+    <div class="media-body">
+<% end %>
+
+      <%= render partial: "messages/message_body", locals: {message: message} %>
+
+      <% if message.next.nil? || message.next.from != message.from %>
+        <%= render partial: "messages/message_footer", locals: {message: message} %>
+
+	</div> <!-- end media-body -->
+        <% if message.from.profiled == current_user %>
+          <a href="#" class="media-right">
+            <%= profile_image(message.from.profiled) %>
+          </a>
+        <% end %>
+  </li>
+<% end %>

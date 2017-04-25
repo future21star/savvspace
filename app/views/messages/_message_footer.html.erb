@@ -1,0 +1,7 @@
+<div class="media-footer" id="<%= dom_id(message, :footer) %>">
+  <small class="text-muted">
+    <%= link_to(message.from.name, message.from) %>
+    at
+    <%= message.created_at.strftime("%l:%M%P") %>
+  </small>
+</div>
