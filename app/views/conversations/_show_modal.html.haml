@@ -3,7 +3,13 @@
     .modal-header
       %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
         %span{"aria-hidden" => "true"} ×
-      %h4.modal-title New Message
+      %h4.modal-title
+        - if controller.action_name == "show"
+          = link_to(conversations_path, remote: true, style: "color: white;") do
+            %span.icon.icon-chevron-left
+            Back
+        - else
+          New Message
     .modal-body.modal-body-scroller
       %ul.media-list.media-list-conversation.c-w-md[@conversation]
         = render @conversation.messages.order(created_at: :asc)

@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   before_action :store_current_location, :if => :should_store_location?
 
+  helper_method :current_profile
+
   def after_sign_in_path_for(resource)
     if request.referrer && request.referrer.ends_with?(new_user_registration_path)
       user_start_path
@@ -52,5 +54,9 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)
+  end
+
+  def current_profile
+    current_user.profile
   end
 end

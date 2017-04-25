@@ -5,6 +5,8 @@ class Message < ActiveRecord::Base
 
   validates :conversation, :from, presence: true
 
+  before_create :set_correspondent
+
   def previous
     conversation.messages.order(created_at: :desc).where(['created_at < ?', created_at]).first
   end
@@ -15,5 +17,10 @@ class Message < ActiveRecord::Base
 
   def follow_up?
     previous && previous.from == from
+  end
+
+  def set_correspondent
+    self.to = [conversation.initiator, conversation.recipient].
+      detect { |p| p != from}
   end
 end

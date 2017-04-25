@@ -27,8 +27,13 @@
           = link_to("About", about_path)
         %li
           = link_to("Contact", contact_path)
-        %li
-          - if user_signed_in?
+        - if user_signed_in?
+          %li
+            = link_to(conversations_path, remote: true) do
+              %span.icon.icon-chat
+                %span.sr-only Messages
+                %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero? 
+          %li
             .dropdown
               %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{"type" => "button", "data-toggle" => "dropdown", "aria-haspopup" => true, "aria-expanded" => false}
                 = profile_image(current_user)
@@ -44,9 +49,9 @@
 
                 %li= link_to("Logout", destroy_user_session_path, method: :delete)
 
-          - else
-            %li= link_to("Login", new_user_session_path, class: "login", id: "signin")
-            %li= link_to("Sign Up", new_user_registration_path, class: "signup", id: "signup")
+        - else
+          %li= link_to("Login", new_user_session_path, class: "login", id: "signin")
+          %li= link_to("Sign Up", new_user_registration_path, class: "signup", id: "signup")
 
       %form.navbar-form.navbar-right.app-search{:role => "search"}
         .form-group
@@ -70,6 +75,7 @@
           %li
             %a{"data-toggle" => "modal", :href => "#msgModal"} Messages
         - if user_signed_in?
+          %li= link_to("Messages", conversations_path, remote: true)
           %li= link_to("Logout", destroy_user_session_path, method: :delete)
         - else
           %li= link_to("Login", new_user_session_path, class: "login")
