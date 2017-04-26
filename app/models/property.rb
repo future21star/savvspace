@@ -8,6 +8,11 @@ class Property < ActiveRecord::Base
       days_on_market < 100
   end
 
+  def parcel_number
+    raw = read_attribute(:parcel_number).to_s.sub(/\./, '')
+    format("%s-%s-%s", raw[0..2], raw[3..6], raw[7..9])
+  end
+
   def open_houses
     @open_houses ||= mls_data["open_houses"].map { |oh| mls_server.mls_adapter.build_open_house(mls_server, oh) }.
       sort_by(&:starts_at).
