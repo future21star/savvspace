@@ -39,6 +39,9 @@ en:
     favorites:
       subject: "Savvspace: Your Selected Open Houses"
 
+  hero:
+    title: "A modern take on Finding Home."
+
   activerecord:
     errors:
       models:

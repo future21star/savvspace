@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'subscriptions#index'
+  root 'welcome#index'
   get '/dashboard' => 'welcome#dashboard', as: :dashboard
   get '/home' => 'welcome#index', as: :home
   get '/about' => 'welcome#about', as: :about

@@ -1,0 +1,33 @@
+%nav.row
+  .brand.col-md-3.p-t
+    = image_tag("savvspace-logo-horizontal.png", alt: "Savvspace", width: "100%")
+
+  #navbar-collapse-main.navbar-collapse.collapse.col-md-9
+    .nav-1
+      %ul.nav.navbar-nav.hidden-xs.navbar-right
+        %li
+          = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
+        %li.call-to-action
+          = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
+        %li
+          = link_to("Help", "#")
+        %li
+          = link_to("FAQS", "#")
+    .nav-2
+      %ul.nav.navbar-nav.hidden-xs.navbar-right
+        %li
+          = link_to("Areas", areas_path)
+        %li
+          = link_to("Articles", articles_path)
+        %li
+          = link_to("Guides", authors_path)
+        %li
+          = link_to("Vendors", vendors_path)
+        %li
+          = link_to("Join the Network", new_user_registration_path)
+        %li
+          = link_to("Homeowners", "#")
+        %li
+          = link_to("About", about_path)
+        %li
+          = link_to("Contact", contact_path)

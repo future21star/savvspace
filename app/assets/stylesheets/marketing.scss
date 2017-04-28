@@ -1,0 +1,218 @@
+body.marketing {
+  font-family: 'Montserrat', sans-serif;
+
+  ul.nav {
+    li.call-to-action {
+      background-color: $orange;
+
+      a { color: white; }
+    }
+
+    a {
+      font-weight: normal;
+      font-size: 11px;
+      color: $dark-gray;
+
+      &:hover {
+        color: $blue;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  #hero {
+    text-align: center;
+    background-image: url(image_path('marketing/hero-background.jpg'));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #474749;
+
+    display: table;
+    min-height: 620px;
+    width: 100%;
+
+    h1 {
+      color: white;
+      font-size: 60px;
+      line-height: 60px;
+    }
+
+    .herotext {
+      color: white;
+      font-weight: bolder;
+    }
+
+    .container {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+
+  #how-it-works {
+    h2 {
+      font-weight: bold;
+      font-size: 45px;
+      line-height: 60px;
+      text-align: center;
+    }
+
+    h5 {
+      font-size: 25px;
+      font-weight: normal;
+      line-height: 33px;
+      text-align: center;
+      color: $blue;
+    }
+
+    li {
+      color: $dark-gray;
+      font-size: 15px;
+      line-height: 21px;
+    }
+  }
+
+  #pull-quote {
+    margin: 1em 0;
+
+    background-color: $pastel-blue;
+    text-align: center;
+    color: white;
+
+    blockquote {
+      padding: 1em;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 43px;
+
+      footer {
+        color: white;
+        font-size: 24px;
+        line-height: 32px;
+      }
+    }
+  }
+
+  #blog-posts {
+    .byline {
+      margin: 1em 0;
+      font-size: 13px;
+      line-height: 1em;
+    }
+
+    .category {
+      text-transform: uppercase;
+      font-weight: bold;
+
+      a {
+        color: $orange;
+      }
+    }
+
+    .title {
+      font-weight: bolder;
+      font-size: 33px;
+      line-height: 1.2em;
+      color: $dark-gray;
+    }
+  }
+
+  #area-feature {
+    h4 {
+      font-weight: bolder;
+      font-size: 25px;
+      line-height: 33px;
+      color: $blue;
+    }
+
+    h5 {
+      font-weight: normal;
+      font-size: 25px;
+      line-height: 33px;
+      color: $dark-gray;
+    }
+  }
+
+  #bottom-nav-highlights {
+    @extend .m-t;
+
+    div {
+      min-height: 320px;
+      text-align: center;
+      display: table;
+    }
+
+    .link {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+
+      a {
+        display: block;
+        border: 2px solid $orange;
+        color: $orange;
+        background-color: white;
+        text-transformation: uppercase;
+        width: 40%;
+        margin: auto;
+      }
+    }
+
+    #guides {
+      background-image: url(image_path('marketing/bottom-guides-homeowners.jpg'));
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #areas {
+      background-image: url(image_path('marketing/bottom-areas.jpg'));
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #articles {
+      background-image: url(image_path('marketing/bottom-articles.jpg'));
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #vendors {
+      background-image: url(image_path('marketing/bottom-vendors.jpg'));
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+    footer#site_footer {
+      @extend .m-t;
+      background-color: $blue;
+      font-size: 11px;
+      color: white;
+
+      form {
+        color: white;
+
+        button {
+          background-color: $orange;
+        }
+      }
+
+      li a {
+        color: white;
+        text-transform: uppercase;
+      }
+
+      .social-links {
+        font-size: 33px;
+        a { color: white; }
+      }
+
+    }
+}
+

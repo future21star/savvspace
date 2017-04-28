@@ -1,75 +1,151 @@
-#homepage-carousel.carousel.slide
-  %ol.carousel-indicators
-    %li.active{data: {target: "#homepage-carousel", slide_to: "0"}}
-    %li{data: {target: "#homepage-carousel", slide_to: "1"}}
-    %li{data: {target: "#homepage-carousel", slide_to: "2"}}
-    %li{data: {target: "#homepage-carousel", slide_to: "3"}}
+#hero
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        %h1
+          A modern take on
+          %br
+          Finding Home.
 
-  .carousel-inner{role: "listbox"}
-    .item.active
-      = cl_image_tag('homepage-album/image-1.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
-    .item
-      = cl_image_tag('homepage-album/image-2.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
-    .item
-      = cl_image_tag('homepage-album/image-3.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
-    .item
-      = cl_image_tag('homepage-album/image-4.jpg', class: 'img-responsive', width: :auto, crop: :scale, responsive: true, placeholder: 'blank')
+        %p.herotext
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla sodales metus, scelerisque fringilla diam congue ut. Aliquam ut lorem libero, sit amet congue lacus.
 
-  /
-    %a.left.carousel-control{href: "#homepage-carousel", data: {slide: "prev"}, role: "button"}
-      %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
-      %span.sr-only Previous
+        %form
+          .form-group.has-feedback
+            %input.form-control.input-lg{type: "text", name: "search", placeholder: t('homepage.search_placeholder'), "aria-describedby": "search-icon"}
+            %span.glyphicon.glyphicon-search.form-control-feedback{"aria-hidden": "true"}
+            %span#search-icon.sr-only= t('search')
 
-    %a.right.carousel-control{href: "#homepage-carousel", data: {slide: "next"}, role: "button"}
-      %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
-      %span.sr-only Next
+#how-it-works
+  .container
+    .row
+      %h2 How it Works
+    .row
+      #homeowners.col-md-4
+        .text-center
+          = image_tag("marketing/handhouse.png", alt: "")
+          %h5 Home Owners
+        %ul
+          %li Create a profile
+          %li Keep track of home upgrades
+          %li Organize property documents
+          %li Share info you choose
+          %li Post about your community
+      #business-owners.col-md-4
+        .text-center
+          = image_tag("marketing/business.png", alt: "")
+          %h5 Business Owners
+        %ul
+          %li Same as owners +
+          %li Store headshots, bio, and assets
+          %li Send easy HTML Mailers
+          %li Reminders to add content for audience reach
+          %li Tell your story
+      #vendors.col-md-4
+        .text-center
+          = image_tag("marketing/handshake.png", alt: "")
+          %h5 Vendors
+        %ul
+          %li Same as Business Owners +
+          %li Book your services
+          %li Get paid through the system
+          %li Everyone gets rated
 
-  .feature
-    %h1.hidden-xs= t('homepage.heading_1')
-    %h2.hidden-xs= t('homepage.heading_2')
+    .row
+      #guides.col-md-4
+        .text-center
+          = image_tag("marketing/girlwithbubble.png", alt: "")
+          %h5 Guides
+        %ul
+          %li How to get noticed
+          %li Share local hot spots and secrets
+          %li Revenue Sharing
+          %li Become an ambassador of an area
+          %li Moving...check out the ins and outs
+      #communities.col-md-4
+        .text-center
+          = image_tag("marketing/compy.png", alt: "")
+          %h5 Posting + Learning About all Communities
+        %ul
+          %li How to get noticed
+          %li Share local hot spots and secrets
+          %li Revenue Sharing
+          %li Become an ambassador of an area
+          %li Moving...check out the ins and outs
+      #real-estate.col-md-4
+        .text-center
+          = image_tag("marketing/homewiththekeything.png", alt: "")
+          %h5 Actually Find Your Piece of Real Estate
+        %ul
+          %li Easy home search
+          %li Saved searches of your favorites
+          %li Find a real estate professional
+          %li Credit Awareness
+          %li Tutorials about the process
 
-    %form
-      .form-group.has-feedback
-        %input.form-control.input-lg{type: "text", name: "search", placeholder: t('homepage.search_placeholder'), "aria-describedby": "search-icon"}
-        %span.glyphicon.glyphicon-search.form-control-feedback{"aria-hidden": "true"}
-        %span#search-icon.sr-only= t('search')
+#pull-quote
+  %blockquote
+    %p Quote from someone or something inspiring.
+    %footer Jennifer Tracy, Guide
 
-    .tour.hidden-xs
-      %h3= link_to(t('homepage.tour_link_text'), "#")
+#blog-posts.container
+  .row
+    .article.col-md-4
+      = render partial: "article", locals: {image: "blog-wine.jpg", title: "Finding time for wine."}
+    .article.col-md-4
+      = render partial: "article", locals: {image: "blog-beach.jpg", title: "Beack Break"}
+    .article.col-md-4
+      = render partial: "article", locals: {image: "blog-painting.jpg", title: "Art in the Community"}
 
-.blog_preview
-  #featured_article
-    - if @feature_article
-      = cl_image_tag(@feature_article.feature_photo.path, class: "img-responsive")
-      .blog-overlay
-        %p.title
-          = link_to(@feature_article.title, @feature_article)
-        = render partial: "common/article_attribution", locals: { article: @feature_article, comments: 0 }
-    - else
-      %img.img-responsive{src: "http://theimpression.com/wp-content/uploads/new-street-style-day-spring-2016-the-impression-012.jpg"}
-      .blog-overlay
-        %p.title
-        = link_to("Women's Fashion in 2016", "#")
-      = render partial: "common/attribution", locals: { author: "Jim Jones", date: "Nov 4, 2016", category: "Design", comments: 0, rating: 4 }
+#area-feature.container.m-t
+  .row
+    .col-md-8
+      = image_tag("marketing/area-feature.jpg", alt: "", class: "img-responsive")
+    .col-md-4
+      %h4 LOCATION FEATURE
+      %h5 Historic Downtown San Luis Obispo
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla sodales metus, scelerisque fringilla diam congue ut. Aliquam ut lorem libero, sit amet congue lacus. Proin mauris sem, iaculis in rhoncus at, mollis et nisl. Aenean et elit at diam congue dignissim. Fusce pulvinar elit ante, eu pretium ligula. Mauris non blandit metus.
 
-  .featured-category
-    .title Nature
-    .article-preview
-      .image
-        %img.img-responsive{src: "http://www.dezineguide.com/wp-content/uploads/2012/07/Green-Nature-Plants-Flat2.jpg"}
-      %p.title
-        Some other article
-      = render partial: "common/attribution", locals: { author: "Jim Jeffries", date: "Nov 5, 2016", category: "Nature", comments: 3, rating: 4, multiline: true }
-      %p.abstract
-        Suspendisse potenti.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  
+#bottom-nav-highlights.container-fluid
+  #guides.col-md-3
+    .link.text-center= link_to("Guides", authors_path)
+  #areas.col-md-3
+    .link= link_to("Areas", areas_path)
+  #articles.col-md-3
+    .link= link_to("Articles", articles_path)
+  #vendors.col-md-3
+    .link= link_to("Vendors", "#")
 
-  .featured-category.highlighted
-    .title Culture
-    .article-preview
-      .image
-        %img.img-responsive{src: "http://codyapp.wpengine.netdna-cdn.com/wp-content/uploads/2012/12/medium_hiking_workout.jpg"}
-      %p.title
-        Hiking Trail Review
-      = render partial: "common/attribution", locals: { author: "Ferg Ferguson", date: "Nov 8, 2016", category: "Culture, Travel", comments: 2, rating: 3, multiline: true }
-      %p.abstract
-        Curabitur lacinia pulvinar nibh.  Sed id ligula quis est convallis tempor.  Vivamus id enim.  
+%footer#site_footer.container-fluid
+  .container.p-a-lg
+    #mailer.row
+      %form.form-inline
+        %label STAY IN THE KNOW
+        .input-group
+          %input.form-control{type: "text", name: "subscription", placeholder: "email"}
+          %span.input-group-btn
+            %button.btn{type: "submit"} SUBMIT
+    #links.row.m-t-lg
+      .col-md-6
+        %ul.list-inline
+          %li
+            = link_to("Help + FAQs", "#")
+          %li
+            = link_to("Contact", "#")
+          %li
+            = link_to("My Profile", "#")
+          %li
+            = link_to("Businesses", "#")
+          %li
+            = link_to("Articles", articles_path)
+          %li
+            = link_to("Find a House", "#")
+      .col-md-4
+        &copy; 2017 Savvspace.
+        All Rights Reserved
+
+      .col-md-2.text-right.social-links
+        %a.icon.icon-facebook{href: "https://www.facebook.com/rachaelbissig", target: "_blank"}
+        %a.icon.icon-twitter{href: "#"}
+        %a.icon.icon-instagram{href: "https://www.instagram.com/rachaelbissigrealestate/", target: "_blank"}
