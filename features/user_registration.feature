@@ -11,5 +11,5 @@ Feature: User registration feature
     And I fill in "user_email" with "enduser@foo.com"
     And I fill in "user_password" with "mytestpass123"
     And I fill in "user_password_confirmation" with "mytestpass123"
-    And I press "Sign up"
+    And I press "Sign Up"
     Then I should see "Welcome"
