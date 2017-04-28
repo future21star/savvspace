@@ -69,8 +69,3 @@
           = link_to("www.savvspace.com", "https://www.savvspace.com")
           \|
           1805 Chapala, Santa Barbara CA 93101
-      %p.text-center
-        %small
-          You received this email because you're signed up to receive updates from us.
-          %br
-          %a{:href => "#"} Click here to unsubscribe.
