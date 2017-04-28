@@ -6,7 +6,7 @@
   height: 230px;
 }
 
-.open_house .panel-body {
+.open_house .panel-body, .property .panel-body {
   .notes { display: none; }
   .property-info { display: block; }
 

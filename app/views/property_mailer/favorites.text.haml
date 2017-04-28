@@ -1,0 +1,6 @@
+Your Property List
+
+- @properties.each do |property|
+  = "#{property.street_address} - #{property.area} - #{number_to_currency(property.list_price)}"
+  = strip_tags(property.public_remarks)
+  = "\n\n"

@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 
   resources :properties do
     resources :property_notes
+    get :new_property_email
+    post :send_property_email
+    get :new_favorites_email
+    post :send_favorites_email
   end
 
   resources :articles

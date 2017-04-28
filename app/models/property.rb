@@ -2,6 +2,9 @@ class Property < ActiveRecord::Base
   belongs_to :mls_server
   has_many :property_notes, dependent: :destroy
   has_many :open_houses, dependent: :destroy
+  has_many :favorite_items, as: :favorite, dependent: :destroy
+
+  validates :internal_mls_id, presence: true
 
   def new_listing?
     status && status.downcase == "active" &&

@@ -7,4 +7,24 @@ class PropertiesController < ApplicationController
       @mls_server.fetch_property(params[:id])
     end
   end
+
+  def new_property_email
+    @property = Property.find(params[:property_id])
+    @referrer_id = params[:referrer_id]
+  end
+
+  def send_property_email
+    @property = Property.find(params[:property_id])
+    @referrer = Profile.find_by(id: params[:referrer_id])
+    PropertyMailer.single_property(current_user, @property, @referrer).deliver_later
+  end
+
+  def new_favorites_email
+    @referrer_id = params[:referrer_id]
+  end
+
+  def send_favorites_email
+    @referrer = Profile.find_by(id: params[:referrer_id])
+    PropertyMailer.favorites(current_user, @referrer).deliver_later
+  end
 end

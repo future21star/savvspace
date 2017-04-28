@@ -27,16 +27,28 @@
             = "#{property.bedrooms}bd"
             = format("%s full | %s half", property.full_baths, property.half_baths)
 
-        %hr
-        %p.description= property.public_remarks.truncate(100)
-        .controls
-          %p.pull-right
-            %span.icon.icon-heart
-            3
-            &nbsp;
-            &nbsp;
-            %span.glyphicon.glyphicon-share-alt
-          %p.updated
-            Updated
-            = distance_of_time_in_words(property.mls_updated_at, Time.current)
-            ago
+      .notes[property, :notes]
+
+    .panel-footer.p-x-0
+      .btn-group.btn-group-justified
+        .btn-group{role: "group"}
+          = render partial: "favorite_items/link", locals: {item: property}
+        .btn-group{role: "group"}
+          - if ! user_signed_in?
+            = link_to(new_user_session_path, class: "btn link-unstyled") do
+              %span.icon.icon-new-message
+              Notes
+          - else
+            = link_to(new_property_property_note_path(property), remote: true, class: "btn link-unstyled") do
+              %span.icon.icon-new-message
+              Notes
+
+        .btn-group{role: "group"}
+          %button.btn.link-unstyled.dropdown-toggle[property, :email]{data: {toggle: "dropdown"}, aria: {has_popup: true, expanded: true}}
+            %span.icon.icon-mail
+            E-mail
+          %ul.dropdown-menu
+            %li
+              = link_to("This Property", property_new_property_email_path(property, referrer_id: @profile.try(:id)), class: "single-property-email", remote: true)
+            %li
+              = link_to("All Favorites", property_new_favorites_email_path(property, referrer_id: @profile.try(:id)), class: "favorite-property-email", remote: true)
