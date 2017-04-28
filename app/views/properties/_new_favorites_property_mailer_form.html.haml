@@ -1,0 +1,16 @@
+.modal-dialog.modal-sm{role: "document"}
+  .modal-content
+    .modal-header
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+      %h4.modal-title Sending E-mail To:
+    .modal-body
+      %h4.text-center= current_user.email
+    .modal-actions
+      %button.btn-link.modal-action{"data-dismiss" => "modal", :type => "button"} Cancel
+      = form_tag(property_send_favorites_email_path, method: :post, remote: true) do
+        = hidden_field_tag :referrer_id, @referrer_id
+        %button.btn-link.modal-action{:type => "submit"}
+          %strong
+            %span.icon.icon-paper-plane
+            Send
