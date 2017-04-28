@@ -1,6 +1,10 @@
 - property_search ||= OpenHouseSearch.new
 = form_for(property_search, {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
   .form-group
+    = f.label "Day(s)"
+    %br
+    = f.select :from_date, open_house_date_options, {}, {class: "form-control custom-select multiple", multiple: true, data: {select_all: true}}
+  .form-group
     = f.label :sort_by
     %br
     = f.select :sort_by, property_sort_options, {}, {class: "form-control custom-select"}

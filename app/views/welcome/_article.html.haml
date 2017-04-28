@@ -1,7 +1,8 @@
 .image= image_tag("marketing/#{image}", alt: "", class: "img-responsive")
 .byline
   %span.category
-    = link_to("Category", article_category_articles_path(ArticleCategory.first))
+    - if ArticleCategory.any?
+      = link_to("Category", article_category_articles_path(ArticleCategory.first))
   \|
   %span.date= Date.today.strftime("%B %d, %Y")
   \|
@@ -14,7 +15,3 @@
   %p
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla sodales metus, scelerisque fringilla diam congue ut. Aliquam ut lorem libero, sit amet congue lacus. Proin mauris sem, iaculis in rhoncus at, mollis et nisl. Aenean et elit at diam congue dignissim. Fusce pulvinar elit ante, eu pretium ligula. Mauris non blandit metus. Nunc pharetra lacus id diam tempus eget ultrices libero viverra. Mauris consequat, orci in consequat accumsan, diam justo fringilla orci, vitae pulvinar risus augue et orci. 
 .link
-  - if Article.any?
-    = link_to(Article.first) do
-      &gt;&gt;
-      READ MORE

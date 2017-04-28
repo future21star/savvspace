@@ -11,5 +11,7 @@ $(document).on "turbolinks:load", ->
         setTimeout(hideAlerts, 5000) if ($('div.alert-dismissable'))
 
         $("div[href]").addClass("clickable")
+        $("select.multiple").multiselect({includeSelectAllOption: true})
         $("div[href]").click ->
                 window.location = $(this).attr("href")
+

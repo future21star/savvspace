@@ -48,6 +48,7 @@ gem 'newrelic_rpm'
 gem 'jquery-ui-rails'
 gem 'mandrill-api'
 gem 'stripe-rails'
+gem 'bootstrap-multiselect-rails'
 
 # RETS Rabbit dependencies
 gem 'httparty'
