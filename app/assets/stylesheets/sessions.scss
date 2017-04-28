@@ -9,11 +9,33 @@ body.sessions, body.registrations {
     margin-top: -60px;
   }
 
+  .app-login-form .form-group input {
+    @extend .form-control;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #9da9b0;
+    border-radius: 0;
+  }
+
   .app-brand {
     display: inline-block;
   }
 
-  .container-fluid submit {
+  .actions input {
     @extend .btn;
+    @extend .btn-primary;
+    border: none;
+    height: 44px;
+    width: 100%;
   }
+
+  footer {
+    margin-top: 30px;
+
+    a {
+      @extend .text-muted;
+      margin: 0 10px;
+    }
+  }
+
 }
