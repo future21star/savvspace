@@ -139,53 +139,47 @@ body.marketing {
     @extend .m-t;
 
     div {
+      display: flex;
+      justify-content: center;
       min-height: 320px;
       text-align: center;
-      display: table;
+
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     .link {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       a {
         display: block;
-        border: 2px solid $orange;
+        width: auto;
+        margin: auto;
+        padding: 5px 10px;
         color: $orange;
         background-color: white;
-        text-transformation: uppercase;
-        width: 40%;
-        margin: auto;
+        text-transform: uppercase;
+        border: 2px solid $orange;
       }
     }
 
     #guides {
       background-image: url(image_path('marketing/bottom-guides-homeowners.jpg'));
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
     }
 
     #areas {
       background-image: url(image_path('marketing/bottom-areas.jpg'));
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
     }
 
     #articles {
       background-image: url(image_path('marketing/bottom-articles.jpg'));
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
     }
 
     #vendors {
       background-image: url(image_path('marketing/bottom-vendors.jpg'));
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
     }
   }
 
@@ -215,4 +209,3 @@ body.marketing {
 
     }
 }
-
