@@ -34,7 +34,7 @@
         .btn-group{role: "group"}
           = render partial: "favorite_items/link", locals: {item: property}
         .btn-group{role: "group"}
-          - if ! user_signed_in?
+          - unless user_signed_in?
             = link_to(new_user_session_path, class: "btn link-unstyled") do
               %span.icon.icon-new-message
               Notes

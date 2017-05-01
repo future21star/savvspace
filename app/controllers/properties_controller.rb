@@ -1,4 +1,6 @@
 class PropertiesController < ApplicationController
+  before_action :authenticate_user!, except: :show
+
   def show
     @mls_server = MlsServer.find(params[:mls_server_id])
     @profile = Profile.find_by(id: params[:profile_id])
