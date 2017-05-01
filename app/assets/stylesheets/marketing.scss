@@ -1,4 +1,10 @@
-body.marketing {
+body.authenticated {
+  // I'm using visibility: hidden here because I couldn't get the display
+  // to work right with the two navs
+  ul.nav li.guest-only { visibility: hidden; }
+}
+
+body {
   font-family: 'Montserrat', sans-serif;
 
   ul.nav {
@@ -95,30 +101,6 @@ body.marketing {
     }
   }
 
-  #blog-posts {
-    .byline {
-      margin: 1em 0;
-      font-size: 13px;
-      line-height: 1em;
-    }
-
-    .category {
-      text-transform: uppercase;
-      font-weight: bold;
-
-      a {
-        color: $orange;
-      }
-    }
-
-    .title {
-      font-weight: bolder;
-      font-size: 33px;
-      line-height: 1.2em;
-      color: $dark-gray;
-    }
-  }
-
   #area-feature {
     h4 {
       font-weight: bolder;
@@ -206,6 +188,5 @@ body.marketing {
         font-size: 33px;
         a { color: white; }
       }
-
     }
 }

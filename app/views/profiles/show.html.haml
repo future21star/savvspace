@@ -1,27 +1,30 @@
-.profile-header[@profile]{background_image_url(@profile.background)}
-  - if policy(@profile).edit?
-    .action-links.pull-right
-      = link_to(edit_profile_path(@profile), class: "btn btn-sm btn-default") do
-        %span.icon.icon-edit
-        %span.sr-only Edit
+.profile-header.m-b[@profile]{background_image_url(@profile.background)}
 
-  .container-fluid
-    .container-inner
-      .transparent-shaded-box
-        - if @profile.avatar
-          = cl_image_tag(@profile.avatar.path, class: "img-responsive img-circle rounded-circle media-object", crop: :thumb, gravity: :face, height: 110, width: 110, quality: :auto, flags: "lossy")
-        %h2.profile-header-user
-          - if @profile.username
-            = link_to(@profile.name, public_profile_path(@profile.username))
-          - else
-            = @profile.name
-        %p.profile-header-bio
-          - if @profile.bio
-            = @profile.bio.truncate(200)
+.profile-details.container
+  .row
+    .col-md-3
+      - if @profile.avatar
+        %a{name: "content"}= cl_image_tag(@profile.avatar.path, class: "img-responsive center-block", crop: :thumb, gravity: :face, width: 230, height: 230, quality: :auto, flags: "lossy", responsive: true, radius: :max, zoom: 0.7)
+      - if policy(@profile).edit?
+        .action-links.text-center.m-t
+          = link_to(edit_profile_path(@profile), class: "btn btn-sm btn-default") do
+            %span.icon.icon-edit
+            Edit
 
-        = render partial: "social_links", locals: {profile: @profile}
+      .links.text-center= render partial: "social_links", locals: {profile: @profile}
+    .col-md-9
+      %h2.name= @profile.name
+      %p.bio= @profile.bio.to_s.truncate(400)
+      - if @profile.profiled.kind_of?(User) && user_profile_vendorships(@profile.profiled).any?
+        %p
+          %strong Businesses:
+          - user_profile_vendorships(@profile.profiled).each_with_index do |vendor, index|
+            = index.zero? ? nil : ", "
+            = link_to(vendor.name, vendor_profile_path(vendor))
 
+#profile-nav.container-fluid
   = render partial: "#{@profile.profiled.class.name.underscore}_navigation", locals: {tab: @tab}
 
 
-= render partial: "#{@profile.profiled.class.name.underscore}_content"
+.container
+  = render partial: "#{@profile.profiled.class.name.underscore}_content"

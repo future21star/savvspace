@@ -1,47 +1,48 @@
-%article[@article]
-  - if @article.feature_photo?
-    = cl_image_tag(@article.feature_photo.path, class: "img-responsive")
+.container
+  %article[@article]
+    - if @article.feature_photo?
+      = cl_image_tag(@article.feature_photo.path, class: "img-responsive")
 
-  %header.media.m-b
-    - if @article.category
-      .category
-        &mdash;
-        = link_to(@article.category.name, article_category_articles_path(@article.category))
+    %header.media.m-b
+      - if @article.category
+        .category
+          &mdash;
+          = link_to(@article.category.name, article_category_articles_path(@article.category))
 
-    %h1
-      = @article.title
-      - if policy(@article).edit?
-        = link_to("Edit...", edit_article_path, class: "small")
+      %h1
+        = @article.title
+        - if policy(@article).edit?
+          = link_to("Edit...", edit_article_path, class: "small")
 
-    .media-left
-      - if @article.author.profile.avatar
-        = cl_image_tag(@article.author.profile.avatar.path, size: '64x64', crop: :thumb, gravity: :face, class: "img img-circle media-object")
-    .media-body
-      %h4.media-heading
-        By
-        = link_to(@article.author_name, @article.author.profile)
-      %p
-        %span.icon.icon-calendar
-        = @article.updated_at.to_s
-        \|
-        %span.icon.icon-chat
-        0
-        Comments
+      .media-left
+        - if @article.author.profile.avatar
+          = cl_image_tag(@article.author.profile.avatar.path, size: '64x64', crop: :thumb, gravity: :face, class: "img img-circle media-object")
+      .media-body
+        %h4.media-heading
+          By
+          = link_to(@article.author_name, @article.author.profile)
+        %p
+          %span.icon.icon-calendar
+          = @article.updated_at.to_s
+          \|
+          %span.icon.icon-chat
+          0
+          Comments
 
-  %section
-    - if @article.video
-      .well
-        .embed-responsive.embed-responsive-16by9
-          = cl_video_tag(@article.video.public_id, controls: true, preload: false)
-    - if @article.secondary_photo
-      = cl_image_tag(@article.secondary_photo.path, class: "img-responsive secondary-photo", data: {action: "zoom"})
+    %section
+      - if @article.video
+        .well
+          .embed-responsive.embed-responsive-16by9
+            = cl_video_tag(@article.video.public_id, controls: true, preload: false)
+      - if @article.secondary_photo
+        = cl_image_tag(@article.secondary_photo.path, class: "img-responsive secondary-photo", data: {action: "zoom"})
 
-    :markdown
-      #{@article.body}
+      :markdown
+        #{@article.body}
 
-    - if @article.tertiary_photo
-      = cl_image_tag(@article.tertiary_photo.path, class: "img-responsive tertiary-photo", data: {action: "zoom"})
+      - if @article.tertiary_photo
+        = cl_image_tag(@article.tertiary_photo.path, class: "img-responsive tertiary-photo", data: {action: "zoom"})
 
-  = render partial: "common/rating", locals: {rateable: @article}
+    = render partial: "common/rating", locals: {rateable: @article}
 
-= render partial: "profiles/embedded_profile", object: @article.author.profile
+  = render partial: "profiles/embedded_profile", object: @article.author.profile

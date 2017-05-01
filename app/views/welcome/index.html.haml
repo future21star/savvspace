@@ -90,11 +90,11 @@
 
 #blog-posts.container
   .row
-    .article.col-md-4
+    .article-preview.col-md-4
       = render partial: "article", locals: {image: "blog-wine.jpg", title: "Finding time for wine."}
-    .article.col-md-4
+    .article-preview.col-md-4
       = render partial: "article", locals: {image: "blog-beach.jpg", title: "Beack Break"}
-    .article.col-md-4
+    .article-preview.col-md-4
       = render partial: "article", locals: {image: "blog-painting.jpg", title: "Art in the Community"}
 
 #area-feature.container.m-t
@@ -117,35 +117,3 @@
   #vendors.col-md-3.col-sm-6
     .link= link_to('Vendors', '#')
 
-%footer#site_footer.container-fluid
-  .container.p-a-lg
-    #mailer.row
-      %form.form-inline
-        %label STAY IN THE KNOW
-        .input-group
-          %input.form-control{type: "text", name: "subscription", placeholder: "email"}
-          %span.input-group-btn
-            %button.btn{type: "submit"} SUBMIT
-    #links.row.m-t-lg
-      .col-md-6
-        %ul.list-inline
-          %li
-            = link_to("Help + FAQs", "#")
-          %li
-            = link_to("Contact", "#")
-          %li
-            = link_to("My Profile", "#")
-          %li
-            = link_to("Businesses", "#")
-          %li
-            = link_to("Articles", articles_path)
-          %li
-            = link_to("Find a House", "#")
-      .col-md-4
-        &copy; 2017 Savvspace.
-        All Rights Reserved
-
-      .col-md-2.text-right.social-links
-        %a.icon.icon-facebook{href: "https://www.facebook.com/rachaelbissig", target: "_blank"}
-        %a.icon.icon-twitter{href: "#"}
-        %a.icon.icon-instagram{href: "https://www.instagram.com/rachaelbissigrealestate/", target: "_blank"}

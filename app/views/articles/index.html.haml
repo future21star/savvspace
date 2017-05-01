@@ -1,10 +1,11 @@
-%h1
-  Latest articles
-  - if policy(Article).create?
-    %span.small= link_to("Create New...", new_article_path, class: "small")
+.container
+  %h1
+    Latest articles
+    - if policy(Article).create?
+      %span.small= link_to("Create New...", new_article_path, class: "small")
 
-.article-list.col-md-8
-  = render partial: "article", collection: @articles, spacer_template: 'article_spacer'
+  .article-list.col-md-8
+    = render partial: "article", collection: @articles, spacer_template: 'article_spacer'
 
-.highlight-content.col-md-4.jumbotron.container-content-middle
-  %h3 Space to highlight other elements
+  .highlight-content.col-md-4.jumbotron.container-content-middle
+    %h3 Space to highlight other elements

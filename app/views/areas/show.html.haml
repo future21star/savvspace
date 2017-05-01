@@ -1,4 +1,23 @@
-.profile-header[@area]{background_image_url(@area.display_photo)}
+.profile-header.m-b[@area]{background_image_url(@area.display_photo)}
+
+.profile-details.container
+  .row
+    .col-md-3
+      - if @area.user && @area.user.profile.avatar
+        %a{name: "content"}= cl_image_tag(@area.user.profile.avatar.path, class: "img-responsive center-block", crop: :thumb, gravity: :face, width: 230, height: 230, quality: :auto, flags: "lossy", responsive: true, radius: :max, zoom: 0.7)
+      - if policy(@area).edit?
+        .action-links.text-center.m-t
+          = link_to(edit_area_path(@area), class: "btn btn-sm btn-default") do
+            %span.icon.icon-edit
+            Edit
+
+      - if @area.user && @area.user.profile
+        .links.text-center= render partial: "profiles/social_links", locals: {profile: @area.user.profile}
+    .col-md-9
+      %h2.name= @area.name
+      %p.bio= @area.description
+
+/
   .container-fluid
     .container-inner
       %h1{style: "text-shadow: 2px 2px 4px #000000;"}= @area.name
@@ -6,14 +25,25 @@
 
   %nav
     %ul
-      %li.active
-        = link_to("Articles", "#")
-      %li
-        = link_to("Vendors", "#")
-      %li
-        = link_to("Photos", "#")
-      %li
-        = link_to("Map", "#")
 
-#articles
-  = render(partial: "article", collection: @area.articles) || "No articles"
+#profile-nav.container-fluid
+  .profile.container
+    %nav
+      %ul.nav.nav-pills.nav-justified
+        %li.active
+          = link_to("Articles", "#")
+        %li
+          = link_to("Vendors", "#")
+        %li
+          = link_to("Photos", "#")
+        %li
+          = link_to("Map", "#")
+
+#articles.container
+  - if @area.articles.empty?
+  - else
+    - @area.articles.in_groups_of(3, false) do |group|
+      .row
+        - group.each do |article|
+          .col-md-4
+            = render(partial: "articles/article_preview", object: article)

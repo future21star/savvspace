@@ -8,28 +8,51 @@
     %title Savvspace
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    '//fonts.googleapis.com/css?family=Open+Sans:400,300,600'
-    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_KEY']}"
+    = stylesheet_link_tag    '//fonts.googleapis.com/css?family=Montserrat:300,400,600,700'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = cloudinary_js_config
     = csrf_meta_tags
-    = javascript_include_tag "https://js.stripe.com/v2/", "https://js.stripe.com/v3/"
-    = stripe_javascript_tag
     = render 'application/favicon'
 
   %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
-    - if flash[:notice].present?
-      #growl.growl.app-growl
-        .alert.alert-dark.alert-dismissable{role: "alert"}
-          %button.close{"data-dismiss" => "alert", "aria-label" => "Close"}
-            %span{"aria-hidden" => "true"} x
-          = notice
+    #modal.modal.fade{role: "dialog", tabindex: "-1"}
+    #main
+      .container= render partial: "layouts/marketing_top_nav"
 
-    = render "layouts/navbar"
-    #container
-      #modal.modal.fade{role: "dialog", tabindex: "-1"}
+      #main-container= yield
 
-      = yield
-    = render "layouts/bottom_links"
+    %footer#site_footer.container-fluid
+      .container.p-a-lg
+        #mailer.row
+          %form.form-inline
+            %label STAY IN THE KNOW
+            .input-group
+              %input.form-control{type: "text", name: "subscription", placeholder: "email"}
+              %span.input-group-btn
+                %button.btn{type: "submit"} SUBMIT
+        #links.row.m-t-lg
+          .col-md-6
+            %ul.list-inline
+              %li
+                = link_to("Help + FAQs", "#")
+              %li
+                = link_to("Contact", contact_path)
+              - if user_signed_in?
+                %li
+                  = link_to("My Profile", user_profile_path(current_user))
+              %li
+                = link_to("Businesses", vendors_path)
+              %li
+                = link_to("Articles", articles_path)
+              %li
+                = link_to("Find a House", "#")
+          .col-md-4
+            &copy; 2017 Savvspace.
+            All Rights Reserved
+
+          .col-md-2.text-right.social-links
+            %a.icon.icon-facebook{href: "https://www.facebook.com/rachaelbissig", target: "_blank"}
+            %a.icon.icon-twitter{href: "#"}
+            %a.icon.icon-instagram{href: "https://www.instagram.com/rachaelbissigrealestate/", target: "_blank"}
 
     = javascript_include_tag '/dist/toolkit.min.js', 'data-turbolinks-track' => true

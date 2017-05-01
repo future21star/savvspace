@@ -2,27 +2,3 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body.areas#show, body.profiles#show {
-  #articles {
-    @extend .col-md-8;
-    @extend .m-t;
-  }
-
-  .article {
-    @extend .row;
-    @extend .m-b;
-
-    .image {
-      @extend .col-md-4;
-
-      img {
-        @extend .img-responsive;
-        @extend .img-rounded;
-      }
-    }
-
-    .synopsis {
-      h3 { @extend .m-t-0; }
-    }
-  }
-}

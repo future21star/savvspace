@@ -1,12 +1,6 @@
 body.sessions, body.registrations {
-  #container {
-    @extend .container-fluid;
-    @extend .container-fill-height;
-  }
-
   .app-login-form {
     max-width: 380px;
-    margin-top: -60px;
   }
 
   .app-login-form .form-group input {
@@ -29,7 +23,7 @@ body.sessions, body.registrations {
     width: 100%;
   }
 
-  footer {
+  footer.screen-login {
     margin-top: 30px;
 
     a {

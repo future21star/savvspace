@@ -1,0 +1,21 @@
+.article-preview
+  .image= link_to(cl_image_tag(article_preview.feature_photo.path, quality: :auto, flags: "lossy", width: :auto, responsive: true), article_preview)
+  .byline
+    %span.category
+      = link_to(article_preview.category.name.upcase, article_category_articles_path(article_preview.category))
+    \|
+    %span.date
+      - if article_preview.updated_at.today?
+        = article_preview.updated_at.strftime("%l:%M %P")
+      - else
+        = article_preview.updated_at.strftime("%b %d, %Y")
+    \|
+    %span.author
+      By
+      = link_to(article_preview.author.profile.name, article_preview.author.profile, title: "Author Profile")
+
+  %h4.title= link_to(article_preview.title, article_preview)
+  .abstract
+    %p= article_preview.body.truncate(300)
+  .link
+    = link_to(">> READ MORE", article_preview)

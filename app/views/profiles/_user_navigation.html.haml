@@ -1,14 +1,16 @@
-%nav
-  %ul
-    %li.articles{class: @tab == "articles" ? "active" : nil}
-      = link_to("Articles", profile_tab_path(@profile, "articles"))
-    - if user_profile_vendorships(@profile.profiled).any?
-      %li.vendorships{class: @tab == "businesses" ? "active" : nil}
-        = link_to("Businesses", profile_tab_path(@profile, "businesses"))
-    %li.photos{class: @tab == "photos" ? "active" : nil}
-      = link_to("Photos", profile_tab_path(@profile, "photos"))
-    - if @profile.idx_enabled?
-      %li.properties{class: @tab == "properties" ? "active" : nil}
-        = link_to("Properties", profile_tab_path(@profile, "properties"))
-      %li{class: @tab == "open_houses" ? "active" : nil}
-        = link_to("Open Houses", profile_tab_path(@profile, "open_houses"))
+.profile.container
+  %nav
+    %ul.nav.nav-pills.nav-justified
+      - if @profile.profiled.respond_to?(:authored_articles) && @profile.profiled.authored_articles.any?
+        %li.articles{role: "presentation", class: @tab == "articles" ? "active" : nil}
+          = link_to("Articles", profile_tab_path(@profile, "articles", anchor: "content"))
+      - if user_profile_vendorships(@profile.profiled).any?
+        %li.vendorships{role: "presentation", class: @tab == "businesses" ? "active" : nil}
+          = link_to("Businesses", profile_tab_path(@profile, "businesses", anchor: "content"))
+      %li.photos{role: "presentation", class: @tab == "assets" ? "active" : nil}
+        = link_to("Assets", profile_tab_path(@profile, "assets", anchor: "content"))
+      - if @profile.idx_enabled?
+        %li.properties{role: "presentation", class: @tab == "properties" ? "active" : nil}
+          = link_to("Properties", profile_tab_path(@profile, "properties", anchor: "content"))
+        %li{role: "presentation", class: @tab == "open_houses" ? "active" : nil}
+          = link_to("Open Houses", profile_tab_path(@profile, "open_houses", anchor: "content"))

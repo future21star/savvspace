@@ -1,19 +1,20 @@
-%h1
-  Areas
-  - if policy(Area).create?
-    %span.small= link_to("Create New...", new_area_path, class: "small")
+.container
+  %h1
+    Areas
+    - if policy(Area).create?
+      %span.small= link_to("Create New...", new_area_path, class: "small")
 
-- @areas.in_groups_of(3, false) do |group|
-  .row
-    - group.each do |area|
-      .col-md-4
-        .panel.fixed-height.panel-default.panel-profile[area]
-          .panel-heading{background_image_url(area.display_photo), href: url_for(area)}
-          .panel-body.text-center
-            %h5.panel-title= link_to(area.name, area)
-            %p.m-b-md= area.description.truncate(140)
+  - @areas.in_groups_of(3, false) do |group|
+    .row
+      - group.each do |area|
+        .col-md-4
+          .panel.fixed-height.panel-default.panel-profile[area]
+            .panel-heading{background_image_url(area.display_photo), href: url_for(area)}
+            .panel-body.text-center
+              %h5.panel-title= link_to(area.name, area)
+              %p.m-b-md= area.description.truncate(140)
 
-            - if policy(area).edit?
-              = link_to(edit_area_path(area), class: "btn btn-sm btn-default") do
-                %span.icon.icon-edit
-                Edit
+              - if policy(area).edit?
+                = link_to(edit_area_path(area), class: "btn btn-sm btn-default") do
+                  %span.icon.icon-edit
+                  Edit

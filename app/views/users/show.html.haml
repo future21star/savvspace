@@ -1,28 +1,29 @@
-.jumbotron
-  %h1 Welcome!
-  %p.large
-    %ol
-      %li
-        Get started by
-        = link_to("filling out your profile", edit_user_profile_path(@user))
-        and telling us more about who you are.
-      - if feature_enabled?("idx")
+.container
+  .jumbotron
+    %h1 Welcome!
+    %p.large
+      %ol
         %li
-          Are you a REALTOR interested in
-          = link_to("showing your properties", new_feature_request_link("idx"), id: "idx-signup")
-          on Savvspace?
-      %li
-        Are you interested in
-        = succeed "?" do
-          = link_to("becoming an Author")
-      %li
-        - if user_profile_vendorships(@user).empty?
-          Are you a vendor interested in
+          Get started by
+          = link_to("filling out your profile", edit_user_profile_path(@user))
+          and telling us more about who you are.
+        - if feature_enabled?("idx")
+          %li
+            Are you a REALTOR interested in
+            = link_to("showing your properties", new_feature_request_link("idx"), id: "idx-signup")
+            on Savvspace?
+        %li
+          Are you interested in
           = succeed "?" do
-            = link_to("selling on Savvspace", new_vendor_path, id: "new_vendor")
-        - else
-          Manage Your Savvspace Businesses
-          %ul
-            - user_profile_vendorships(@user).each do |vendorship|
-              %li= link_to(vendorship.name, vendorship.profile)
-            %li= link_to("Create New Business...", new_vendor_path, id: "new_vendor")
+            = link_to("becoming an Author")
+        %li
+          - if user_profile_vendorships(@user).empty?
+            Are you a vendor interested in
+            = succeed "?" do
+              = link_to("selling on Savvspace", new_vendor_path, id: "new_vendor")
+          - else
+            Manage Your Savvspace Businesses
+            %ul
+              - user_profile_vendorships(@user).each do |vendorship|
+                %li= link_to(vendorship.name, vendorship.profile)
+              %li= link_to("Create New Business...", new_vendor_path, id: "new_vendor")

@@ -1,25 +1,26 @@
-%h1
-  Welcome
-  = current_user.email
+.container
+  %h1
+    Welcome
+    = current_user.email
 
-.list-group
-  = link_to(areas_path, class: "list-group-item") do
-    %span.badge= Area.count
-    Areas
-  = link_to(articles_path, class: "list-group-item") do
-    %span.badge= Article.count
-    Articles
-  = link_to(article_categories_path, class: "list-group-item") do
-    %span.badge= ArticleCategory.count
-    Article Categories
-  - if feature_enabled?("idx")
-    - idx = Feature.find_by(name: "idx")
-    = link_to(feature_feature_requests_path(idx), class: "list-group-item") do
-      %span.badge= FeatureRequest.count
-      IDX Feature Requests
-  = link_to(users_path, class: "list-group-item") do
-    %span.badge= User.count
-    Users
-  = link_to(vendors_path, class: "list-group-item") do
-    %span.badge= Vendor.count
-    Vendors
+  .list-group
+    = link_to(areas_path, class: "list-group-item") do
+      %span.badge= Area.count
+      Areas
+    = link_to(articles_path, class: "list-group-item") do
+      %span.badge= Article.count
+      Articles
+    = link_to(article_categories_path, class: "list-group-item") do
+      %span.badge= ArticleCategory.count
+      Article Categories
+    - if feature_enabled?("idx")
+      - idx = Feature.find_by(name: "idx")
+      = link_to(feature_feature_requests_path(idx), class: "list-group-item") do
+        %span.badge= FeatureRequest.count
+        IDX Feature Requests
+    = link_to(users_path, class: "list-group-item") do
+      %span.badge= User.count
+      Users
+    = link_to(vendors_path, class: "list-group-item") do
+      %span.badge= Vendor.count
+      Vendors
