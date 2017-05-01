@@ -61,6 +61,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
+    callsite (0.0.11)
     capybara (2.10.1)
       addressable
       mime-types (>= 1.16)
@@ -132,6 +133,7 @@ GEM
     gibbon (3.0.1)
       faraday (>= 0.9.1)
       multi_json (>= 1.11.0)
+    git-version-bump (0.15.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -175,6 +177,10 @@ GEM
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
+    meta_request (0.4.0)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.1.0)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -209,6 +215,9 @@ GEM
     rack (1.6.5)
     rack-cache (1.7.0)
       rack (>= 0.4)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-tracker (1.1.0)
@@ -380,6 +389,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   mandrill-api
+  meta_request
   newrelic_rpm
   pg (~> 0.15)
   premailer-rails
