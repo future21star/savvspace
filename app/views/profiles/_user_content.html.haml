@@ -34,4 +34,3 @@
     #property-list
       - @properties = OpenHouseSearch.new(mls_server: MlsServer.first).results
       = render partial: "open_house_searches/index", locals: {properties: @properties}
-
