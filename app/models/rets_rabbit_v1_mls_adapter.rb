@@ -163,7 +163,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
 
     if response.parsed_response["total_records"] > result_set.size
       Rails.logger.debug("#{response.parsed_response["total_records"] - result_set.size} more to go...")
-      fetch_property_list(mls_server, result_set.size, result_set)
+      fetch_property_list(mls_server, result_set.size + 1, result_set)
     else
       result_set
     end
