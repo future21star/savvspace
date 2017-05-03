@@ -1,33 +1,40 @@
 .col-md-4.property
   .panel.panel-default.panel-profile[]
-    - bgimg = property.photos.first
-    - property_url = url_for(mls_server_property_path(property.mls_server, property.internal_mls_id, profile_id: @profile.to_param))
-    - if bgimg
-      - img_path = cl_image_path(bgimg, type: :fetch, crop: :lfill, height: 230, width: 378, quality: "auto", flags: "lossy")
-      .panel-heading{style: "background-image: url(#{img_path});", href: property_url}
-    - else
-      .panel-heading{style: "background-image: url(#{image_path('no_property_photo')});", href: property_url}
-    .panel-body
-      %h5.panel-title
-        = link_to(property.street_address, property_url)
-      .details
-        %p.neighborhood.m-b-0
-          - if property.area.present?
-            = property.area
-            \-
-          = property.city
-          = property.state
-          = property.zip5
-        %p.pricing
-          %span.sale-price= number_to_currency(property.list_price, precision: 0)
+    - cache property do
+      - property_url = url_for(mls_server_property_path(property.mls_server, property.internal_mls_id, profile_id: @profile.to_param))
+      .panel-heading{style: "background-image: url(#{property_poster_image_url(property)});", href: property_url}
+        - if property.new_listing?
+          %p.banner.new-listing
+            %span.icon.icon-flag
+            New Listing
 
-          &nbsp;
-          %span.stats
-            %span.icon.icon-home
-            = "#{property.bedrooms}bd"
-            = format("%s full | %s half", property.full_baths, property.half_baths)
+        - if open_house = property.next_open_house
+          %p.banner.new-listing
+            %span.icon.icon-calendar
+            Next Open House
+            = open_house.starts_at.strftime("%-m/%-d")
 
-      .notes[property, :notes]
+      .panel-body
+        %h5.panel-title
+          = link_to(property.street_address, property_url)
+        .details
+          %p.neighborhood.m-b-0
+            - if property.area.present?
+              = property.area
+              \-
+            = property.city
+            = property.state
+            = property.zip5
+          %p.pricing
+            %span.sale-price= number_to_currency(property.list_price, precision: 0)
+
+            &nbsp;
+            %span.stats
+              %span.icon.icon-home
+              = "#{property.bedrooms}bd"
+              = format("%s full | %s half", property.full_baths, property.half_baths)
+
+        .notes[property, :notes]
 
     .panel-footer.p-x-0
       .btn-group.btn-group-justified

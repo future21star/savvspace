@@ -8,7 +8,7 @@ class Property < ActiveRecord::Base
 
   def new_listing?
     status && status.downcase == "active" &&
-      days_on_market < 100
+      days_on_market < 14
   end
 
   def parcel_number
@@ -20,6 +20,10 @@ class Property < ActiveRecord::Base
     @open_houses ||= mls_data["open_houses"].map { |oh| mls_server.mls_adapter.build_open_house(mls_server, oh) }.
       sort_by(&:starts_at).
       reject { |oh| oh.starts_at < Time.current }
+  end
+
+  def next_open_house
+    open_houses.first
   end
 
   def open_houses=(array=[])

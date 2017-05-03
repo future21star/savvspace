@@ -2,16 +2,19 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
   include HTTParty
 
   def self.access_token
-    if Rails.env.test?
-      "test123"
-    else
-      response = post("/oauth/access_token",
-                      body: {
-                        grant_type: "client_credentials",
-                        client_id: ENV.fetch('RETS_RABBIT_CLIENT_ID'),
-                        client_secret: ENV.fetch('RETS_RABBIT_SECRET')
-                      })
-      response["access_token"]
+    Rails.cache.fetch("rets_access_token_#{ENV.fetch('RETS_RABBIT_CLIENT_ID')}", expires_in: 302400) do
+      Rails.logger.debug("Entering access_token")
+      if Rails.env.test?
+        "test123"
+      else
+        response = post("/oauth/access_token",
+                        body: {
+                          grant_type: "client_credentials",
+                          client_id: ENV.fetch('RETS_RABBIT_CLIENT_ID'),
+                          client_secret: ENV.fetch('RETS_RABBIT_SECRET')
+                        })
+        response["access_token"]
+      end
     end
   end
 
@@ -156,14 +159,14 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
 
     if response.parsed_response["results"].nil?
       Rails.logger.error(response.parsed_response.inspect)
-      raise "Invalid responsw from MLS Server"
+      raise "Invalid response from MLS Server"
     end
 
     result_set.concat(response.parsed_response["results"].map { |s| build_property(mls_server, s) })
 
-    if response.parsed_response["total_records"] > result_set.size
+    if response.parsed_response["total_records"] > result_set.size && response.parsed_response["results"].size > 0
       Rails.logger.debug("#{response.parsed_response["total_records"] - result_set.size} more to go...")
-      fetch_property_list(mls_server, result_set.size + 1, result_set)
+      fetch_property_list(mls_server, result_set.size, result_set)
     else
       result_set
     end

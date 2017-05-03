@@ -15,3 +15,14 @@
     .property-info { display: none; }
   }
 }
+
+.open_house .panel-heading, .property .panel-heading {
+  padding: 0;
+
+  .banner {
+    @extend .p-x;
+    @extend .m-y-0;
+    background-color: rgba(255, 255, 255, 0.65);
+    color: $dark-gray;
+  }
+}
