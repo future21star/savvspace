@@ -1,9 +1,10 @@
 .article-preview
   .image= link_to(cl_image_tag(article_preview.feature_photo.path, quality: :auto, flags: "lossy", width: :auto, responsive: true), article_preview)
   .byline
-    %span.category
-      = link_to(article_preview.category.name.upcase, article_category_articles_path(article_preview.category))
-    \|
+    - if article_preview.category
+      %span.category
+        = link_to(article_preview.category.name.upcase, article_category_articles_path(article_preview.category))
+      \|
     %span.date
       - if article_preview.updated_at.today?
         = article_preview.updated_at.strftime("%l:%M %P")
