@@ -6,7 +6,7 @@
       %h4.modal-title Sending E-mail To:
     .modal-actions
       .modal-body
-        = simple_form_for(:favorites_mailer, url: favorites_mailers_path(referrer_id: referrer_id), method: :post, remote: true) do |f|
+        = simple_form_for(item, url: url, method: :post, remote: true) do |f|
           = f.input :recepients, as: :text, label: 'To:', placeholder: 'Enter email addresses (separate by comma)'
           = f.input :include_sender, as: :boolean, label: 'Send me a copy of this Email', input_html: { checked: true }
 
