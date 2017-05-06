@@ -10,12 +10,4 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def new_favorites_email
-    @referrer_id = params[:referrer_id]
-  end
-
-  def send_favorites_email
-    @referrer = Profile.find_by(id: params[:referrer_id])
-    PropertyMailer.favorites(current_user, @referrer).deliver_later
-  end
 end
