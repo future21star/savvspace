@@ -13,9 +13,23 @@ class PropertyMailer < ApplicationMailer
     mail to: user.email
   end
 
-  def single_property(user, property, referrer)
-    @properties = [property]
-    @referrer = referrer
-    mail to: user.email, template_name: "favorites"
-  end
+  def self.send_single_property_request(sender_id, property_id, recepients)
+   recepients.each do |receiver|
+     send_single_property(sender_id, property_id, receiver).deliver_later
+   end
+ end
+
+ def send_single_property(sender_id, property_id, receiver)
+   @sender_user = User.find(sender_id)
+   @sender_profile = @sender_user.profile
+   @properties = [Property.find(property_id)]
+
+   mail(
+     from: @sender_user.email,
+     to: receiver,
+     subject: "#{@sender_profile.name} wants you to see this item at Savvspace",
+     template_name: 'items'
+    )
+ end
+
 end
