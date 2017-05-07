@@ -5,10 +5,6 @@ Rails.application.routes.draw do
   resources :property_notes
   resources :favorite_items
   resources :open_houses do
-    # get :new_property_email
-    # post :send_property_email
-    get :new_favorites_email
-    post :send_favorites_email
     resources :open_house_mailers, only: [:new, :create]
   end
   resources :open_house_searches
