@@ -1,16 +1,17 @@
 class FavoritesMailer < ApplicationMailer
   helper :open_houses
 
-  def self.send_favorites_request(sender_id, profile_id, recepients)
+  def self.send_favorites_request(sender_id, profile_id, recepients, item_type)
    recepients.each do |receiver|
-     send_favorites(sender_id, profile_id, receiver).deliver_later
+     send_favorites(sender_id, profile_id, receiver, item_type).deliver_later
    end
  end
 
- def send_favorites(sender_id, profile_id, receiver)
+ def send_favorites(sender_id, profile_id, receiver, item_type)
    @sender_user = User.find(sender_id)
    @sender_profile = Profile.find(profile_id)
-   @properties = @sender_user.favorite_items.properties.collect(&:favorite).sort_by(&:list_price) # TODO: move this logic into model
+
+   @items = @sender_user.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price) # TODO: move this logic into model
 
    mail(
      from: @sender_user.email,
