@@ -15,7 +15,8 @@ class PropertyMailer < ApplicationMailer
    mail(
      from: @sender_user.email,
      to: receiver,
-     subject: "#{@sender_profile.name} wants you to see this item at Savvspace"
+     reply_to: @sender_user.email,
+     subject: "#{@sender_profile.name} wants you to see this property at Savvspace"
     )
  end
 
