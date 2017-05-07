@@ -1,16 +1,16 @@
-class PropertyMailer < ApplicationMailer
+class SingleItemMailer < ApplicationMailer
   helper :open_houses
 
-  def self.send_single_property_request(sender_id, profile_id, property_id, recepients)
+  def self.send_item_request(sender_id, profile_id, recepients, item_id, item_type)
    recepients.each do |receiver|
-     send_single_property(sender_id, profile_id, property_id, receiver).deliver_later
+     send_item(sender_id, profile_id, receiver, item_id, item_type).deliver_later
    end
  end
 
- def send_single_property(sender_id, profile_id, property_id, receiver)
+ def send_item(sender_id, profile_id, receiver, item_id, item_type)
    @sender_user = User.find(sender_id)
    @sender_profile = Profile.find(profile_id)
-   @properties = [Property.find(property_id)]
+   @items = [find_item(item_id, item_type)]
 
    mail(
      from: @sender_user.email,

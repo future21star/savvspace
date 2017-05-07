@@ -10,7 +10,7 @@ class PropertyMailersController < ApplicationController
     @referrer_id = params[:referrer_id]
     property_id = params[:property_id]
 
-    PropertyMailer.send_single_property_request(current_user.id, @referrer_id, property_id, recepients)
+    SingleItemMailer.send_item_request(current_user.id, @referrer_id, recepients, property_id, 'Property')
   end
 
   private
