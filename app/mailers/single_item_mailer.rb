@@ -18,8 +18,14 @@ class SingleItemMailer < ApplicationMailer
      to: receiver,
      reply_to: @sender_user.email,
      template_name: item_type.underscore,
-     subject: "#{@sender_profile.name} wants you to see this property at Savvspace"
+     subject: "#{@sender_profile.name} wants you to see this item at Savvspace"
     )
+ end
+
+ private
+
+ def find_item_by(item_id, item_type)
+   item_type.constantize.find(item_id)
  end
 
 end

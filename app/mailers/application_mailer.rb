@@ -4,9 +4,4 @@ class ApplicationMailer < ActionMailer::Base
 
   layout 'mailer'
 
-  protected
-
-  def find_item_by(item_id, item_type)
-    item_type.constantize.find(item_id)
-  end
 end

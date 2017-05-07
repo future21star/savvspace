@@ -28,7 +28,7 @@
 
     #property-list
       - @properties = PropertySearch.new(mls_server: MlsServer.first).results
-      = render partial: "property_searches/index", locals: {properties: @properties, referrer_id: referrer_id}
+      = render partial: "property_searches/index", locals: {properties: @properties}
 
 - when "open_houses"
   #open_houses

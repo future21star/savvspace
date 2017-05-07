@@ -11,7 +11,7 @@ class FavoritesMailer < ApplicationMailer
    @sender_user = User.find(sender_id)
    @sender_profile = Profile.find(profile_id)
 
-   @items = @sender_user.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price) # TODO: move this logic into model
+   @items = @sender_user.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price) 
 
    mail(
      from: @sender_user.email,
