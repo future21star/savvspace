@@ -10,7 +10,8 @@ class SingleItemMailer < ApplicationMailer
  def send_item(sender_id, profile_id, receiver, item_id, item_type)
    @sender_user = User.find(sender_id)
    @sender_profile = Profile.find(profile_id)
-   @items = [find_item(item_id, item_type)]
+
+   @items = [find_item_by(item_id, item_type)]
 
    mail(
      from: @sender_user.email,

@@ -6,7 +6,7 @@ class PropertyMailersController < MailersController
   end
 
   def create
-    referrer_id = params[:referrer_id]
+    referrer_id = params[:referrer_id] || current_user.profile.id
     item_id = params[:property_id]
 
     SingleItemMailer.send_item_request(current_user.id, referrer_id, recepients, item_id, 'Property')

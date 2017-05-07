@@ -7,7 +7,7 @@ class ApplicationMailer < ActionMailer::Base
 
   protected
 
-  def find_item(item_id, item_type)
+  def find_item_by(item_id, item_type)
     item_type.constantize.find(item_id)
   end
 end
