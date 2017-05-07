@@ -1,2 +1,2 @@
-$("#property-list").html("<%= j(render partial: 'property_searches/index', locals: {properties: @results, referrer_id: @profile.id}) %>")
+$("#property-list").html("<%= j(render partial: 'property_searches/index', locals: {properties: @results}) %>")
 $("form.processing").removeClass("processing")
