@@ -12,7 +12,8 @@ RSpec.describe Authorization, type: :model do
     let(:user) do
       User.create!(email: "foo@bar.com", password: "foobar123")
     end
-    let(:role) { Role.create!(name: "admin") }
+
+    let(:role) { Role.find_or_create_by!(name: "admin") }
 
     it "allows having one role with no authorizable object" do
       auth = Authorization.new(user: user, role: role)
