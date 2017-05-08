@@ -5,14 +5,18 @@
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge"}/
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}/
 
+    = render 'application/favicon'
+
     %title Savvspace
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag    '//fonts.googleapis.com/css?family=Montserrat:300,400,600,700'
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_KEY']}"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "https://js.stripe.com/v2/", "https://js.stripe.com/v3/"
+    = stripe_javascript_tag
     = cloudinary_js_config
     = csrf_meta_tags
-    = render 'application/favicon'
 
   %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
     #modal.modal.fade{role: "dialog", tabindex: "-1"}
