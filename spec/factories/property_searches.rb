@@ -5,5 +5,6 @@ FactoryGirl.define do
     min_beds 1
     max_beds 1
     min_baths 1
+    mls_server
   end
 end
