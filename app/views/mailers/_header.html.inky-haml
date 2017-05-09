@@ -3,6 +3,6 @@
   %columns{large: '12'}
     %center
       %strong
-        #{sender_profile.name} (#{mail_to sender_user.email}) send you this via Savvspace
+        #{sender_profile.name} (#{mail_to sender_user.email}) sent you this via Savvspace
 
 %hr

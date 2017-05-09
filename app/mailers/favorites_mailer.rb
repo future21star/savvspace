@@ -16,7 +16,7 @@ class FavoritesMailer < ApplicationMailer
 
    mail(
      from: @sender_user.email,
-     to: receiver,
+     to: @receiver,
      reply_to: @sender_user.email,
      template_name: 'favorites',
      subject: "#{@sender_profile.name} wants you to see all favorite #{item_type} at Savvspace"

@@ -1,0 +1,11 @@
+%container
+  = render "mailers/header", sender_profile: @sender_profile, sender_user: @sender_user
+
+  %row
+    %columns
+      %center
+        %h2 Property
+
+  = render 'mailers/property', item: @item
+
+  = render "mailers/footer", sender_user: @sender_user, sender_profile: @sender_profile, receiver: @receiver

@@ -10,12 +10,13 @@ class SingleItemMailer < ApplicationMailer
  def send_item(sender_id, profile_id, receiver, item_id, item_type)
    @sender_user = User.find(sender_id)
    @sender_profile = Profile.find(profile_id)
+   @receiver = receiver
 
    @item = find_item_by(item_id, item_type)
 
    mail(
      from: @sender_user.email,
-     to: receiver,
+     to: @receiver,
      reply_to: @sender_user.email,
      template_name: item_type.underscore,
      subject: "#{@sender_profile.name} wants you to see this item at Savvspace"
