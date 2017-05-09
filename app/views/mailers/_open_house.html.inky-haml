@@ -1,0 +1,15 @@
+%row
+  %columns{large: '4'}
+    = cl_image_tag(item.photo_url, type: :fetch, width: 170, class: 'small-float-center')
+    %p.text-center
+      %small= event_date(item)
+      %br
+      %small
+        = link_to('Open House Details', mls_server_property_url(item.mls_server, item.mls_property_id))
+  %columns{large: '8'}
+    %h4= item.street_address
+    %p= number_to_currency(item.list_price)
+    %p
+      = item.area
+      \-
+      = item.comments

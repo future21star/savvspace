@@ -1,0 +1,13 @@
+%container
+  = render "mailers/header", sender_profile: @sender_profile
+
+  %row
+    %columns
+      %center
+        - if @items.size > 1
+          %h2 Favorites List
+
+  - @items.each do |item|
+    = render "mailers/#{item.class.name.underscore}", item: item
+
+  = render "mailers/footer", sender_user: @sender_user, sender_profile: @sender_profile, receiver: @receiver

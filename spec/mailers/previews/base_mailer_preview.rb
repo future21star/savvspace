@@ -11,9 +11,10 @@ class BaseMailerPreview < ActionMailer::Preview
   end
 
   def profile_id
-    profile = Profile.first || FactoryGirl.create(:profile)
+    profile = sender.profile || FactoryGirl.create(:profile)
     profile.update(avatar_url: "https://www.centraltest.com/sites/all/files/styles/image_title/public/bf5_0.png?itok=vBhllsaA") unless profile.avatar
-
+    profile.update(name: 'Thomas Trate')
+    profile.update(bio: 'Engineer, traveler, explorer.')
     profile.id
   end
 

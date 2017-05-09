@@ -10,8 +10,9 @@ class FavoritesMailer < ApplicationMailer
  def send_favorites(sender_id, profile_id, receiver, item_type)
    @sender_user = User.find(sender_id)
    @sender_profile = Profile.find(profile_id)
+   @receiver = receiver
 
-   @items = @sender_user.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price) 
+   @items = @sender_user.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price)
 
    mail(
      from: @sender_user.email,

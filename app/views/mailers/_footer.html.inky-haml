@@ -1,0 +1,25 @@
+%hr
+
+- if sender_profile.try(:avatar)
+  %row
+    %columns
+      %center
+        = image_tag('savvspace-logo-with-tag.jpg', height: 200)
+
+%row
+  %columns
+    %p.text-center
+      %small
+        Savvspace |
+        = link_to('www.savvspace.com', 'https://www.savvspace.com')
+        \|
+        1805 Chapala, Santa Barbara CA 93101
+
+%row
+  %columns
+    %p.text-center
+      %small
+        Please note, that this message was send to the following r-mail address: #{mail_to receiver}
+    %p.text-center
+      %small
+        #{link_to(sender_profile.name, sender_profile)} (#{mail_to sender_user.email}) requested that we send this e-mail. If you have questions about Savvspace.com, please visit our #{link_to 'Help Depatment', '#'}
