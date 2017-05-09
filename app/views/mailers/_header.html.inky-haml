@@ -1,28 +1,8 @@
 %spacer{size: '16'}
 %row
-  - if sender_profile.try(:avatar)
-    %columns{large: '4'}
-      = cl_image_tag(sender_profile.avatar.path, width: 170, height: 170, crop: :lfill, gravity: :face, quality: 'auto:best')
-    %columns{large: '8'}
-      %h4
-        = link_to(sender_profile.name, sender_profile)
-      %p
-        - if sender_profile.username
-          = link_to(public_profile_url(sender_profile.username), public_profile_url(sender_profile.username))
-          %br
-        - if sender_profile.contact_email
-          = sender_profile.contact_email
-          %br
-        - if sender_profile.phone
-          Ph.
-          = sender_profile.phone
-      - if sender_profile.bio
-        %p{style: 'font-family: Serif;'}
-          %small
-            %cite= sender_profile.bio
+  %columns{large: '12'}
+    %center
+      %strong
+        #{sender_profile.name} (#{mail_to sender_user.email}) send you this via Savvspace
 
-
-  - else
-    %columns
-      %center
-        = image_tag('savvspace-logo-with-tag.jpg', height: 200)
+%hr

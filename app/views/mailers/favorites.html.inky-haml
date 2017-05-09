@@ -1,5 +1,5 @@
 %container
-  = render "mailers/header", sender_profile: @sender_profile
+  = render "mailers/header", sender_profile: @sender_profile, sender_user: @sender_user
 
   %row
     %columns
