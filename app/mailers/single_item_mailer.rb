@@ -16,7 +16,7 @@ class SingleItemMailer < ApplicationMailer
    @item = find_item_by(item_id, item_type)
 
    mail(
-     from: @sender.email,
+     from: I18n.t('mailer.default_from'),
      to: @receiver,
      reply_to: @sender.email,
      template_name: item_type.underscore,

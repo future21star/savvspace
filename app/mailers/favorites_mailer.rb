@@ -16,7 +16,7 @@ class FavoritesMailer < ApplicationMailer
    @items = @sender.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price)
 
    mail(
-     from: @sender.email,
+     from: I18n.t('mailer.default_from'),
      to: @receiver,
      reply_to: @sender.email,
      template_name: 'favorites',
