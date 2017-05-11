@@ -1,5 +1,27 @@
 %spacer{size: '16'}
 
+%row
+  - if referrer.try(:avatar)
+    %columns{large: '4'}
+      = cl_image_tag(referrer.avatar.path, width: 170, height: 170, crop: :lfill, gravity: :face, quality: "auto:best")
+    %columns{large: '8'}
+      %h4
+        = link_to(referrer.name, referrer)
+      %p
+        - if referrer.username
+          = link_to(public_profile_url(referrer.username), public_profile_url(referrer.username))
+          %br
+        - if referrer.contact_email
+          = referrer.contact_email
+          %br
+        - if referrer.phone
+          Ph.
+          = referrer.phone
+      - if referrer.bio
+        %p{style: 'font-family: Serif;'}
+          %small
+            %cite= referrer.bio
+
 - if sending_away
   %row
     %columns{large: '12'}

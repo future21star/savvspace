@@ -20,7 +20,7 @@ class SingleItemMailer < ApplicationMailer
      to: @receiver,
      reply_to: @sender.email,
      template_name: item_type.underscore,
-     subject: subject_for(@referrer, @sending_away, 'single_item')
+     subject: subject_for(@referrer, item_type, @sending_away, 'single_item')
     )
  end
 

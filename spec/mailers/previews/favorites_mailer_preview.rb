@@ -8,7 +8,23 @@ class FavoritesMailerPreview < BaseMailerPreview
     FavoritesMailer.send_favorites(sender_id, profile_id, receiver, item_type)
   end
 
+  def send_favorite_properties_to_self
+    receiver = sender.email
+    generate_favorite_items(:property)
+    item_type = 'properties'
+
+    FavoritesMailer.send_favorites(sender_id, profile_id, receiver, item_type)
+  end
+
   def send_favorite_open_houses
+    generate_favorite_items(:open_house)
+    item_type = 'open_houses'
+
+    FavoritesMailer.send_favorites(sender_id, profile_id, receiver, item_type)
+  end
+
+  def send_favorite_open_houses_to_self
+    receiver = sender.email
     generate_favorite_items(:open_house)
     item_type = 'open_houses'
 

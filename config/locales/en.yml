@@ -49,7 +49,7 @@ en:
       away:
         "%{referrer_name} wants you to see all favorite %{item_type} at Savvspace"
       to_self:
-        "Savvspace: Your Selected %{item_type}"
+        "Savvspace: your selected %{item_type}"
     title: Favorites List
 
   single_item_mailer:
@@ -57,7 +57,7 @@ en:
       away:
         "%{referrer_name} wants you to see this item at Savvspace"
       to_self:
-        "Savvspace: Your Selected Item"  
+        "Savvspace: Your Selected %{item_type}"
     open_house:
       title: Open House
     property:
