@@ -63,10 +63,6 @@ en:
     property:
       title: Property
 
-  # open_house_mailer:
-  #   favorites:
-  #     subject: "Savvspace: Your Selected Open Houses"
-
   mailer_form:
     recepients: Enter email addresses (separate by comma)
     include_sender: Send me a copy of this Email
