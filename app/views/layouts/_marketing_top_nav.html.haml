@@ -1,41 +1,45 @@
-%nav.row
-  .brand.col-md-3.p-t
-    = link_to(image_tag("savvspace-logo-horizontal.png", alt: "Savvspace", width: "100%"), "/home")
+%nav.navbar-default.nav-upper
+  %ul.nav.navbar-upper
+    %li.guest-only
+      = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
+    %li.call-to-action.guest-only
+      = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
+    %li
+      = link_to("Help", "#")
+    %li
+      = link_to("FAQS", "#")
+    - if user_signed_in?
+      %li
+        = link_to(conversations_path, remote: true) do
+          %span.icon.icon-chat
+            %span.sr-only Messages
+            %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero?
+      %li
+        .dropdown
+          %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{"type" => "button", "data-toggle" => "dropdown", "aria-haspopup" => true, "aria-expanded" => false}
+            = profile_image(current_user)
+            %span.caret
+          %ul.dropdown-menu{aria: {labelledby: "avitar-label"}}
+            - if current_user.has_role?("admin")
+              %li= link_to("Site Admin", dashboard_path)
+            %li= link_to("Home", user_path(current_user))
+            - if current_user.profile.name
+              %li= link_to("Profile", user_profile_path(current_user))
+            - else
+              %li= link_to("Profile", edit_user_profile_path(current_user))
 
-  #navbar-collapse-main.navbar-collapse.collapse
-    .nav-1.text-align-right
-      %ul.nav.navbar-nav.hidden-xs.navbar-right
-        %li.guest-only
-          = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
-        %li.call-to-action.guest-only
-          = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
-        %li
-          = link_to("Help", "#")
-        %li
-          = link_to("FAQS", "#")
-        - if user_signed_in?
-          %li
-            = link_to(conversations_path, remote: true) do
-              %span.icon.icon-chat
-                %span.sr-only Messages
-                %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero? 
-          %li
-            .dropdown
-              %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{"type" => "button", "data-toggle" => "dropdown", "aria-haspopup" => true, "aria-expanded" => false}
-                = profile_image(current_user)
-                %span.caret
-              %ul.dropdown-menu{aria: {labelledby: "avitar-label"}}
-                - if current_user.has_role?("admin")
-                  %li= link_to("Site Admin", dashboard_path)
-                %li= link_to("Home", user_path(current_user))
-                - if current_user.profile.name
-                  %li= link_to("Profile", user_profile_path(current_user))
-                - else
-                  %li= link_to("Profile", edit_user_profile_path(current_user))
-
-                %li= link_to("Logout", destroy_user_session_path, method: :delete)
-    .nav-2
-      %ul.nav.navbar-nav.hidden-xs.navbar-right
+            %li= link_to("Logout", destroy_user_session_path, method: :delete)
+%nav.navbar.navbar-default.navbar-static-top.navbar-lower
+  .container-fluid
+    .navbar-header.col-sm-3
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to(image_tag("savvspace-logo-horizontal.png", alt: "Savvspace", height: "50px", class:"navbar-brand", style:"padding:0px;margin:0px;margin-top:-30px;"), "/home")
+    #navbar.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
         %li
           = link_to("Areas", areas_path)
         %li

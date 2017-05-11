@@ -32,7 +32,7 @@
             = link_to(conversations_path, remote: true) do
               %span.icon.icon-chat
                 %span.sr-only Messages
-                %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero? 
+                %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero?
           %li
             .dropdown
               %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{"type" => "button", "data-toggle" => "dropdown", "aria-haspopup" => true, "aria-expanded" => false}

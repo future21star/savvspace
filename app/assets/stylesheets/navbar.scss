@@ -1,3 +1,50 @@
+#main{
+  .container{
+    .navbar-default{
+      border-color: transparent;
+    }
+    .navbar-default.nav-upper {
+      height: 50px;
+    }
+    .navbar-default.nav-upper ul {
+      float: right;
+      display: table;
+      height:100%;
+      li.call-to-action{
+        a{
+          color:white;
+        }
+      }
+    }
+    .navbar-default.nav-upper .navbar-upper > li {
+      display: table-cell;
+      font-size: 14px;
+      height:100%;
+    }
+    .navbar-default.nav-upper .navbar-upper > li > a {
+      color: #777;
+      height:100%;
+      padding-top:18px;
+    }
+    @media (min-width: 768px) {
+      .navbar.navbar-lower .navbar-nav {
+        margin-left: 100px;
+      }
+    }
+    .navbar-lower{
+      ul.nav{
+        li{
+          a{
+
+            &:hover{
+              background-color:#f5fbfb;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 ul.nav {
   text-transform: uppercase;
 
