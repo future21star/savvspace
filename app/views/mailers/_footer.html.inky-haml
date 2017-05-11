@@ -1,10 +1,9 @@
 %hr
 
-- if sender_profile.try(:avatar)
-  %row
-    %columns
-      %center
-        = image_tag('savvspace-logo-with-tag.jpg', height: 200)
+%row
+  %columns
+    %center
+      = image_tag('savvspace-logo-with-tag.jpg', height: 200)
 
 %row
   %columns
@@ -13,16 +12,17 @@
         Savvspace |
         = link_to('www.savvspace.com', 'https://www.savvspace.com')
         \|
-        1805 Chapala, Santa Barbara CA 93101
+        = t 'mailer.footer.company_address'
 
-%row
-  %columns
-    %p.text-center
-      %small
-        = t 'mailer.footer.receiver_info'
-        = mail_to receiver
-    %p.text-center
-      %small
-        #{link_to(sender_profile.name, sender_profile)} (#{mail_to sender_user.email})
-        = t 'mailer.footer.sender_info'
-        = link_to 'Help Depatment', '#'
+- if sending_away
+  %row
+    %columns
+      %p.text-center
+        %small
+          = t 'mailer.footer.receiver_info'
+          = mail_to receiver
+      %p.text-center
+        %small
+          #{link_to(referrer.name, referrer)} (#{mail_to sender.email})
+          = t 'mailer.footer.sender_info'
+          = link_to 'Help Depatment', '#'

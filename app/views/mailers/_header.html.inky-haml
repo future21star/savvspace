@@ -1,8 +1,11 @@
 %spacer{size: '16'}
-%row
-  %columns{large: '12'}
-    %center
-      %strong
-        #{sender_profile.name} (#{mail_to sender_user.email}) sent you this via Savvspace
 
-%hr
+- if sending_away
+  %row
+    %columns{large: '12'}
+      %center
+        %strong
+          #{referrer.name} (#{mail_to sender.email})
+          = t 'mailer.header.sender_info'
+
+  %hr

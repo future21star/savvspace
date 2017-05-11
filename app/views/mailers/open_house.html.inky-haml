@@ -1,5 +1,5 @@
 %container
-  = render "mailers/header", sender_profile: @sender_profile, sender_user: @sender_user
+  = render "mailers/header", referrer: @referrer, sender: @sender, sending_away: @sending_away
 
   %row
     %columns
@@ -8,4 +8,4 @@
 
   = render 'mailers/open_house', item: @item
 
-  = render "mailers/footer", sender_user: @sender_user, sender_profile: @sender_profile, receiver: @receiver
+  = render "mailers/footer", sender: @sender, referrer: @referrer, receiver: @receiver, sending_away: @sending_away

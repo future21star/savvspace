@@ -4,4 +4,10 @@ class ApplicationMailer < ActionMailer::Base
 
   layout 'mailer'
 
+  protected
+
+  def sending_away?(sender, receiver)
+    sender.email != receiver
+  end
+
 end

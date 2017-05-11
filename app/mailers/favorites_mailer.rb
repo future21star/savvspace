@@ -8,18 +8,19 @@ class FavoritesMailer < ApplicationMailer
  end
 
  def send_favorites(sender_id, profile_id, receiver, item_type)
-   @sender_user = User.find(sender_id)
-   @sender_profile = Profile.find(profile_id)
+   @sender = User.find(sender_id)
+   @referrer = Profile.find(profile_id)
    @receiver = receiver
 
-   @items = @sender_user.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price)
+   @sending_away = sending_away?(@sender, @receiver)
+   @items = @sender.favorite_items.send(item_type.to_sym).collect(&:favorite).sort_by(&:list_price)
 
    mail(
-     from: @sender_user.email,
+     from: @sender.email,
      to: @receiver,
-     reply_to: @sender_user.email,
+     reply_to: @sender.email,
      template_name: 'favorites',
-     subject: I18n.t('favorites_mailer.subject', referrer_name: @sender_profile.name, item_type: item_type)
+     subject: I18n.t('favorites_mailer.subject', referrer_name: @referrer.name, item_type: item_type)
     )
  end
 

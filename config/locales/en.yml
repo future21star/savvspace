@@ -37,9 +37,12 @@ en:
 
   mailer:
     default_from: account@savvspace.com
+    header:
+      sender_info: sent you this via Savvspace
     footer:
       receiver_info: 'Please note, that this message was send to the following e-mail address: '
       sender_info: ' requested that we send this e-mail. If you have questions about Savvspace.com, please visit our '
+      company_address: 1805 Chapala, Santa Barbara CA 93101
 
   favorites_mailer:
     subject: "%{referrer_name} wants you to see all favorite %{item_type} at Savvspace"

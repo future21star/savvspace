@@ -8,18 +8,20 @@ class SingleItemMailer < ApplicationMailer
  end
 
  def send_item(sender_id, profile_id, receiver, item_id, item_type)
-   @sender_user = User.find(sender_id)
-   @sender_profile = Profile.find(profile_id)
+   @sender = User.find(sender_id)
+   @referrer = Profile.find(profile_id)
    @receiver = receiver
+   @sending_away = (@sender.email != receiver)
 
+   @sending_away = sending_away?(@sender, @receiver)
    @item = find_item_by(item_id, item_type)
 
    mail(
-     from: @sender_user.email,
+     from: @sender.email,
      to: @receiver,
-     reply_to: @sender_user.email,
+     reply_to: @sender.email,
      template_name: item_type.underscore,
-     subject: I18n.t('single_item_mailer.subject', referrer_name: @sender_profile.name)
+     subject: I18n.t('single_item_mailer.subject', referrer_name: @referrer.name)
     )
  end
 
