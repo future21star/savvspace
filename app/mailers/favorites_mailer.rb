@@ -20,7 +20,7 @@ class FavoritesMailer < ApplicationMailer
      to: @receiver,
      reply_to: @sender.email,
      template_name: 'favorites',
-     subject: I18n.t('favorites_mailer.subject', referrer_name: @referrer.name, item_type: item_type)
+     subject: subject_for(@referrer, item_type, @sending_away, 'favorites')
     )
  end
 

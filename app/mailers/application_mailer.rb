@@ -10,4 +10,12 @@ class ApplicationMailer < ActionMailer::Base
     sender.email != receiver
   end
 
+  def subject_for(referrer, item_type, sending_away, mailer_type)
+    if sending_away
+      I18n.t("#{mailer_type}_mailer.subject.away", referrer_name: referrer.name, item_type: item_type)
+    else
+      I18n.t("#{mailer_type}_mailer.subject.to_self", item_type: item_type)
+    end
+  end
+
 end

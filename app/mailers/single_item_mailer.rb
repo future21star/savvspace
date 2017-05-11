@@ -11,7 +11,6 @@ class SingleItemMailer < ApplicationMailer
    @sender = User.find(sender_id)
    @referrer = Profile.find(profile_id)
    @receiver = receiver
-   @sending_away = (@sender.email != receiver)
 
    @sending_away = sending_away?(@sender, @receiver)
    @item = find_item_by(item_id, item_type)
@@ -21,7 +20,7 @@ class SingleItemMailer < ApplicationMailer
      to: @receiver,
      reply_to: @sender.email,
      template_name: item_type.underscore,
-     subject: I18n.t('single_item_mailer.subject', referrer_name: @referrer.name)
+     subject: subject_for(@referrer, @sending_away, 'single_item')
     )
  end
 
