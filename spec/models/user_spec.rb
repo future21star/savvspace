@@ -10,10 +10,11 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:feature_requests) }
   it { is_expected.to have_one(:profile) }
 
-  describe "after create" do
-    it "creates an associated profile" do
-      user = FactoryGirl.create(:user)
+  describe 'after create' do
+    it 'creates an associated profile' do
+      user = create(:user)
       expect(user.profile).not_to be_nil
     end
   end
 end
+``

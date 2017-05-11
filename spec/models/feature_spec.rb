@@ -6,24 +6,24 @@ RSpec.describe Feature, type: :model do
 
   it { is_expected.to have_many(:feature_requests) }
 
-  let(:feature) { Feature.new }
+  let(:feature) { create(:feature) }
 
-  describe "#enabled?" do
+  describe '#enabled?' do
     subject { feature.enabled? }
 
-    context "when enabled_at is nil" do
+    context 'when enabled_at is nil' do
       before { feature.enabled_at = nil }
 
       it { is_expected.to be_falsey }
     end
 
-    context "when enabled_at is in the past" do
+    context 'when enabled_at is in the past' do
       before { feature.enabled_at = 1.minute.ago }
 
       it { is_expected.to be_truthy }
     end
 
-    context "when enabled_at is in the future" do
+    context 'when enabled_at is in the future' do
       before { feature.enabled_at = 1.hour.from_now }
 
       it { is_expected.to be_falsey }
