@@ -1,7 +1,0 @@
-Your Open House List
-
-- @open_houses.each do |open_house|
-  = "#{open_house.street_address} - #{open_house.area} - #{number_to_currency(open_house.list_price)}"
-  = event_date(open_house)
-  = strip_tags(open_house.comments)
-  = "\n\n"

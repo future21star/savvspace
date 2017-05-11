@@ -1,0 +1,11 @@
+%container
+  = render "mailers/header", referrer: @referrer, sender: @sender, sending_away: @sending_away
+
+  %row
+    %columns
+      %center
+        %h2= t 'single_item_mailer.open_house.title'
+
+  = render 'mailers/open_house', item: @item
+
+  = render "mailers/footer", sender: @sender, referrer: @referrer, receiver: @receiver, sending_away: @sending_away

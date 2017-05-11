@@ -1,0 +1,28 @@
+%hr
+
+%row
+  %columns
+    %center
+      = image_tag('savvspace-logo-with-tag.jpg', height: 200)
+
+%row
+  %columns
+    %p.text-center
+      %small
+        Savvspace |
+        = link_to('www.savvspace.com', 'https://www.savvspace.com')
+        \|
+        = t 'mailer.footer.company_address'
+
+- if sending_away
+  %row
+    %columns
+      %p.text-center
+        %small
+          = t 'mailer.footer.receiver_info'
+          = mail_to receiver
+      %p.text-center
+        %small
+          #{link_to(referrer.name, referrer)} (#{mail_to sender.email})
+          = t 'mailer.footer.sender_info'
+          = link_to 'Help Depatment', '#'

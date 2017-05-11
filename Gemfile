@@ -79,6 +79,7 @@ group :development, :test do
   gem 'fakeweb'
   gem 'pundit-matchers', '~> 1.1.0'
   gem 'rails_real_favicon'
+  gem 'pry'
 end
 
 group :development do
