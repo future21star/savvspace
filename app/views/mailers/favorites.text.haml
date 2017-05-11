@@ -1,4 +1,4 @@
-Favorites List
+= t 'favorites_mailer.title'
 
 - @items.each do |item|
   = render "mailers/#{item.class.name.underscore}", item: item

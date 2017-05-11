@@ -35,9 +35,30 @@ en:
   click_to_call:
     welcome_message: "Hello!  Please hold while we connect you."
 
-  open_house_mailer:
-    favorites:
-      subject: "Savvspace: Your Selected Open Houses"
+  mailer:
+    default_from: account@savvspace.com
+    footer:
+      receiver_info: 'Please note, that this message was send to the following e-mail address: '
+      sender_info: ' requested that we send this e-mail. If you have questions about Savvspace.com, please visit our '
+
+  favorites_mailer:
+    subject: "%{referrer_name} wants you to see all favorite %{item_type} at Savvspace"
+    title: Favorites List
+
+  single_item_mailer:
+    subject: "%{referrer_name} wants you to see this item at Savvspace"
+    open_house:
+      title: Open House
+    property:
+      title: Property
+
+  # open_house_mailer:
+  #   favorites:
+  #     subject: "Savvspace: Your Selected Open Houses"
+
+  mailer_form:
+    recepients: Enter email addresses (separate by comma)
+    include_sender: Send me a copy of this Email
 
   hero:
     title: "A modern take on Finding Home."

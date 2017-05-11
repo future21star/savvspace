@@ -19,7 +19,7 @@ class SingleItemMailer < ApplicationMailer
      to: @receiver,
      reply_to: @sender_user.email,
      template_name: item_type.underscore,
-     subject: "#{@sender_profile.name} wants you to see this item at Savvspace"
+     subject: I18n.t('single_item_mailer.subject', referrer_name: @sender_profile.name)
     )
  end
 

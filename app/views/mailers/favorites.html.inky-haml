@@ -5,7 +5,7 @@
     %columns
       %center
         - if @items.size > 1
-          %h2 Favorites List
+          %h2= t 'favorites_mailer.title'
 
   - @items.each do |item|
     = render "mailers/#{item.class.name.underscore}", item: item

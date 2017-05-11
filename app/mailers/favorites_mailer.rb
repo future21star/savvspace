@@ -19,7 +19,7 @@ class FavoritesMailer < ApplicationMailer
      to: @receiver,
      reply_to: @sender_user.email,
      template_name: 'favorites',
-     subject: "#{@sender_profile.name} wants you to see all favorite #{item_type} at Savvspace"
+     subject: I18n.t('favorites_mailer.subject', referrer_name: @sender_profile.name, item_type: item_type)
     )
  end
 

@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'account@savvspace.com'
+  default from: I18n.t('mailer.default_from')
   default template_path: 'mailers'
 
   layout 'mailer'

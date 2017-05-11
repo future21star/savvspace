@@ -4,7 +4,7 @@
   %row
     %columns
       %center
-        %h2 Property
+        %h2= t 'single_item_mailer.property.title'
 
   = render 'mailers/property', item: @item
 

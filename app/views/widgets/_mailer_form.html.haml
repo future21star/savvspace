@@ -7,8 +7,8 @@
 
     .modal-body
       = simple_form_for(:mailer, url: url, method: :post, remote: true) do |f|
-        = f.input :recepients, as: :text, label: 'To:', placeholder: 'Enter email addresses (separate by comma)'
-        = f.input :include_sender, as: :boolean, label: 'Send me a copy of this Email', input_html: { checked: true }
+        = f.input :recepients, as: :text, label: 'To:', placeholder: I18n.t('mailer_form.recepients')
+        = f.input :include_sender, as: :boolean, label: I18n.t('mailer_form.include_sender'), input_html: { checked: true }
 
         .modal-actions
           %button.btn-link.modal-action{'data-dismiss' => 'modal', type: 'button'} Cancel

@@ -4,7 +4,7 @@
   %row
     %columns
       %center
-        %h2 Open House
+        %h2= t 'single_item_mailer.open_house.title'
 
   = render 'mailers/open_house', item: @item
 
