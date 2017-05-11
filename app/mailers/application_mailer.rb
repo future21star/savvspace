@@ -12,9 +12,9 @@ class ApplicationMailer < ActionMailer::Base
 
   def subject_for(referrer, item_type, sending_away, mailer_type)
     if sending_away
-      I18n.t("#{mailer_type}_mailer.subject.away", referrer_name: referrer.name, item_type: item_type)
+      I18n.t("#{mailer_type}_mailer.subject.away", referrer_name: referrer.name, item_type: item_type.titleize)
     else
-      I18n.t("#{mailer_type}_mailer.subject.to_self", item_type: item_type)
+      I18n.t("#{mailer_type}_mailer.subject.to_self", item_type: item_type.titleize)
     end
   end
 
