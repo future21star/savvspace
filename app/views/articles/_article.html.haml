@@ -22,4 +22,4 @@
         = article.updated_at.strftime("%b %d, %Y")
       %span.icon.icon-chat
       0
-    %p.summary= article.body.truncate(150)
+    %p.summary= strip_tags(article.body).truncate(150)

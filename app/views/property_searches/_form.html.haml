@@ -1,5 +1,4 @@
-- property_search ||= PropertySearch.new(profile: @profile, mls_server_id: MlsServer.first.id)
-= form_for(property_search, {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
+= form_for(PropertySearch.new(profile: @profile, mls_server_id: MlsServer.first.id), {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
   .form-group
     = f.label :property_type
     %br
