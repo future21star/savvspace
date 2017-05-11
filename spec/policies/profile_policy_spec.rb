@@ -35,5 +35,12 @@ RSpec.describe ProfilePolicy do
       it { is_expected.to permit_action(:edit) }
       it { is_expected.to permit_action(:update) }
     end
+
+    context "or the user is the owner of the subject of the profile" do
+      let(:vendor) { FactoryGirl.create(:vendor) }
+      let(:profile) { vendor.profile } # auto-created after a vendor is created
+
+      before { user.grant_role!("owner") }
+    end
   end
 end

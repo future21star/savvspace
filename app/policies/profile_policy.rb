@@ -3,7 +3,7 @@ class ProfilePolicy < ApplicationPolicy
     user &&
       (
        user == record.profiled ||
-       user.has_role?("owner", record) ||
+       user.has_role?("owner", record.profiled) ||
        user.has_role?("admin")
        )
   end
