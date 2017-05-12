@@ -10,6 +10,12 @@
       float: right;
       display: table;
       height:100%;
+      li.dropdown{
+        .dropdown-toggle{
+          padding-top:10px;
+          padding-bottom: 10px;
+        }
+      }
       li.call-to-action{
         a{
           color:white;
@@ -34,7 +40,7 @@
     .navbar-default.nav-upper .navbar-upper > li > a {
       color: #777;
       height:100%;
-      padding-top:18px;
+      padding-top:16px;
     }
     @media (min-width: 768px) {
       .navbar.navbar-lower .navbar-nav {
@@ -42,7 +48,7 @@
       }
     }
     .navbar-lower{
-      .navbar-header{        
+      .navbar-header{
         .navbar-brand{
           padding:0px;
         }
