@@ -6,42 +6,7 @@
     .navbar-default.nav-upper {
       height: 50px;
     }
-    .navbar-default.nav-upper ul {
-      float: right;
-      display: table;
-      height:100%;
-      li.dropdown{
-        .dropdown-toggle{
-          padding-top:10px;
-          padding-bottom: 10px;
-        }
-      }
-      li.call-to-action{
-        a{
-          color:white;
-        }
-      }
-      li>.dropdown-menu{
-        z-index: 9999;
-        height: initial;
-        display: none;
-        margin-left: -84px;
-      }
-      li.open>.dropdown-menu{
-        display:block;
-      }
 
-    }
-    .navbar-default.nav-upper .navbar-upper > li {
-      display: table-cell;
-      font-size: 14px;
-      height:100%;
-    }
-    .navbar-default.nav-upper .navbar-upper > li > a {
-      color: #777;
-      height:100%;
-      padding-top:16px;
-    }
     @media (min-width: 768px) {
       .navbar.navbar-lower .navbar-nav {
         margin-left: 100px;
@@ -54,6 +19,7 @@
         }
       }
       ul.nav{
+        margin-right: 0px;
         li{
           a{
 

@@ -1,33 +1,3 @@
-%nav.navbar-default.nav-upper
-  %ul.nav.navbar-upper
-    %li.guest-only
-      = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
-    %li.call-to-action.guest-only
-      = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
-    %li
-      = link_to("Help", "#")
-    %li
-      = link_to("FAQS", "#")
-    - if user_signed_in?
-      %li
-        = link_to(conversations_path, remote: true) do
-          %span.icon.icon-chat
-            %span.sr-only Messages
-            %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero?
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          = profile_image(current_user)
-          %span.caret
-        %ul.dropdown-menu
-          - if current_user.has_role?("admin")
-            %li= link_to("Site Admin", dashboard_path)
-          %li= link_to("Home", user_path(current_user))
-          - if current_user.profile.name
-            %li= link_to("Profile", user_profile_path(current_user))
-          - else
-            %li= link_to("Profile", edit_user_profile_path(current_user))
-
-          %li= link_to("Logout", destroy_user_session_path, method: :delete)
 %nav.navbar.navbar-default.navbar-static-top.navbar-lower
   .container-fluid
     .navbar-header
@@ -38,6 +8,36 @@
         %span.icon-bar
         %span.icon-bar
     #navbar.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li.guest-only
+          = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
+        %li.call-to-action.guest-only
+          = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
+        %li
+          = link_to("Help", "#")
+        %li
+          = link_to("FAQS", "#")
+        - if user_signed_in?
+          %li
+            = link_to(conversations_path, remote: true) do
+              %span.icon.icon-chat
+                %span.sr-only Messages
+                %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero?
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = profile_image(current_user)
+              %span.caret
+            %ul.dropdown-menu
+              - if current_user.has_role?("admin")
+                %li= link_to("Site Admin", dashboard_path)
+              %li= link_to("Home", user_path(current_user))
+              - if current_user.profile.name
+                %li= link_to("Profile", user_profile_path(current_user))
+              - else
+                %li= link_to("Profile", edit_user_profile_path(current_user))
+
+              %li= link_to("Logout", destroy_user_session_path, method: :delete)
+
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to("Areas", areas_path)
