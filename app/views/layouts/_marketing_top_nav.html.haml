@@ -14,21 +14,20 @@
           %span.icon.icon-chat
             %span.sr-only Messages
             %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero?
-      %li
-        .dropdown
-          %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{"type" => "button", "data-toggle" => "dropdown", "aria-haspopup" => true, "aria-expanded" => false}
-            = profile_image(current_user)
-            %span.caret
-          %ul.dropdown-menu{aria: {labelledby: "avitar-label"}}
-            - if current_user.has_role?("admin")
-              %li= link_to("Site Admin", dashboard_path)
-            %li= link_to("Home", user_path(current_user))
-            - if current_user.profile.name
-              %li= link_to("Profile", user_profile_path(current_user))
-            - else
-              %li= link_to("Profile", edit_user_profile_path(current_user))
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          = profile_image(current_user)
+          %span.caret
+        %ul.dropdown-menu
+          - if current_user.has_role?("admin")
+            %li= link_to("Site Admin", dashboard_path)
+          %li= link_to("Home", user_path(current_user))
+          - if current_user.profile.name
+            %li= link_to("Profile", user_profile_path(current_user))
+          - else
+            %li= link_to("Profile", edit_user_profile_path(current_user))
 
-            %li= link_to("Logout", destroy_user_session_path, method: :delete)
+          %li= link_to("Logout", destroy_user_session_path, method: :delete)
 %nav.navbar.navbar-default.navbar-static-top.navbar-lower
   .container-fluid
     .navbar-header.col-sm-3

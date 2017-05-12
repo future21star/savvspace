@@ -15,6 +15,16 @@
           color:white;
         }
       }
+      li>.dropdown-menu{
+        position: absolute;
+        z-index: 9999;
+        height: 128px;
+        display: none;
+      }
+      li.open>.dropdown-menu{
+        display:block;
+      }
+
     }
     .navbar-default.nav-upper .navbar-upper > li {
       display: table-cell;
