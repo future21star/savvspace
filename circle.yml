@@ -7,6 +7,10 @@ machine:
     version: 2.2.3
   services:
     - docker
+  python:
+    version: 2.7.10
+  pre:
+    - if [ ! -e '/home/ubuntu/virtualenvs/venv-2.7.10' ]; then mkdir -p '/home/ubuntu/virtualenvs'; pushd '/home/ubuntu/virtualenvs'; virtualenv venv-2.7.10; popd; fi
 test:
   override:
     - bundle exec rake
