@@ -22,10 +22,15 @@
         margin-right: 0px;
         li{
           a{
-
             &:hover{
               background-color:#f5fbfb;
             }
+          }
+        }
+        li.dropdown{
+          .dropdown-toggle{
+            padding-top:9px;
+            padding-bottom: 8px;
           }
         }
       }

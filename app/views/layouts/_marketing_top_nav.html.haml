@@ -9,10 +9,11 @@
         %span.icon-bar
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        %li.guest-only
-          = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
-        %li.call-to-action.guest-only
-          = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
+        - unless current_user.present?
+          %li.guest-only
+            = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
+          %li.call-to-action.guest-only
+            = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
         %li
           = link_to("Help", "#")
         %li
