@@ -1,8 +1,8 @@
 module ApplicationHelper
-  def background_image_url(image)
+  def background_image_url(image, width="auto")
     return {} unless image
 
-    { style: "background-image: url(#{cl_image_path(image.path, width: 1200, crop: :lfill, quality: :auto, gravity: :auto, flags: "lossy")});" }
+    { style: "background-image: url(#{cl_image_path(image.path, width: width, crop: :lfill, quality: :auto, gravity: :auto, flags: "lossy")});" }
   end
 
   def rating_options(rateable)
