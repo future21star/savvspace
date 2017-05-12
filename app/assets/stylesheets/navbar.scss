@@ -16,10 +16,10 @@
         }
       }
       li>.dropdown-menu{
-        position: absolute;
         z-index: 9999;
-        height: 128px;
+        height: initial;
         display: none;
+        margin-left: -84px;
       }
       li.open>.dropdown-menu{
         display:block;
