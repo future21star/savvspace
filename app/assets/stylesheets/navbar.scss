@@ -42,6 +42,11 @@
       }
     }
     .navbar-lower{
+      .navbar-header{        
+        .navbar-brand{
+          padding:0px;
+        }
+      }
       ul.nav{
         li{
           a{

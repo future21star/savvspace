@@ -30,13 +30,13 @@
           %li= link_to("Logout", destroy_user_session_path, method: :delete)
 %nav.navbar.navbar-default.navbar-static-top.navbar-lower
   .container-fluid
-    .navbar-header.col-sm-3
+    .navbar-header
+      = link_to(image_tag("savvspace-logo-horizontal.png", alt: "Savvspace", height: "50px", class:"navbar-brand", style:"padding:0px;margin:0px;"), "/home", class: "navbar-brand")
       %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to(image_tag("savvspace-logo-horizontal.png", alt: "Savvspace", height: "50px", class:"navbar-brand", style:"padding:0px;margin:0px;margin-top:-30px;"), "/home")
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li
