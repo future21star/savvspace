@@ -15,6 +15,16 @@
           color:white;
         }
       }
+      li>.dropdown-menu{
+        z-index: 9999;
+        height: initial;
+        display: none;
+        margin-left: -84px;
+      }
+      li.open>.dropdown-menu{
+        display:block;
+      }
+
     }
     .navbar-default.nav-upper .navbar-upper > li {
       display: table-cell;
