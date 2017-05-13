@@ -1,0 +1,12 @@
+.container.m-y-lg
+  .container-content-middle
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, role: 'form', class: 'm-x-auto text-center app-login-form' }) do |f|
+      %h2 Resend confirmation instructions
+      = devise_error_messages!
+      .form-group
+        = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: 'Email Address'
+      .actions
+        = f.submit 'Resend confirmation instructions'
+
+      %footer.screen-login
+        = render 'devise/shared/links'
