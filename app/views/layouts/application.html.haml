@@ -27,13 +27,7 @@
 
     %footer#site_footer.container-fluid
       .container.p-a-lg
-        #mailer.row
-          %form.form-inline
-            %label STAY IN THE KNOW
-            .input-group
-              %input.form-control{type: "text", name: "subscription", placeholder: "email"}
-              %span.input-group-btn
-                %button.btn{type: "submit"} SUBMIT
+        = render 'layouts/subscriptions'
         #links.row.m-t-lg
           .col-md-6
             %ul.list-inline

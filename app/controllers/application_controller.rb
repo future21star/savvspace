@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_start_path
-    if request.referrer.ends_with?(new_user_registration_path)
+    if request.referrer && request.referrer.ends_with?(new_user_registration_path)
       user_path(current_user)
     else
       current_user_admin? ? dashboard_path : user_path(current_user)
