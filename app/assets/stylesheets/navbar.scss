@@ -23,7 +23,7 @@ body{
       .navbar-header{
         .navbar-brand{
           padding:0px;
-          margin: 10px;
+          margin: 0px;
         }
       }
       ul.nav{
@@ -162,11 +162,17 @@ ul.nav {
 @media (max-width: 767px) {
   body{
     padding-top:50px;
-    .navbar-brand{
-      img{
-        height: 40px;
-        margin: 5px;
+    #main{
+      .container{
+        .navbar-brand{
+          img{
+            height: 35px;
+            margin-top: 10px !important;
+            margin-left: 10px !important;
+          }
+        }
       }
     }
+
   }
 }
