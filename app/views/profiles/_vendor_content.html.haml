@@ -1,5 +1,25 @@
 #services
-  = render(partial: "vendors/service", collection: @profile.profiled.services)
+  - @profile.profiled.services.in_groups_of(3, false) do |group|
+    .row
+      - group.each do |service|
+        .col-md-4
+          .panel.fixed-height.panel-default.panel-profile[service]
+            .panel-heading{background_image_url(service.feature_photo), href: url_for(service)}
+            .panel-body.text-center
+              %h5.panel-title
+                = service.name
+                &mdash;
+                %span.price= number_to_currency(service.price)
+              %p.m-b-md= service.description.truncate(300)
+
+              %p.m-b-0
+                %a.btn.call-to-action.icon.icon-mail{href: "mailto:#{@profile.contact_email}"}
+                  Contact Us
+
+              - if false # policy(service).edit?
+                = link_to(edit_service_path(service), class: "btn btn-sm btn-default") do
+                  %span.icon.icon-edit
+                  Edit
 
   - if @profile.profiled.services.authorized_for_create?(current_user)
     = link_to(new_vendor_service_path(@profile.profiled), class: "btn btn-default") do
