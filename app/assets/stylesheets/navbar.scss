@@ -32,6 +32,16 @@
             padding-top:9px;
             padding-bottom: 8px;
           }
+          .dropdown-menu{
+            background-color: rgba(93,156,236,0.5);
+            li{
+              a{
+                &:hover{
+                  background-color: rgba(93,156,236,0.5);
+                }
+              }
+            }
+          }
         }
       }
     }
