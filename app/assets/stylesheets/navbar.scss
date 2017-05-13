@@ -14,6 +14,12 @@ body{
     }
 
     .navbar-lower{
+      #navbar{
+        .row{
+          margin:0px;
+        }
+      }
+
       .navbar-header{
         .navbar-brand{
           padding:0px;
