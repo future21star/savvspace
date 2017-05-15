@@ -24,6 +24,10 @@ body{
         .navbar-brand{
           padding:0px;
           margin: 0px;
+          img{
+            margin-top: 15px;
+            margin-left: 10px;
+          }
         }
       }
       ul.nav{
@@ -46,104 +50,6 @@ body{
       }
     }
 
-    /*===== 5. Navbar Custom ======
-
-    .navbar-custom {
-      width: 100%;
-      border-radius: 0px;
-      z-index: 999;
-      padding: 20px 0px;
-      margin-bottom: 0px;
-      background-color: transparent;
-      -webkit-transition: all 0.5s ease-in-out;
-      -moz-transition: all 0.5s ease-in-out;
-      -o-transition: all 0.5s ease-in-out;
-      transition: all 0.5s ease-in-out;
-    }
-
-    .navbar-custom .navbar-nav li a {
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 15px;
-      margin: 5px 0px;
-    }
-
-    .navbar-custom .nav>li>a:focus,.navbar-custom .nav>li>a:hover,.navbar-custom .navbar-nav li.active a {
-      background-color: transparent;
-      color: #ffffff;
-    }
-
-    .navbar-toggle .icon-bar {
-      background-color: #ffffff;
-    }
-
-    .navbar-btn {
-      padding: 5px 20px !important;
-      text-transform: none !important;
-      font-weight: 400;
-      margin-top: 8px !important;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 22px;
-      color: #ffffff !important;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .navbar-toggle {
-      font-size: 30px;
-    }
-
-    .navbar-custom .btn-custom {
-      margin-top: 8px;
-      margin-left: 20px;
-    }
-
-    .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-      background-color: transparent;
-      border-color: #337ab7;
-    }
-
-    .sticky-wrapper {
-    	position: absolute;
-    	width: 100%;
-    }
-
-    .sticky-wrapper.is-sticky .navbar-custom {
-    	padding: 10px 0px !important;
-      background-color: #5d9cec;
-    }
-
-    .sticky-wrapper.is-sticky .navbar-custom .logo span.text-custom {
-      color: #ffffff !important;
-    }
-
-
-    @media (max-width: 767px) {
-      .navbar-custom {
-        padding: 10px 0px !important;
-        background-color: #5d9cec;
-      }
-      .navbar-custom .logo span.text-custom {
-        color: #ffffff !important;
-      }
-      .navbar-btn {
-        margin: 8px 20px 0 !important;
-      }
-      .video-wrapper {
-        padding-top: 50px;
-      }
-      .intro-form {
-        margin-top: 50px;
-      }
-      .feat-description {
-        margin-bottom: 50px;
-        text-align: center;
-      }
-    }
-    */
-    // end custom navbar
   }
 }
 ul.nav {
