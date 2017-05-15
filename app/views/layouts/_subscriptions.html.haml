@@ -1,0 +1,24 @@
+/ Begin MailChimp Signup Form
+%link{href: '//cdn-images.mailchimp.com/embedcode/classic-10_7.css', rel: 'stylesheet', type: 'text/css'}
+:css
+  #mc_embed_signup_inline
+  /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+  We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+
+#mc_embed_signup_inline.row
+  %form#mc-embedded-subscribe-form.validate.form-inline{action: '//savvspace.us15.list-manage.com/subscribe/post?u=85da8e009c3f5f2df02ff00cc&id=eb4f9b539c', method: 'post', name: 'mc-embedded-subscribe-form', novalidate: '', target: '_blank'}
+    %label STAY IN THE KNOW
+    .input-group
+      %input.required.form-control{type: 'email', name: 'EMAIL', placeholder: 'email'}
+      %div{'aria-hidden' => 'true', style: 'position: absolute; left: -5000px;'}
+        %input{name: 'b_85da8e009c3f5f2df02ff00cc_eb4f9b539c', tabindex: '-1', type: 'text', value: ''}
+      %span.input-group-btn
+        %button.btn{type: 'submit', name: 'subscribe'} SUBMIT
+  #mce-responses.clear
+    #mce-error-response.m-t.response{style: 'display:none'}
+    #mce-success-response.m-t.response{style: 'display:none'}
+
+%script{src: '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js', type: 'text/javascript'}
+:javascript
+  (function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);
+/ End mc_embed_signup_inline
