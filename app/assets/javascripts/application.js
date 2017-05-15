@@ -23,4 +23,5 @@
 //= require bootstrap-wysihtml5
 //= require jquery.barrating.min
 //= require bootstrap-multiselect
+// require jquery.sticky
 //= require_tree .
