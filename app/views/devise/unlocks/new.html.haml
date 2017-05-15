@@ -1,0 +1,12 @@
+.container.m-y-lg
+  .container-content-middle
+    = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+      %h2 Resend unlock instructions
+      = devise_error_messages!
+      .form-group
+        = f.email_field :email, autofocus: true, placeholder: 'Email Address'
+      .actions
+        = f.submit 'Resend unlock instructions'
+
+      %footer.screen-login
+        = render 'devise/shared/links'

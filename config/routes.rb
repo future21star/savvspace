@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :property_searches
   get 'ivr/click_to_call', format: :xml
 
-  get 'idx/', to: "idx#index"
+  get 'idx/', to: 'idx#index'
 
   resources :subscriptions, only: [:index]
 
@@ -53,8 +53,8 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
-  get '/profiles/:id/:tab', to: "profiles#show", as: :profile_tab
-  get '/u/:username', to: "profiles#show", as: :public_profile
+  get '/profiles/:id/:tab', to: 'profiles#show', as: :profile_tab
+  get '/u/:username', to: 'profiles#show', as: :public_profile
   resources :ratings
   resources :authors, only: [:index] do
     resources :articles, only: [:index]
@@ -63,9 +63,9 @@ Rails.application.routes.draw do
     resource :profile
   end
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  # See how all your routes lay out with 'rake routes'.
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   root 'subscriptions#index'
   get '/dashboard' => 'welcome#dashboard', as: :dashboard
   get '/home' => 'welcome#index', as: :home
@@ -121,5 +121,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  mount Attachinary::Engine => "/attachinary"
+  mount Attachinary::Engine => '/attachinary'
 end
