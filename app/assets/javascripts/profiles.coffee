@@ -15,19 +15,20 @@ $(document).on "turbolinks:load", ->
     $.ajax({url: "/phone_calls/new.js", data: {profile_id: $("#new_call").data("profileId")}})
     return
 
-  past_avata_values = JSON.parse($('.profile_past_avatars .attachinary_container input').val())
-  $past_avata_imgs = $('.profile_past_avatars ul li img')
-  $avatar_img = $('.profile_avatar .attachinary_container li img')
-  $avatar_action = $('.profile_avatar .attachinary_container li a')
-  $avatar_img_val = $('.profile_avatar .attachinary_container input')
-  $past_avata_imgs.each ->
-    $(this).click ->
-      path = $(this).attr('src')
-      path_data = path.split('/')
-      public_id = path_data[path_data.length - 1].split('.')[0]
-      avatar_obj = window.getObjects(past_avata_values, 'public_id', public_id)
-      $avatar_img.attr 'src', path
-      $avatar_action.attr 'data-remove', public_id
-      $avatar_img_val.val JSON.stringify(avatar_obj)
+  if($('.attachinary-input').length > 0)
+    past_avata_values = JSON.parse($('.profile_past_avatars .attachinary_container input').val())
+    $past_avata_imgs = $('.profile_past_avatars ul li img')
+    $avatar_img = $('.profile_avatar .attachinary_container li img')
+    $avatar_action = $('.profile_avatar .attachinary_container li a')
+    $avatar_img_val = $('.profile_avatar .attachinary_container input')
+    $past_avata_imgs.each ->
+      $(this).click ->
+        path = $(this).attr('src')
+        path_data = path.split('/')
+        public_id = path_data[path_data.length - 1].split('.')[0]
+        avatar_obj = window.getObjects(past_avata_values, 'public_id', public_id)
+        $avatar_img.attr 'src', path
+        $avatar_action.attr 'data-remove', public_id
+        $avatar_img_val.val JSON.stringify(avatar_obj)
+        return
       return
-    return
