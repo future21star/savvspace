@@ -54,6 +54,23 @@ class ProfilesController < ApplicationController
     authorize @profile
     respond_to do |format|
       if @profile.update(profile_params)
+        if profile_params[:avatar].present?
+          if profile_params[:avatar].instance_of? String
+            avatar_data = JSON.parse(profile_params[:avatar])[0]
+            past_avatar = @profile.past_avatars.find_by(id:avatar_data['id']);
+            if past_avatar.present?
+              @profile.avatar_url = Cloudinary::Utils.cloudinary_url(past_avatar.path)
+            else
+              att_file = Cloudinary::Uploader.upload(Cloudinary::Utils.cloudinary_url(@profile.avatar.path))
+              new_past_avatar = @profile.past_avatars.new(public_id:att_file['public_id'], version:att_file['version'],width:att_file['width'],height:att_file['height'],format:att_file['format'],resource_type:att_file['resource_type'])
+              new_past_avatar.save
+            end
+          else
+            att_file = Cloudinary::Uploader.upload(Cloudinary::Utils.cloudinary_url(@profile.avatar.path))
+            new_past_avatar = @profile.past_avatars.new(public_id:att_file['public_id'], version:att_file['version'],width:att_file['width'],height:att_file['height'],format:att_file['format'],resource_type:att_file['resource_type'])
+            new_past_avatar.save
+          end
+        end
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
       else
@@ -92,6 +109,6 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).
         permit(:name, :username, :bio, :contact_email, :linked_in, :facebook, :twitter,
-               :instagram, :avatar, :background, phone_attributes: [:number])
+               :instagram, :avatar, :background, phone_attributes: [:number], past_avatars: [])
     end
 end
