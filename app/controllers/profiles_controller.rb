@@ -57,7 +57,7 @@ class ProfilesController < ApplicationController
         if profile_params[:avatar].present?
           if profile_params[:avatar].instance_of? String
             avatar_data = JSON.parse(profile_params[:avatar])[0]
-            past_avatar = @profile.past_avatars.find_by(id:avatar_data['id']);
+            past_avatar = @profile.past_avatars.find_by(public_id:avatar_data['public_id']);
             if past_avatar.present?
               @profile.avatar_url = Cloudinary::Utils.cloudinary_url(past_avatar.path)
             else

@@ -30,7 +30,13 @@
       = f.input :instagram, label: false
 
     = f.input :avatar, as: :attachinary, label: "Profile Picture"
-    = f.input :past_avatars, as: :attachinary, label: "Past Avatars"
+    -# = f.input :past_avatars, as: :attachinary, label: "Past Avatars"
+
+    %label Past Avatars
+    .input-group.m-b.past-avatars
+      - f.object.past_avatars.each do |past_avatar|
+        .past-avatar
+          = cl_image_tag(past_avatar.path, {size: '100x100', crop: :lfill, gravity: :face, quality: :auto, class: "img-rounded"})
 
     = f.input :background, as: :attachinary
 
