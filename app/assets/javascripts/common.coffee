@@ -1,3 +1,8 @@
+# for find object using key and value
+# EX: obj = [{id:1,name:'tester1',email:'tester1@email.com'}, {id:5,name:'tester5',email:'tester5@email.com'}, {id:3,name:'tester3',email:'tester1@email.com'}]
+# user = window.getObjects(obj, 'id', 5)
+# user value will be {id:5,name:'tester5',email:'tester5@email.com'}
+#
 window.getObjects = (obj, key, val) ->
   objects = [];
   for i of obj
@@ -13,8 +18,7 @@ hideAlerts = () ->
   $('div.alert-dismissable').slideToggle()
 
 $(document).on "turbolinks:load", ->
-  if($('.attachinary-input').length > 0)
-    $('.attachinary-input').attachinary()
+  $('.attachinary-input').attachinary()
 
   $('.carousel').carousel()
   $.cloudinary.responsive()

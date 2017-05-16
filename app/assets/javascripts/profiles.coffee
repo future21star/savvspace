@@ -15,7 +15,7 @@ $(document).on "turbolinks:load", ->
     $.ajax({url: "/phone_calls/new.js", data: {profile_id: $("#new_call").data("profileId")}})
     return
 
-  if($('.attachinary-input').length > 0)
+  if $('.attachinary-input').length > 0 and !! $('.profile_past_avatars .attachinary_container input').val()
     past_avata_values = JSON.parse($('.profile_past_avatars .attachinary_container input').val())
     $past_avata_imgs = $('.profile_past_avatars ul li img')
     $avatar_img = $('.profile_avatar .attachinary_container li img')
