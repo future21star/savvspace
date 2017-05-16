@@ -59,7 +59,5 @@ initializeStripeElements = () ->
     return
 
 $(document).on "turbolinks:load", ->
-        if ($("#card-elements"))
+        if $("#card-elements").size() > 0
                 initializeStripeElements()
-        else
-                alert("no")
