@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517132430) do
+ActiveRecord::Schema.define(version: 20170517135745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,9 +191,10 @@ ActiveRecord::Schema.define(version: 20170517132430) do
     t.date     "from_date"
     t.date     "to_date"
     t.integer  "mls_server_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "profile_id"
+    t.boolean  "favorite",      default: false
   end
 
   add_index "open_house_searches", ["mls_server_id"], name: "index_open_house_searches_on_mls_server_id", using: :btree

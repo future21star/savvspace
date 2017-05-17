@@ -1,4 +1,4 @@
-= form_for(OpenHouseSearch.new(profile: @profile, mls_server_id: MlsServer.first.id), {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
+= form_for(OpenHouseSearch.new(profile: @profile, mls_server_id: MlsServer.first.id, favorite: @favorite), {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
   .form-group
     = f.label "Day(s)"
     %br
@@ -26,4 +26,5 @@
       %br
     = f.submit "Search", class: "btn btn-primary"
     = f.hidden_field :profile_id
+    = f.hidden_field :favorite
     = image_tag("dots.gif", height: 30, class: "ajax-spinner")
