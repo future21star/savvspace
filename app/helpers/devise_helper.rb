@@ -10,6 +10,6 @@ module DeviseHelper
     </div>
     HTML
 
-    html.html_safe
+    html.safe_join
   end
 end

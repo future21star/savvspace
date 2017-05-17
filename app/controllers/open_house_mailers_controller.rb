@@ -1,5 +1,4 @@
 class OpenHouseMailersController < MailersController
-
   def new
     @referrer_id = params[:referrer_id]
     @open_house_id = params[:open_house_id]
@@ -9,7 +8,7 @@ class OpenHouseMailersController < MailersController
     referrer_id = params[:referrer_id] || current_user.profile.id
     item_id = params[:open_house_id]
 
-    SingleItemMailer.send_item_request(current_user.id, referrer_id, recepients, item_id, 'OpenHouse')
+    SingleItemMailer.send_item_request(current_user.id, referrer_id,
+                                       recepients, item_id, 'OpenHouse')
   end
-
 end

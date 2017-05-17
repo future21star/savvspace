@@ -1,1 +1,1 @@
-json.partial! "features/feature", feature: @feature
+json.partial! 'features/feature', feature: @feature

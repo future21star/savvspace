@@ -1,1 +1,1 @@
-json.partial! "ambassadorships/ambassadorship", ambassadorship: @ambassadorship
+json.partial! 'ambassadorships/ambassadorship', ambassadorship: @ambassadorship

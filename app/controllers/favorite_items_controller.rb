@@ -1,6 +1,6 @@
 class FavoriteItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_favorite_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_favorite_item, only: %i[show edit update destroy]
 
   # GET /favorite_items
   # GET /favorite_items.json
@@ -10,8 +10,7 @@ class FavoriteItemsController < ApplicationController
 
   # GET /favorite_items/1
   # GET /favorite_items/1.json
-  def show
-  end
+  def show; end
 
   # GET /favorite_items/new
   def new
@@ -19,8 +18,7 @@ class FavoriteItemsController < ApplicationController
   end
 
   # GET /favorite_items/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /favorite_items
   # POST /favorite_items.json
@@ -29,7 +27,7 @@ class FavoriteItemsController < ApplicationController
 
     respond_to do |format|
       if @favorite_item.save
-        format.html { redirect_to @favorite_item, notice: 'Favorite item was successfully created.' }
+        format.html { redirect_to @favorite_item, notice: t('.notice') }
         format.js
         format.json { render :show, status: :created, location: @favorite_item }
       else
@@ -44,7 +42,7 @@ class FavoriteItemsController < ApplicationController
   def update
     respond_to do |format|
       if @favorite_item.update(favorite_item_params)
-        format.html { redirect_to @favorite_item, notice: 'Favorite item was successfully updated.' }
+        format.html { redirect_to @favorite_item, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @favorite_item }
       else
         format.html { render :edit }
@@ -58,20 +56,22 @@ class FavoriteItemsController < ApplicationController
   def destroy
     @favorite_item.destroy
     respond_to do |format|
-      format.html { redirect_to favorite_items_url, notice: 'Favorite item was successfully destroyed.' }
+      format.html { redirect_to favorite_items_url, notice: t('.notice') }
       format.js
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorite_item
-      @favorite_item = FavoriteItem.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def favorite_item_params
-      params.require(:favorite_item).permit(:favorite_id, :favorite_type, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_favorite_item
+    @favorite_item = FavoriteItem.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def favorite_item_params
+    params.require(:favorite_item).permit(:favorite_id, :favorite_type, :user_id)
+  end
 end

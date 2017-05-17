@@ -1,1 +1,1 @@
-json.partial! "areas/area", area: @area
+json.partial! 'areas/area', area: @area

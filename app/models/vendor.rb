@@ -6,19 +6,19 @@ class Vendor < ActiveRecord::Base
 
   has_many :services, dependent: :destroy do
     def authorized_for_create?(user)
-      user && user.has_role?("owner", proxy_association.owner)
+      user && user.role?('owner', proxy_association.owner)
     end
   end
 
   validates :name, presence: true
 
   def owners
-    authorizations.includes(:user).joins(:role).where(roles: {name: "owner"}).collect(&:user)
+    authorizations.includes(:user).joins(:role).where(roles: { name: 'owner' }).collect(&:user)
   end
 
   protected
 
   def create_vendor_profile
-    create_profile(name: self.name)
+    create_profile(name: name)
   end
 end

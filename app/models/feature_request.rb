@@ -5,7 +5,9 @@ class FeatureRequest < ActiveRecord::Base
 
   validates :feature, :user, :profile, :agent_name, :broker_name, :broker_email, presence: true
 
-  scope :by_name, -> (name) { joins(:feature).where(features: { name: name }) }
+  scope :by_name, (lambda do |name|
+    joins(:feature).where(features: { name: name })
+  end)
 
   def agent_name
     extra_data[:agent_name]

@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   def new
     @recipient = Profile.find(params[:profile_id])
     @conversation = Conversation.between(@recipient.id, current_profile).first ||
-      Conversation.create(initiator: current_profile, recipient: @recipient)
+                    Conversation.create(initiator: current_profile, recipient: @recipient)
   end
 
   def show
@@ -12,8 +12,8 @@ class ConversationsController < ApplicationController
     authorize @conversation
 
     # naiive read message indicator
-    @conversation.messages.where(to: current_profile, read_at: nil).
-      update_all(read_at: Time.current)
+    @conversation.messages.where(to: current_profile, read_at: nil)
+                 .update_all(read_at: Time.current) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def index

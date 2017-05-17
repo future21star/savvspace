@@ -3,7 +3,7 @@ module ArticlesHelper
     return [] unless current_user
 
     areas = current_user.ambassadorships.collect(&:area)
-    areas.concat(current_user.is_role_for_what("author", Area))
+    areas.concat(current_user.role_for_what('author', Area))
     areas.uniq
   end
 end

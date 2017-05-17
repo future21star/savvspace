@@ -14,7 +14,7 @@ class OpenHouseSearch < ActiveRecord::Base
       end.join(' OR ')
 
       date_query = from_dates.inject([query_pattern]) do |array, date|
-        time = Time.parse(date)
+        time = Time.zone.parse(date)
         array.concat([time.beginning_of_day, time.end_of_day])
       end
 
@@ -36,5 +36,4 @@ class OpenHouseSearch < ActiveRecord::Base
       'starts_at asc'
     end
   end
-
 end

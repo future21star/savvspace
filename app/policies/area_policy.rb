@@ -4,7 +4,7 @@ class AreaPolicy < ApplicationPolicy
   end
 
   def create?
-    user && user.has_role?("admin")
+    user && user.role?('admin')
   end
 
   def update?

@@ -13,7 +13,7 @@ When(/^I visit the profile page for username "([^"]*)"$/) do |username|
 end
 
 Then(/^I should be prompted to enter my phone number$/) do
-  expect(page).to have_css("form.new_phone_call")
+  expect(page).to have_css('form.new_phone_call')
 end
 
 Given(/^the profile does not have access to the idx feature$/) do
@@ -36,8 +36,8 @@ When(/^I login as the user who owns the "([^"]*)" profile$/) do |username|
   @profile = Profile.find_by(username: username)
   @user = @profile.profiled
   email = @user.email
-  password = @user.password = @user.password_confirmation = "actest123"
+  password = @user.password = @user.password_confirmation = 'actest123'
   @user.save!
 
-  step %{I login with email "#{email}" and password "#{password}"}
+  step %(I login with email "#{email}" and password "#{password}")
 end
