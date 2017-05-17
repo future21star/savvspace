@@ -1,32 +1,35 @@
 %nav.navbar.navbar-static-top.app-navbar.navbar-inverse
   .container
     .navbar-header
-      %button.navbar-toggle.collapsed{"data-target" => "#navbar-collapse-main", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle.collapsed{'data-target' => '#navbar-collapse-main', 'data-toggle' => 'collapse', type: 'button'}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{:href => "/"}
+      %a.navbar-brand{href: '/'}
         /
-          %img{:alt => "brand", :src => "/img/logo-1x.png", :height => 25}/
+          %img{:alt => 'brand', :src => '/img/logo-1x.png', :height => 25}/
         Savvspace
     #navbar-collapse-main.navbar-collapse.collapse
       %ul.nav.navbar-nav.hidden-xs.navbar-left
+        - if user_signed_in?
+          %li
+            = link_to('My Profile', user_profile_path(current_user))
         %li
-          = link_to("Areas", areas_path)
+          = link_to('Areas', areas_path)
         %li
-          = link_to("Articles", articles_path)
+          = link_to('Articles', articles_path)
         %li
-          = link_to("Guides", authors_path)
+          = link_to('Trailblazers', authors_path)
         %li
-          = link_to("Vendors", vendors_path)
+          = link_to('Vendors', vendors_path)
         %li
-          = link_to("Join the Network", new_user_registration_path)
+          = link_to('Join the Network', new_user_registration_path)
       %ul.nav.navbar-nav.hidden-xs.navbar-right
         %li
-          = link_to("About", about_path)
+          = link_to('About', about_path)
         %li
-          = link_to("Contact", contact_path)
+          = link_to('Contact', contact_path)
         - if user_signed_in?
           %li
             = link_to(conversations_path, remote: true) do
@@ -35,54 +38,57 @@
                 %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero?
           %li
             .dropdown
-              %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{"type" => "button", "data-toggle" => "dropdown", "aria-haspopup" => true, "aria-expanded" => false}
+              %button.btn.btn-default.navbar-btn.navbar-btn-avitar#avitar-label{'type' => 'button', 'data-toggle' => 'dropdown', 'aria-haspopup' => true, 'aria-expanded' => false}
                 = profile_image(current_user)
                 %span.caret
-              %ul.dropdown-menu{aria: {labelledby: "avitar-label"}}
-                - if current_user.has_role?("admin")
-                  %li= link_to("Site Admin", dashboard_path)
-                %li= link_to("Home", user_path(current_user))
+              %ul.dropdown-menu{aria: {labelledby: 'avitar-label'}}
+                - if current_user.has_role?('admin')
+                  %li= link_to('Site Admin', dashboard_path)
+                %li= link_to('Home', user_path(current_user))
                 - if current_user.profile.name
-                  %li= link_to("Profile", user_profile_path(current_user))
+                  %li= link_to('Profile', user_profile_path(current_user))
                 - else
-                  %li= link_to("Profile", edit_user_profile_path(current_user))
+                  %li= link_to('Profile', edit_user_profile_path(current_user))
 
-                %li= link_to("Logout", destroy_user_session_path, method: :delete)
+                %li= link_to('Logout', destroy_user_session_path, method: :delete)
 
         - else
-          %li= link_to("Login", new_user_session_path, class: "login", id: "signin")
-          %li= link_to("Sign Up", new_user_registration_path, class: "signup", id: "signup")
+          %li= link_to('Login', new_user_session_path, class: 'login', id: 'signin')
+          %li= link_to('Sign Up', new_user_registration_path, class: 'signup', id: 'signup')
 
-      %form.navbar-form.navbar-right.app-search{:role => "search"}
+      %form.navbar-form.navbar-right.app-search{role: 'search'}
         .form-group
-          %input.form-control{"data-action" => "grow", :placeholder => "Search", :type => "text"}/
+          %input.form-control{'data-action' => 'grow', placeholder: 'Search', type: 'text'}
       %ul.nav.navbar-nav.hidden-sm.hidden-md.hidden-lg
+        - if user_signed_in?
+          %li
+            = link_to('My Profile', user_profile_path(current_user))
         %li
-          = link_to("Areas", areas_path)
+          = link_to('Areas', areas_path)
         %li
-          = link_to("Articles", articles_path)
+          = link_to('Articles', articles_path)
         %li
-          = link_to("Guides", authors_path)
+          = link_to('Trailblazers', authors_path)
         %li
-          = link_to("Vendors", vendors_path)
+          = link_to('Vendors', vendors_path)
         %li
-          = link_to("Join the Network", new_user_registration_path)
+          = link_to('Join the Network', new_user_registration_path)
         %li
-          = link_to("About", about_path)
+          = link_to('About', about_path)
         %li
-          = link_to("Contact", contact_path)
+          = link_to('Contact', contact_path)
         /
           %li
-            %a{"data-toggle" => "modal", :href => "#msgModal"} Messages
+            %a{'data-toggle' => 'modal', :href => '#msgModal'} Messages
         - if user_signed_in?
-          %li= link_to("Messages", conversations_path, remote: true)
-          %li= link_to("Logout", destroy_user_session_path, method: :delete)
+          %li= link_to('Messages', conversations_path, remote: true)
+          %li= link_to('Logout', destroy_user_session_path, method: :delete)
         - else
-          %li= link_to("Login", new_user_session_path, class: "login")
-          %li= link_to("Sign Up", new_user_registration_path, class: "signup", id: "signup-sm")
+          %li= link_to('Login', new_user_session_path, class: 'login')
+          %li= link_to('Sign Up', new_user_registration_path, class: 'signup', id: 'signup-sm')
 
       %ul.nav.navbar-nav.hidden
         %li
-          %a{"data-action" => "growl", :href => "#"} Growl
+          %a{'data-action' => 'growl', href: '#'} Growl
         %li
-          %a{:href => "login/index.html"} Logout
+          %a{href: 'login/index.html'} Logout

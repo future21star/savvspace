@@ -1,8 +1,8 @@
 %nav#sticky-nav.navbar.navbar-default.navbar-custom.navbar-fixed-top.navbar-lower
   .container
     .navbar-header
-      = link_to(image_tag("savvspace-logo-horizontal.png", alt: "Savvspace", height: "50px", class:"navbar-brand"), "/home", class: "navbar-brand")
-      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+      = link_to(image_tag('savvspace-logo-horizontal.png', alt: 'Savvspace', height: '50px', class:'navbar-brand'), '/home', class: 'navbar-brand')
+      %button.navbar-toggle.collapsed{'aria-expanded' => 'false', 'data-target' => '#navbar', 'data-toggle' => 'collapse', type: 'button'}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
@@ -12,13 +12,13 @@
         %ul.nav.navbar-nav.navbar-right
           - unless current_user.present?
             %li.guest-only
-              = link_to("Login", new_user_session_path, class: "login icon icon-lock", id: "signin")
+              = link_to('Login', new_user_session_path, class: 'login icon icon-lock', id: 'signin')
             %li.call-to-action.guest-only
-              = link_to("Sign Up", new_user_registration_path, class: "signup icon icon-lock", id: "signup")
+              = link_to('Sign Up', new_user_registration_path, class: 'signup icon icon-lock', id: 'signup')
           %li
-            = link_to("Help", "#")
+            = link_to('Help', '#')
           %li
-            = link_to("FAQS", "#")
+            = link_to('FAQS', '#')
           - if user_signed_in?
             %li
               = link_to(conversations_path, remote: true) do
@@ -26,39 +26,47 @@
                   %span.sr-only Messages
                   %span.badge= current_profile.unread_messages.count unless current_profile.unread_messages.count.zero?
             %li.dropdown
-              %a.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %a.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', href: '#', role: 'button'}
                 = profile_image(current_user)
                 %span.caret
               %ul.dropdown-menu
-                - if current_user.has_role?("admin")
-                  %li= link_to("Site Admin", dashboard_path)
-                %li= link_to("Home", user_path(current_user))
+                - if current_user.has_role?('admin')
+                  %li= link_to('Site Admin', dashboard_path)
+                %li= link_to('Home', user_path(current_user))
                 - if current_user.profile.name
-                  %li= link_to("Profile", user_profile_path(current_user))
+                  %li= link_to('Profile', user_profile_path(current_user))
                 - else
-                  %li= link_to("Profile", edit_user_profile_path(current_user))
+                  %li= link_to('Profile', edit_user_profile_path(current_user))
 
                 - if user_signed_in?
-                  %li= link_to("Favorite Properties", favorite_properties_path)
-                  %li= link_to("Favorite Open Houses", favorite_open_houses_path)
+                  %li= link_to('Favorite Properties', favorite_properties_path)
+                  %li= link_to('Favorite Open Houses', favorite_open_houses_path)
 
-                %li= link_to("Logout", destroy_user_session_path, method: :delete)
+                %li= link_to('Logout', destroy_user_session_path, method: :delete)
+
       .row
         %ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            %li
+              = link_to('My Profile', user_profile_path(current_user))
           %li
-            = link_to("Areas", areas_path)
+            = link_to('Areas', areas_path)
           %li
-            = link_to("Articles", articles_path)
+            = link_to('Articles', articles_path)
           %li
-            = link_to("Guides", authors_path)
+            = link_to('Trailblazers', authors_path)
           %li
-            = link_to("Vendors", vendors_path)
+            = link_to('Vendors', vendors_path)
           - unless user_signed_in?
             %li
-              = link_to("Join the Network", new_user_registration_path)
+              = link_to('Join the Network', new_user_registration_path)
+          - if user_signed_in?
+            %li
+              = link_to('My Home', '#')
+          - else
+            %li
+              = link_to('Homeowners', '#')
           %li
-            = link_to("Homeowners", "#")
+            = link_to('About', about_path)
           %li
-            = link_to("About", about_path)
-          %li
-            = link_to("Contact", contact_path)
+            = link_to('Contact', contact_path)
