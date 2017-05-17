@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :property_notes
   resources :favorite_items
+  resources :favorite_properties, only: :index
   resources :open_houses do
     resources :open_house_mailers, only: [:new, :create]
   end
