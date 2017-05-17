@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424174708) do
+ActiveRecord::Schema.define(version: 20170517132430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20170424174708) do
     t.integer  "area_id"
     t.integer  "user_id"
     t.string   "title"
-    t.text     "body"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "article_category_id"
+    t.text     "body"
   end
 
   add_index "articles", ["area_id"], name: "index_articles_on_area_id", using: :btree
@@ -193,9 +193,11 @@ ActiveRecord::Schema.define(version: 20170424174708) do
     t.integer  "mls_server_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "profile_id"
   end
 
   add_index "open_house_searches", ["mls_server_id"], name: "index_open_house_searches_on_mls_server_id", using: :btree
+  add_index "open_house_searches", ["profile_id"], name: "index_open_house_searches_on_profile_id", using: :btree
 
   create_table "open_houses", force: :cascade do |t|
     t.integer  "mls_server_id"
@@ -345,12 +347,13 @@ ActiveRecord::Schema.define(version: 20170424174708) do
     t.integer  "max_beds"
     t.integer  "min_baths"
     t.integer  "sort_by"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "mls_server_id"
     t.integer  "profile_id"
     t.string   "property_type"
     t.string   "area"
+    t.boolean  "favorite",      default: false
   end
 
   add_index "property_searches", ["mls_server_id"], name: "index_property_searches_on_mls_server_id", using: :btree
@@ -431,6 +434,7 @@ ActiveRecord::Schema.define(version: 20170424174708) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "mls_servers", "mls_adapters"
   add_foreign_key "open_house_searches", "mls_servers"
+  add_foreign_key "open_house_searches", "profiles"
   add_foreign_key "open_houses", "mls_servers"
   add_foreign_key "open_houses", "properties"
   add_foreign_key "phone_calls", "profiles"

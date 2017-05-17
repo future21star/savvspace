@@ -1,4 +1,5 @@
 class PropertySearchesController < ApplicationController
+
   def show
     @property_search = PropertySearch.find(params[:id])
     @property_search.offset = params[:offset] || 0
