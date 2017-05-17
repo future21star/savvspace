@@ -35,4 +35,19 @@
     }
   }
 }
-
+.past-avatars{
+  .past-avatar{
+    margin-right: 15px;
+    margin-bottom: 5px;
+    float: right;
+    height: 110px;
+    width: 110px;
+    img{
+      cursor: pointer;
+      box-shadow: -3px -3px 5px #888888;
+      &:hover{
+        border: solid 1px #888888;
+      }
+    }
+  }
+}

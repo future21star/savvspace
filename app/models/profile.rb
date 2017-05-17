@@ -3,6 +3,7 @@ class Profile < ActiveRecord::Base
 
   belongs_to :profiled, polymorphic: true
   has_attachment :avatar, accept: [:jpg, :png]
+  has_attachments :past_avatars, maximum:10
   has_attachment :background, accept: [:jpg, :png]
   has_one :phone, as: :owner, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
