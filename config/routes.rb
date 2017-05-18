@@ -71,7 +71,6 @@ Rails.application.routes.draw do
   get '/home' => 'welcome#index', as: :home
   get '/about' => 'welcome#about', as: :about
   get '/contact' => 'welcome#contact', as: :contact
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -21,7 +21,7 @@ module Searchable
     offset.to_i + limit.to_i
   end
 
-  def has_more?
+  def more?
     next_page_offset < total_results
   end
 
@@ -32,5 +32,4 @@ module Searchable
   def offset
     @offset ||= 0
   end
-  
 end

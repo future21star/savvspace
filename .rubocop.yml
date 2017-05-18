@@ -1,0 +1,43 @@
+AllCops:
+  Exclude:
+    # You could specify set of files or dirs while you want to be ignored by rubocop
+    - 'vendor/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'lib/**/*'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'Rakefile'
+Documentation: # Disabling documentation cop
+  Enabled: false
+
+AbcSize:
+  Max: 32
+
+# AlignParameters:
+#   EnforcedStyle: with_fixed_indentation
+
+# AsciiComments:
+#   Enabled: false
+
+# ClassLength:
+#   Max: 500
+
+# CyclomaticComplexity:
+#   Max: 10
+
+LineLength:
+  Max: 100
+
+MethodLength:
+  Max: 16
+
+# MultilineOperationIndentation:
+#   EnforcedStyle: indented
+#
+# StringLiterals:
+#   EnforcedStyle: double_quotes
+
+inherit_from: .rubocop_todo.yml

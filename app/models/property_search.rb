@@ -26,5 +26,4 @@ class PropertySearch < ActiveRecord::Base
       'mls_updated_at desc'
     end
   end
-
 end

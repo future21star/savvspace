@@ -4,11 +4,11 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def create?
-    user && (user.has_role?("author") || user.ambassadorships.any?)
+    user && (user.role?('author') || user.ambassadorships.any?)
   end
 
   def update?
-    user && (user.has_role?("admin") || record.author == user)
+    user && (user.role?('admin') || record.author == user)
   end
 
   def destroy?

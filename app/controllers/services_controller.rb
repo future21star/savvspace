@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :set_vendor, only: [:new]
-  before_action :set_service, only: [:show, :edit, :update, :destroy]
+  before_action :set_service, only: %i[show edit update destroy]
 
   # GET /services
   # GET /services.json
@@ -10,8 +10,7 @@ class ServicesController < ApplicationController
 
   # GET /services/1
   # GET /services/1.json
-  def show
-  end
+  def show; end
 
   # GET /services/new
   def new
@@ -19,8 +18,7 @@ class ServicesController < ApplicationController
   end
 
   # GET /services/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /services
   # POST /services.json
@@ -29,7 +27,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to @service.vendor.profile, notice: 'Service was successfully created.' }
+        format.html { redirect_to @service.vendor.profile, notice: t('.notice') }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
@@ -43,7 +41,7 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
+        format.html { redirect_to @service, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @service }
       else
         format.html { render :edit }
@@ -57,23 +55,25 @@ class ServicesController < ApplicationController
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
+      format.html { redirect_to services_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_vendor
-      @vendor = Vendor.find(params[:vendor_id])
-    end
 
-    def set_service
-      @service = Service.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_vendor
+    @vendor = Vendor.find(params[:vendor_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def service_params
-      params.require(:service).permit(:vendor_id, :name, :description, :price, :feature_photo)
-    end
+  def set_service
+    @service = Service.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def service_params
+    params.require(:service).permit(:vendor_id, :name, :description, :price, :feature_photo)
+  end
 end

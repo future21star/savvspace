@@ -20,6 +20,109 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  application:
+    notice: Access denied
+    user_not_authorized: You are not authorized to perform this action.
+  ambassadorships:
+    create:
+      notice: Ambassadorship was successfully created.
+    update:
+      notice: Ambassadorship was successfully updated.
+    destroy:
+      notice: Ambassadorship was successfully destroyed.
+  areas:
+    create:
+      notice: Area was successfully created.
+    update:
+      notice: Area was successfully updated.
+    destroy:
+      notice: Area was successfully destroyed.
+  article_categories:
+    create:
+      notice: Article category was successfully created.
+    update:
+      notice: Article category was successfully updated.
+    destroy:
+      notice: Article category was successfully destroyed.
+  articles:
+    create:
+      notice: Article was successfully created.
+    update:
+      notice: Article was successfully updated.
+    destroy:
+      notice: Article was successfully destroyed.
+  favorite_items:
+    create:
+      notice: Favorite item was successfully created.
+    update:
+      notice: Favorite item was successfully updated.
+    destroy:
+      notice: Favorite item was successfully destroyed.
+  feature_requests:
+    create:
+      notice: Feature request was successfully created.
+    update:
+      notice: Feature request was successfully updated.
+    destroy:
+      notice: Feature request was successfully destroyed.
+  features:
+    create:
+      notice: Feature was successfully created.
+    update:
+      notice: Feature was successfully updated.
+    destroy:
+      notice: Feature was successfully destroyed.
+  phone_calls:
+    create:
+      notice: Phone call was successfully created.
+    update:
+      notice: Phone call was successfully updated.
+    destroy:
+      notice: Phone call was successfully destroyed.
+  profiles:
+    create:
+      notice: Profile was successfully created.
+    update:
+      notice: Profile was successfully updated.
+    destroy:
+      notice: Profile was successfully destroyed.
+  property_notes:
+    create:
+      notice: Property note was successfully created.
+    update:
+      notice: Property note was successfully updated.
+    destroy:
+      notice: Property note was successfully destroyed.
+  ratings:
+    create:
+      notice: Rating was successfully created.
+    update:
+      notice: Rating was successfully updated.
+    destroy:
+      notice: Rating was successfully destroyed.
+  services:
+    create:
+      notice: Service was successfully created.
+    update:
+      notice: Service was successfully updated.
+    destroy:
+      notice: Service was successfully destroyed.
+  users:
+    create:
+      notice: User was successfully created.
+    update:
+      notice: User was successfully updated.
+    destroy:
+      notice: User was successfully destroyed.
+  vendors:
+    create:
+      notice: Vendor was successfully created.
+    update:
+      notice: Vendor was successfully updated.
+    destroy:
+      notice: Vendor was successfully destroyed.
+
+
   search: search
 
   homepage:

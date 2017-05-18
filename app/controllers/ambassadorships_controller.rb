@@ -1,5 +1,6 @@
 class AmbassadorshipsController < ApplicationController
-  before_action :set_ambassadorship, only: [:show, :edit, :update, :destroy]
+  before_action :set_ambassadorship, only: %i[show edit update destroy]
+  before_action :new_ambassadorship, only: :create
   before_action :require_admin
 
   # GET /ambassadorships
@@ -10,8 +11,7 @@ class AmbassadorshipsController < ApplicationController
 
   # GET /ambassadorships/1
   # GET /ambassadorships/1.json
-  def show
-  end
+  def show; end
 
   # GET /ambassadorships/new
   def new
@@ -19,24 +19,20 @@ class AmbassadorshipsController < ApplicationController
   end
 
   # GET /ambassadorships/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /ambassadorships
   # POST /ambassadorships.json
   def create
-    @ambassadorship = Ambassadorship.new(ambassadorship_params)
-
     respond_to do |format|
       if @ambassadorship.save
-        format.html { redirect_to @ambassadorship, notice: 'Ambassadorship was successfully created.' }
+        format.html { redirect_to @ambassadorship, notice: t('.notice') }
         format.json { render :show, status: :created, location: @ambassadorship }
-        format.js { render :create }
       else
         format.html { render :new }
         format.json { render json: @ambassadorship.errors, status: :unprocessable_entity }
-        format.js { render :create }
       end
+      format.js { render :create }
     end
   end
 
@@ -45,14 +41,13 @@ class AmbassadorshipsController < ApplicationController
   def update
     respond_to do |format|
       if @ambassadorship.update(ambassadorship_params)
-        format.html { redirect_to @ambassadorship, notice: 'Ambassadorship was successfully updated.' }
+        format.html { redirect_to @ambassadorship, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @ambassadorship }
-        format.js { render :update }
       else
         format.html { render :edit }
         format.json { render json: @ambassadorship.errors, status: :unprocessable_entity }
-        format.js { render :update }
       end
+      format.js { render :update }
     end
   end
 
@@ -60,24 +55,29 @@ class AmbassadorshipsController < ApplicationController
   # DELETE /ambassadorships/1.json
   def destroy
     @ambassadorship.destroy
+    @ambassadorship = Ambassadorship.new(area: @ambassadorship.area)
     respond_to do |format|
-      format.html { redirect_to ambassadorships_url, notice: 'Ambassadorship was successfully destroyed.' }
+      format.html { redirect_to ambassadorships_url, notice: t('.notice') }
       format.json { head :no_content }
-      format.js {
-        @ambassadorship = Ambassadorship.new(area: @ambassadorship.area)
-        render :destroy
-      }
+      format.js { render :destroy }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ambassadorship
-      @ambassadorship = Ambassadorship.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ambassadorship_params
-      params.require(:ambassadorship).permit(:user_id, :area_id)
-    end
+  # Only allow for create action
+  def new_ambassadorship
+    @ambassadorship = Ambassadorship.new(ambassadorship_params)
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ambassadorship
+    @ambassadorship = Ambassadorship.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def ambassadorship_params
+    params.require(:ambassadorship).permit(:user_id, :area_id)
+  end
 end

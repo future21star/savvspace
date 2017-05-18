@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
   def create
     @conversation = Conversation.find(params[:conversation_id])
-#    authorize @conversation
+    # authorize @conversation
     @message = @conversation.messages.create!(message_params.merge(from: current_user.profile))
   end
 
