@@ -49,6 +49,7 @@ gem 'jquery-ui-rails'
 gem 'mandrill-api'
 gem 'stripe-rails'
 gem 'bootstrap-multiselect-rails'
+gem 'jquery-turbolinks'
 
 # RETS Rabbit dependencies
 gem 'httparty'
