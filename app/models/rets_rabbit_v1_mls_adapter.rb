@@ -157,7 +157,7 @@ class RetsRabbitV1MlsAdapter < MlsAdapter
     results.parsed_response['results'].map { |r| build_open_house(mls, r) }
   end
 
-  def fetch_property_list(mls_server, offset = 0, _result_set = [])
+  def fetch_property_list(mls_server, offset = 0, result_set = [])
     Rails.logger.debug("Fetching 250 properties starting from #{offset}")
 
     response = self.class.get("/v1/#{mls_server.server_hash}/listing/search",
