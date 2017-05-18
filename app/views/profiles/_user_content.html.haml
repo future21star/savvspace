@@ -34,8 +34,8 @@
 - when "open_houses"
   #open_houses
     .property-search.m-b
-      = render partial: "open_house_searches/form"
+      = render partial: "open_house_searches/form", locals: {property_search: @property_search}
 
     #property-list
-      - @properties = OpenHouseSearch.new(mls_server: MlsServer.first).results
-      = render partial: "open_house_searches/index", locals: {properties: @properties}
+      - @property_search = OpenHouseSearch.find_or_create_by(profile: @profile, mls_server: MlsServer.first)
+      = render partial: "open_house_searches/index", locals: {property_search: @property_search}

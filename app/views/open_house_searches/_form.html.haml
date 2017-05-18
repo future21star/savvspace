@@ -1,9 +1,8 @@
-- property_search ||= OpenHouseSearch.new
-= form_for(property_search, {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
+= form_for(OpenHouseSearch.new(profile: @profile, mls_server_id: MlsServer.first.id), {remote: true, html: {class: "property-search form-inline with-spinner"}}) do |f|
   .form-group
     = f.label "Day(s)"
     %br
-    = f.select :from_date, open_house_date_options, {}, {class: "form-control custom-select multiple", multiple: true, data: {select_all: true}}
+    = f.select :from_dates_list, open_house_date_options, {}, {class: "form-control custom-select multiple", multiple: true, data: {select_all: true}}
   .form-group
     = f.label :sort_by
     %br
@@ -26,4 +25,5 @@
       %label &nbsp;
       %br
     = f.submit "Search", class: "btn btn-primary"
+    = f.hidden_field :profile_id
     = image_tag("dots.gif", height: 30, class: "ajax-spinner")
