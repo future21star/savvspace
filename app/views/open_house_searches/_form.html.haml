@@ -2,7 +2,7 @@
   .form-group
     = f.label "Day(s)"
     %br
-    = f.select :from_date, open_house_date_options, {}, {class: "form-control custom-select multiple", multiple: true, data: {select_all: true}}
+    = f.select :from_dates_list, open_house_date_options, {}, {class: "form-control custom-select multiple", multiple: true, data: {select_all: true}}
   .form-group
     = f.label :sort_by
     %br

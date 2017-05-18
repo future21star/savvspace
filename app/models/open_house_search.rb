@@ -1,11 +1,13 @@
 class OpenHouseSearch < ActiveRecord::Base
   include Searchable
 
+  attr_accessor :from_dates_list
+
   def query
     scope = mls_server.open_houses.upcoming
 
-    if from_date
-      from_dates = from_date.reject(&:blank?)
+    if from_dates_list
+      from_dates = from_dates_list.reject(&:blank?)
 
       query_pattern = from_dates.inject([]) do |array, _date|
         array << 'starts_at BETWEEN ? AND ?'
