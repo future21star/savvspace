@@ -11,10 +11,9 @@ class OpenHouseSearchesController < ApplicationController
   end
 
   def create
-    normalized_params = search_params.merge(mls_server: MlsServer.first).
-      inject({}) {|hash, (k,v)| hash.update(k => v.blank? ? nil : v)}
+    @property_search = OpenHouseSearch.find_or_create_by(search_params)
+    @property_search.update(from_dates_list: date_params[:from_dates_list])
 
-    @property_search = OpenHouseSearch.find_or_create_by(normalized_params)
     @profile = @property_search.profile
 
     respond_to do |format|
@@ -23,11 +22,18 @@ class OpenHouseSearchesController < ApplicationController
     end
   end
 
-
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.require(:open_house_search).permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds, :max_beds, :from_date, :to_date, :mls_server_id, :profile_id)
+      params.require(:open_house_search)
+            .permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds, :max_beds, :to_date, :mls_server_id, :profile_id)
+            .merge(mls_server: MlsServer.first)
+            .inject({}) {|hash, (k,v)| hash.update(k => v.blank? ? nil : v)}
     end
+
+    def date_params
+      params.require(:open_house_search).permit(from_dates_list: [])
+    end
+
 end
