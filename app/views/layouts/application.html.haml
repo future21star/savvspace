@@ -18,6 +18,8 @@
     = cloudinary_js_config
     = csrf_meta_tags
 
+    = render partial: "layouts/heap_analytics"
+
   %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
 
     = render 'layouts/flash'
