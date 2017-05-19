@@ -10,7 +10,7 @@
     %p.text-center
       %small
         Savvspace |
-        = link_to('www.savvspace.com', 'https://www.savvspace.com')
+        = link_to 'www.savvspace.com', 'https://www.savvspace.com', rel: 'nofollow'
         \|
         = t 'mailer.footer.company_address'
 
@@ -23,6 +23,6 @@
           = mail_to receiver
       %p.text-center
         %small
-          #{link_to(referrer.name, referrer)} (#{mail_to sender.email})
+          #{link_to(referrer.name, referrer, rel: 'nofollow')} (#{mail_to sender.email})
           = t 'mailer.footer.sender_info'
           = link_to 'Help Depatment', '#'

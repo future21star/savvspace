@@ -6,10 +6,10 @@
       = cl_image_tag(referrer.avatar.path, width: 170, height: 170, crop: :lfill, gravity: :face, quality: "auto:best")
     %columns{large: '8'}
       %h4
-        = link_to(referrer.name, referrer)
+        = link_to(referrer.name, referrer, rel: 'nofollow')
       %p
         - if referrer.username
-          = link_to(public_profile_url(referrer.username), public_profile_url(referrer.username))
+          = link_to(public_profile_url(referrer.username), public_profile_url(referrer.username), rel: 'nofollow')
           %br
         - if referrer.contact_email
           = referrer.contact_email

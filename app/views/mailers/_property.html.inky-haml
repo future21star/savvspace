@@ -3,7 +3,7 @@
     = cl_image_tag(item.photos.first, type: :fetch, width: 170, class: 'small-float-center')
     %p.text-center
       %small
-        = link_to('Property Details', '#')
+        = link_to('Property Details', '#', rel: 'nofollow')
   %columns{large: '8'}
     %h4= item.street_address
     %p= number_to_currency(item.list_price)
