@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
-  before_action :set_rating, only: [:show, :edit, :update, :destroy]
+  before_action :set_rating, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: [:show]
-  
+
   # GET /ratings
   # GET /ratings.json
   def index
@@ -10,8 +10,7 @@ class RatingsController < ApplicationController
 
   # GET /ratings/1
   # GET /ratings/1.json
-  def show
-  end
+  def show; end
 
   # GET /ratings/new
   def new
@@ -19,18 +18,17 @@ class RatingsController < ApplicationController
   end
 
   # GET /ratings/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /ratings
   # POST /ratings.json
   def create
     @rating = Rating.new(rating_params)
     @rating.user = current_user
-    
+
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to @rating, notice: t('.notice') }
         format.json { render :show, status: :created, location: @rating }
         format.js { render :create }
       else
@@ -45,7 +43,7 @@ class RatingsController < ApplicationController
   def update
     respond_to do |format|
       if @rating.update(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
+        format.html { redirect_to @rating, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @rating }
         format.js { render :update }
       else
@@ -60,19 +58,21 @@ class RatingsController < ApplicationController
   def destroy
     @rating.destroy
     respond_to do |format|
-      format.html { redirect_to ratings_url, notice: 'Rating was successfully destroyed.' }
+      format.html { redirect_to ratings_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rating
-      @rating = Rating.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def rating_params
-      params.require(:rating).permit(:user_id, :rateable_id, :rateable_type, :rating)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rating
+    @rating = Rating.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def rating_params
+    params.require(:rating).permit(:user_id, :rateable_id, :rateable_type, :rating)
+  end
 end

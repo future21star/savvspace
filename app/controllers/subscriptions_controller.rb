@@ -1,6 +1,5 @@
 class SubscriptionsController < ApplicationController
   layout 'subscriptions'
 
-  def index
-  end
+  def index; end
 end

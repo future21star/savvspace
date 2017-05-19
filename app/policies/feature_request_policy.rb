@@ -1,14 +1,14 @@
 class FeatureRequestPolicy < ApplicationPolicy
   def index?
-    user.has_role?("admin")
+    user.role?('admin')
   end
 
   def show?
-    user && (record.user == user || user.has_role?("admin"))
+    user && (record.user == user || user.role?('admin'))
   end
 
   def create?
-    ! user.nil?
+    !user.nil?
   end
 
   def update?

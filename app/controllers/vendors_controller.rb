@@ -1,6 +1,6 @@
 class VendorsController < ApplicationController
-  before_action :set_vendor, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_vendor, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
   # GET /vendors
   # GET /vendors.json
@@ -10,8 +10,7 @@ class VendorsController < ApplicationController
 
   # GET /vendors/1
   # GET /vendors/1.json
-  def show
-  end
+  def show; end
 
   # GET /vendors/new
   def new
@@ -19,8 +18,7 @@ class VendorsController < ApplicationController
   end
 
   # GET /vendors/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /vendors
   # POST /vendors.json
@@ -29,8 +27,8 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        current_user.grant_role!("owner", @vendor)
-        format.html { redirect_to edit_vendor_profile_url(@vendor), notice: 'Vendor was successfully created.' }
+        current_user.grant_role!('owner', @vendor)
+        format.html { redirect_to edit_vendor_profile_url(@vendor), notice: t('.notice') }
         format.json { render :show, status: :created, location: @vendor }
       else
         format.html { render :new }
@@ -44,7 +42,7 @@ class VendorsController < ApplicationController
   def update
     respond_to do |format|
       if @vendor.update(vendor_params)
-        format.html { redirect_to @vendor, notice: 'Vendor was successfully updated.' }
+        format.html { redirect_to @vendor, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @vendor }
       else
         format.html { render :edit }
@@ -58,19 +56,21 @@ class VendorsController < ApplicationController
   def destroy
     @vendor.destroy
     respond_to do |format|
-      format.html { redirect_to vendors_url, notice: 'Vendor was successfully destroyed.' }
+      format.html { redirect_to vendors_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_vendor
-      @vendor = Vendor.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def vendor_params
-      params.require(:vendor).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_vendor
+    @vendor = Vendor.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def vendor_params
+    params.require(:vendor).permit(:name, :description)
+  end
 end

@@ -13,6 +13,8 @@ machine:
 test:
   override:
     - bundle exec rake
+  post:
+    - bundle exec rubocop -R
 #deployment:
   #production:
   #  branch: master

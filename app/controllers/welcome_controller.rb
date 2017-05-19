@@ -3,9 +3,7 @@ class WelcomeController < ApplicationController
     @feature_article = Article.order(:created_at).first
   end
 
-  def about
-  end
+  def about; end
 
-  def contact
-  end
+  def contact; end
 end

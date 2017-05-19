@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge"}/
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
 
     = render 'application/favicon'
 
@@ -18,12 +18,19 @@
     = cloudinary_js_config
     = csrf_meta_tags
 
-  %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
-    #modal.modal.fade{role: "dialog", tabindex: "-1"}
-    #main
-      .container= render partial: "layouts/marketing_top_nav"
+    = render partial: "layouts/heap_analytics"
 
-      #main-container= yield
+  %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
+
+    = render 'layouts/flash'
+    #modal.modal.fade{role: "dialog", tabindex: "-1"}
+
+    #main
+      .container
+        = render partial: "layouts/marketing_top_nav"
+
+      #main-container
+        = yield
 
     %footer#site_footer.container-fluid
       .container.p-a-lg

@@ -98,7 +98,7 @@ RSpec.describe VendorsController, type: :controller do
 
       it "associates the logged in user as the owner of the Vendor" do
         post :create, {vendor: valid_attributes}
-        expect(admin_user.has_role?("owner", assigns(:vendor))).to be true
+        expect(admin_user.role?("owner", assigns(:vendor))).to be true
       end
     end
 

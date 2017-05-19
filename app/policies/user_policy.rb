@@ -11,7 +11,7 @@ class UserPolicy < ApplicationPolicy
     user &&
       (
        user == record ||
-       user.has_role?("admin")
+       user.role?('admin')
       )
   end
 

@@ -27,13 +27,13 @@ class OpenHouseSearchesController < ApplicationController
 
     def search_params
       params.require(:open_house_search)
-            .permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds, :max_beds, :to_date, :mls_server_id, :profile_id, :favorite)
+            .permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds,
+                    :max_beds, :to_date, :mls_server_id, :profile_id, :favorite)
             .merge(mls_server: MlsServer.first)
-            .inject({}) {|hash, (k,v)| hash.update(k => v.blank? ? nil : v)}
+            .inject({}) { |hash, (k, v)| hash.update(k => v.blank? ? nil : v) }
     end
 
     def date_params
       params.require(:open_house_search).permit(from_dates_list: [])
     end
-
 end

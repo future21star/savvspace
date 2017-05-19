@@ -1,6 +1,6 @@
 class ArticleCategoriesController < ApplicationController
-  before_action :set_article_category, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin, except: [:index, :show]
+  before_action :set_article_category, only: %i[show edit update destroy]
+  before_action :require_admin, except: %i[index show]
 
   # GET /article_categories
   # GET /article_categories.json
@@ -10,8 +10,7 @@ class ArticleCategoriesController < ApplicationController
 
   # GET /article_categories/1
   # GET /article_categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /article_categories/new
   def new
@@ -19,8 +18,7 @@ class ArticleCategoriesController < ApplicationController
   end
 
   # GET /article_categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /article_categories
   # POST /article_categories.json
@@ -29,7 +27,7 @@ class ArticleCategoriesController < ApplicationController
 
     respond_to do |format|
       if @article_category.save
-        format.html { redirect_to @article_category, notice: 'Article category was successfully created.' }
+        format.html { redirect_to @article_category, notice: t('.notice') }
         format.json { render :show, status: :created, location: @article_category }
       else
         format.html { render :new }
@@ -43,7 +41,7 @@ class ArticleCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @article_category.update(article_category_params)
-        format.html { redirect_to @article_category, notice: 'Article category was successfully updated.' }
+        format.html { redirect_to @article_category, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @article_category }
       else
         format.html { render :edit }
@@ -57,19 +55,21 @@ class ArticleCategoriesController < ApplicationController
   def destroy
     @article_category.destroy
     respond_to do |format|
-      format.html { redirect_to article_categories_url, notice: 'Article category was successfully destroyed.' }
+      format.html { redirect_to article_categories_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article_category
-      @article_category = ArticleCategory.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_category_params
-      params.require(:article_category).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article_category
+    @article_category = ArticleCategory.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def article_category_params
+    params.require(:article_category).permit(:name)
+  end
 end

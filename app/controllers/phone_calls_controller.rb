@@ -1,5 +1,5 @@
 class PhoneCallsController < ApplicationController
-  before_action :set_phone_call, only: [:show, :edit, :update, :destroy]
+  before_action :set_phone_call, only: %i[show edit update destroy]
 
   # GET /phone_calls
   # GET /phone_calls.json
@@ -9,8 +9,7 @@ class PhoneCallsController < ApplicationController
 
   # GET /phone_calls/1
   # GET /phone_calls/1.json
-  def show
-  end
+  def show; end
 
   # GET /phone_calls/new
   def new
@@ -19,8 +18,7 @@ class PhoneCallsController < ApplicationController
   end
 
   # GET /phone_calls/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /phone_calls
   # POST /phone_calls.json
@@ -30,7 +28,7 @@ class PhoneCallsController < ApplicationController
     respond_to do |format|
       if @phone_call.save
         ClickToCallJob.perform_later(@phone_call)
-        format.html { redirect_to @phone_call, notice: 'Phone call was successfully created.' }
+        format.html { redirect_to @phone_call, notice: t('.notice') }
         format.json { render :show, status: :created, location: @phone_call }
         format.js
       else
@@ -46,7 +44,7 @@ class PhoneCallsController < ApplicationController
   def update
     respond_to do |format|
       if @phone_call.update(phone_call_params)
-        format.html { redirect_to @phone_call, notice: 'Phone call was successfully updated.' }
+        format.html { redirect_to @phone_call, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @phone_call }
       else
         format.html { render :edit }
@@ -60,19 +58,21 @@ class PhoneCallsController < ApplicationController
   def destroy
     @phone_call.destroy
     respond_to do |format|
-      format.html { redirect_to phone_calls_url, notice: 'Phone call was successfully destroyed.' }
+      format.html { redirect_to phone_calls_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_phone_call
-      @phone_call = PhoneCall.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def phone_call_params
-      params.require(:phone_call).permit(:from, :profile_id, from_phone_attributes: [:number])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_phone_call
+    @phone_call = PhoneCall.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def phone_call_params
+    params.require(:phone_call).permit(:from, :profile_id, from_phone_attributes: [:number])
+  end
 end

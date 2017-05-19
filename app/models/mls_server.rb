@@ -4,7 +4,6 @@ class MlsServer < ActiveRecord::Base
   has_many :open_houses, dependent: :destroy
   has_many :properties, dependent: :destroy
 
-
   def fetch_open_house_list
     mls_adapter.open_houses_list(self)
   end

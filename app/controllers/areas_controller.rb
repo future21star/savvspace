@@ -1,5 +1,5 @@
 class AreasController < ApplicationController
-  before_action :set_area, only: [:show, :edit, :update, :destroy]
+  before_action :set_area, only: %i[show edit update destroy]
 
   # GET /areas
   # GET /areas.json
@@ -30,10 +30,9 @@ class AreasController < ApplicationController
   def create
     @area = Area.new(area_params)
     authorize @area
-
     respond_to do |format|
       if @area.save
-        format.html { redirect_to areas_url, notice: 'Area was successfully created.' }
+        format.html { redirect_to areas_url, notice: t('.notice') }
         format.json { render :show, status: :created, location: @area }
       else
         format.html { render :new }
@@ -48,7 +47,7 @@ class AreasController < ApplicationController
     authorize @area
     respond_to do |format|
       if @area.update(area_params)
-        format.html { redirect_to @area, notice: 'Area was successfully updated.' }
+        format.html { redirect_to @area, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @area }
       else
         format.html { render :edit }
@@ -63,19 +62,20 @@ class AreasController < ApplicationController
     authorize @area
     @area.destroy
     respond_to do |format|
-      format.html { redirect_to areas_url, notice: 'Area was successfully destroyed.' }
+      format.html { redirect_to areas_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_area
-      @area = Area.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def area_params
-      params.require(:area).permit(:name, :description, :display_photo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_area
+    @area = Area.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def area_params
+    params.require(:area).permit(:name, :description, :display_photo)
+  end
 end

@@ -30,7 +30,7 @@
                 = profile_image(current_user)
                 %span.caret
               %ul.dropdown-menu
-                - if current_user.has_role?('admin')
+                - if current_user.role?('admin')
                   %li= link_to('Site Admin', dashboard_path)
                 %li= link_to('Home', user_path(current_user))
                 - if current_user.profile.name

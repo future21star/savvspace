@@ -1,6 +1,6 @@
 class PropertyNotesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_property_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_note, only: %i[show edit update destroy]
 
   # GET /property_notes
   # GET /property_notes.json
@@ -10,17 +10,17 @@ class PropertyNotesController < ApplicationController
 
   # GET /property_notes/1
   # GET /property_notes/1.json
-  def show
-  end
+  def show; end
 
   # GET /property_notes/new
   def new
-    @property_note = current_user.property_notes.find_or_initialize_by(property_id: params[:property_id])
+    @property_note = current_user
+                     .property_notes
+                     .find_or_initialize_by(property_id: params[:property_id])
   end
 
   # GET /property_notes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /property_notes
   # POST /property_notes.json
@@ -29,14 +29,13 @@ class PropertyNotesController < ApplicationController
 
     respond_to do |format|
       if @property_note.save
-        format.html { redirect_to @property_note, notice: 'Property note was successfully created.' }
+        format.html { redirect_to @property_note, notice: t('.notice') }
         format.json { render :show, status: :created, location: @property_note }
-        format.js
       else
         format.html { render :new }
         format.json { render json: @property_note.errors, status: :unprocessable_entity }
-        format.js
       end
+      format.js
     end
   end
 
@@ -45,14 +44,13 @@ class PropertyNotesController < ApplicationController
   def update
     respond_to do |format|
       if @property_note.update(property_note_params)
-        format.html { redirect_to @property_note, notice: 'Property note was successfully updated.' }
+        format.html { redirect_to @property_note, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @property_note }
-        format.js
       else
         format.html { render :edit }
         format.json { render json: @property_note.errors, status: :unprocessable_entity }
-        format.js
       end
+      format.js
     end
   end
 
@@ -61,19 +59,21 @@ class PropertyNotesController < ApplicationController
   def destroy
     @property_note.destroy
     respond_to do |format|
-      format.html { redirect_to property_notes_url, notice: 'Property note was successfully destroyed.' }
+      format.html { redirect_to property_notes_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property_note
-      @property_note = PropertyNote.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_note_params
-      params.require(:property_note).permit(:user_id, :property_id, :text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property_note
+    @property_note = PropertyNote.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def property_note_params
+    params.require(:property_note).permit(:user_id, :property_id, :text)
+  end
 end

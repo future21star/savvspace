@@ -1,1 +1,1 @@
-json.partial! "feature_requests/feature_request", feature_request: @feature_request
+json.partial! 'feature_requests/feature_request', feature_request: @feature_request
