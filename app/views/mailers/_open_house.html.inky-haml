@@ -5,7 +5,7 @@
       %small= event_date(item)
       %br
       %small
-        = link_to('Open House Details', mls_server_property_url(item.mls_server, item.mls_property_id), rel: 'nofollow')
+        = link_to('Open House Details', mls_server_property_url(item.mls_server, item.mls_property_id))
   %columns{large: '8'}
     %h4= item.street_address
     %p= number_to_currency(item.list_price)
