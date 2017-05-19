@@ -13,8 +13,12 @@ class PropertySearch < ActiveRecord::Base
     scope = scope.where(['bedrooms <= ?', max_beds]) if max_beds.present?
     scope = scope.where(property_type: property_type) if property_type.present?
     scope = scope.where(area: area) if area.present?
-    scope = scope.joins(:favorite_items)
-              .where(favorite_items: { user: profile.profiled }) if favorite?
+
+    if favorite?
+      scope = scope.joins(:favorite_items)
+                   .where(favorite_items: { user: profile.profiled })
+    end
+
     scope
   end
 
