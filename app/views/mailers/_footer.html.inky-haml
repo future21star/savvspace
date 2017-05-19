@@ -10,7 +10,7 @@
     %p.text-center
       %small
         Savvspace |
-        = link_to('www.savvspace.com', 'https://www.savvspace.com')
+        = link_to 'www.savvspace.com', 'https://www.savvspace.com'
         \|
         = t 'mailer.footer.company_address'
 

@@ -4,7 +4,8 @@
 
 setProfileUrlHint = () ->
   return false unless $("input#profile_username")
-  $(".form-group.profile_username .help-block").html("Claim your personal URL: https://savvspace.com/u/" + $("input#profile_username").val())
+  $(".form-group.profile_username span.help-block").hide()
+  $(".form-group.profile_username p.help-block").html("Claim your personal URL: https://savvspace.com/u/" + $("input#profile_username").val())
 
 $(document).on "turbolinks:load", ->
   setProfileUrlHint()
