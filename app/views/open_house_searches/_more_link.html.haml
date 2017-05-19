@@ -1,4 +1,4 @@
-- if property_search.has_more?
+- if property_search.more?
   #more-link.row
     .col-md-12
       = link_to("More", open_house_search_path(property_search, offset: property_search.next_page_offset), remote: true, data: {disable_with: "Processing..."}, class: "btn btn-default btn-block")

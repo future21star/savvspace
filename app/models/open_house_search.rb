@@ -50,4 +50,8 @@ class OpenHouseSearch < ActiveRecord::Base
   def from_dates
     from_dates_list.reject(&:blank?)
   end
+
+  def from_dates_list
+    @from_dates_list ||= []
+  end
 end
