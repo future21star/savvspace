@@ -1,5 +1,4 @@
 class OpenHouseSearchesController < ApplicationController
-
   def show
     @property_search = OpenHouseSearch.find(params[:id])
     @property_search.offset = params[:offset] || 0
@@ -25,15 +24,15 @@ class OpenHouseSearchesController < ApplicationController
 
   private
 
-    def search_params
-      params.require(:open_house_search)
-            .permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds,
-                    :max_beds, :to_date, :mls_server_id, :profile_id, :favorite)
-            .merge(mls_server: MlsServer.first)
-            .inject({}) { |hash, (k, v)| hash.update(k => v.blank? ? nil : v) }
-    end
+  def search_params
+    params.require(:open_house_search)
+          .permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds,
+                  :max_beds, :to_date, :mls_server_id, :profile_id, :favorite)
+          .merge(mls_server: MlsServer.first)
+          .inject({}) { |hash, (k, v)| hash.update(k => v.blank? ? nil : v) }
+  end
 
-    def date_params
-      params.require(:open_house_search).permit(from_dates_list: [])
-    end
+  def date_params
+    params.require(:open_house_search).permit(from_dates_list: [])
+  end
 end

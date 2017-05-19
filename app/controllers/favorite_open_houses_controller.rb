@@ -4,6 +4,10 @@ class FavoriteOpenHousesController < ApplicationController
   def index
     @profile = current_user.profile
     @favorite = true
-    @property_search = OpenHouseSearch.find_or_create_by(profile: @profile, mls_server: MlsServer.first, favorite: @favorite)
+    @property_search = OpenHouseSearch.find_or_create_by(
+      profile: @profile,
+      mls_server: MlsServer.first,
+      favorite: @favorite
+    )
   end
 end

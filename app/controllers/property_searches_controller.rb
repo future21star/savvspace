@@ -26,9 +26,10 @@ class PropertySearchesController < ApplicationController
 
   private
 
-    def search_params
-      params.require(:property_search).permit(:profile_id, :min_price, :max_price,
-                                              :min_beds, :max_beds, :sort_by, :mls_server_id,
-                                              :property_type, :area, :offset, :limit, :favorite)
-    end
+  def search_params
+    params.require(:property_search)
+          .permit(:profile_id, :min_price, :max_price,
+                  :min_beds, :max_beds, :sort_by, :mls_server_id,
+                  :property_type, :area, :offset, :limit, :favorite)
+  end
 end

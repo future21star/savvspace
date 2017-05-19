@@ -21,9 +21,10 @@ class OpenHouseSearch < ActiveRecord::Base
       scope = scope.where(date_query)
     end
 
-    scope = scope.where(["list_price >= ?", min_price]) if min_price.present?
-    scope = scope.where(["list_price <= ?", max_price]) if max_price.present?
-    scope = scope.joins(:favorite_items).where(favorite_items: { user: profile.profiled }) if favorite
+    scope = scope.where(['list_price >= ?', min_price]) if min_price.present?
+    scope = scope.where(['list_price <= ?', max_price]) if max_price.present?
+    scope = scope.joins(:favorite_items)
+              .where(favorite_items: { user: profile.profiled }) if favorite?
     scope
   end
 
@@ -37,4 +38,5 @@ class OpenHouseSearch < ActiveRecord::Base
       'starts_at asc'
     end
   end
+
 end
