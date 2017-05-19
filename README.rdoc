@@ -1,3 +1,5 @@
+{<img src="https://circleci.com/gh/aaroncampos/savvspace.svg?style=svg&circle-token=31403e2bfe49b8d4540521feb497ef9ea21c0810" alt="CircleCI" />}[https://circleci.com/gh/aaroncampos/savvspace]
+
 == README
 
 This README would normally document whatever steps are necessary to get the
