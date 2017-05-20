@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def send_sign_up_message
     SignUpMessageJob.perform_later(email)
   end
+
+  def visiting_different_profile?(profile)
+    self.profile != profile
+  end
 end

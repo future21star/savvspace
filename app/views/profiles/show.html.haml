@@ -11,7 +11,9 @@
             %span.icon.icon-edit
             Edit
 
-      .links.text-center= render partial: "social_links", locals: {profile: @profile}
+      - if user_signed_in? && current_user.visiting_different_profile?(@profile)
+        .links.text-center= render partial: "social_links", locals: {profile: @profile}
+
     .col-md-9
       %h2.name= @profile.name
       %p.bio= @profile.bio.to_s.truncate(400)
