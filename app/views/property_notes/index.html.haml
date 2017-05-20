@@ -16,10 +16,10 @@
         %td= property_note.user
         %td= property_note.property
         %td= property_note.text
-        %td= link_to 'Show', property_note
-        %td= link_to 'Edit', edit_property_note_path(property_note)
-        %td= link_to 'Destroy', property_note, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('.show'), property_note
+        %td= link_to t('.edit'), edit_property_note_path(property_note)
+        %td= link_to t('.destroy'), property_note, :method => :delete, :data => { :confirm => t('.confirm') }
 
 %br
 
-= link_to 'New Property note', new_property_note_path
+= link_to t('.new'), new_property_note_path
