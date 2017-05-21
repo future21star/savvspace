@@ -81,6 +81,9 @@ group :development, :test do
   gem 'pundit-matchers', '~> 1.1.0'
   gem 'rails_real_favicon'
   gem 'pry'
+  # gem 'simplecov', require => false
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
