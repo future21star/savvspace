@@ -39,7 +39,9 @@
           .col-md-6
             %ul.list-inline
               %li
-                = link_to("Help + FAQs", "#")
+                = link_to("Help", help_path)
+              %li
+                = link_to("FAQs", faqs_path)
               %li
                 = link_to("Contact", contact_path)
               - if user_signed_in?
