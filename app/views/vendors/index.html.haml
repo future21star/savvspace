@@ -1,7 +1,6 @@
 .container
   %h2
     Vendors
-    %span.small= link_to(t('.create'), new_vendor_path, class: "small")
 
   - @vendors.in_groups_of(3, false) do |group|
     .row
