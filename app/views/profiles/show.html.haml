@@ -11,8 +11,7 @@
             %span.icon.icon-edit
             Edit
 
-      - if can_see_social_links?(@profile)
-        .links.text-center= render partial: "social_links", locals: {profile: @profile}
+      .links.text-center= render partial: "social_links", locals: {profile: @profile}
 
     .col-md-9
       %h2.name= @profile.name

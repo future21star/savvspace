@@ -25,7 +25,7 @@ module ProfilesHelper
     end
   end
 
-  def can_see_social_links?(profile)
+  def can_contact?(profile)
     !user_signed_in? || (user_signed_in? && current_user.visiting_different_profile?(profile))
   end
 end
