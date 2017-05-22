@@ -1,5 +1,5 @@
 .container
-  %h2 Trailblazers
+  %h2= t('.title')
   - @users.in_groups_of(3, false) do |group|
     .row
       - group.each do |user|
