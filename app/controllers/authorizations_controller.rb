@@ -4,7 +4,7 @@ class AuthorizationsController < ApplicationController
 
   def create
     respond_to do |format|
-      if @user.grant_role(role_name)
+      if @user.grant_role!(role_name)
         format.html { redirect_to users_path }
         format.json { render :show, status: :created, location: @user }
       else

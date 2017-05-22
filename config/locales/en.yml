@@ -110,6 +110,9 @@ en:
       format_date: "%b %d, %Y"
       author_profile: Author Profile
       read_more: ">> READ MORE"
+  authorizations:
+    remove: Remove
+    grant: Grant
   conversations:
     show:
       send: Send

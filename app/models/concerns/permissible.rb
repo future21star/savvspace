@@ -8,7 +8,7 @@ module Permissible
   def grant_role(role_name, authorizable = nil)
     return true if role?(role_name, authorizable)
 
-    authorizations.new(role: Role.find_or_create_by(name: role_name),
+    authorizations.new(role: Role.find_by(name: role_name),
                        authorizable: authorizable).save!
   end
 
