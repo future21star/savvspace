@@ -15,7 +15,7 @@
           %td= user.email
           %td= link_to t('.show'), user
           %td= link_to t('.edit'), edit_user_path(user)
-          %td= link_to t('.dDestroy'), user, :method => :delete, :data => { :confirm => t('.confirm') }
+          %td= link_to t('.destroy'), user, :method => :delete, :data => { :confirm => t('.confirm') }
 
   %br
 
