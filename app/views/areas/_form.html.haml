@@ -1,11 +1,11 @@
 - if @area.persisted?
   %ul.no-border{tab_nav_list}
     %li.active{tab_nav_item}
-      = tab_link("General", "general")
+      = tab_link(t("areas.shared.general"), "general")
     %li{tab_nav_item}
-      = tab_link("Ambassador", "ambassador")
+      = tab_link(t("areas.shared.ambassador"), "ambassador")
     %li{tab_nav_item}
-      = tab_link("Articles", "articles")
+      = tab_link(t("areas.shared.articles"), "articles")
 
 .tab-content
   #general.tab-pane.active{role: "tabpanel"}
@@ -18,7 +18,7 @@
           = f.input :display_photo, as: :attachinary
         .panel-footer
           .pull-right= f.button :submit
-          = link_to("Cancel", areas_path, class: "btn btn-default")
+          = link_to(t("areas.shared.cancel"), areas_path, class: "btn btn-default")
   - if @area.persisted?
     #ambassador.tab-pane{role: "tabpanel"}
       = render "ambassadorships/embedded_form"
@@ -26,7 +26,7 @@
     #articles.tab-pane{role: "tabpanel"}
       .panel.panel-default
         .panel-heading.text-right
-          = link_to("New Article", new_article_path, class: "btn btn-primary icon icon-plus")
+          = link_to(t("areas.shared.new_article"), new_article_path, class: "btn btn-primary icon icon-plus")
         .panel-body
           %ul.media-list
             - @area.articles.each do |article|

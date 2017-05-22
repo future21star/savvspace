@@ -18,10 +18,10 @@
         %td= feature.description
         %td= feature.enabled
         %td= feature.disabled
-        %td= link_to 'Show', feature
-        %td= link_to 'Edit', edit_feature_path(feature)
-        %td= link_to 'Destroy', feature, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('.show'), feature
+        %td= link_to t('.edit'), edit_feature_path(feature)
+        %td= link_to t('.destroy'), feature, :method => :delete, :data => { :confirm => t('confirm') }
 
 %br
 
-= link_to 'New Feature', new_feature_path
+= link_to t('.new'), new_feature_path

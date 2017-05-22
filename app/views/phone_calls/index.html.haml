@@ -14,10 +14,10 @@
       %tr
         %td= phone_call.from
         %td= phone_call.profile
-        %td= link_to 'Show', phone_call
-        %td= link_to 'Edit', edit_phone_call_path(phone_call)
-        %td= link_to 'Destroy', phone_call, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('.show'), phone_call
+        %td= link_to t('.edit'), edit_phone_call_path(phone_call)
+        %td= link_to t('.destroy'), phone_call, :method => :delete, :data => { :confirm => t('.confirm') }
 
 %br
 
-= link_to 'New Phone call', new_phone_call_path
+= link_to t('.new'), new_phone_call_path

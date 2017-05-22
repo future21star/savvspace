@@ -28,10 +28,10 @@
         %td= open_house_search.from_date
         %td= open_house_search.to_date
         %td= open_house_search.mls_server
-        %td= link_to 'Show', open_house_search
-        %td= link_to 'Edit', edit_open_house_search_path(open_house_search)
-        %td= link_to 'Destroy', open_house_search, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('.show'), open_house_search
+        %td= link_to t('.edit'), edit_open_house_search_path(open_house_search)
+        %td= link_to t('.destroy'), open_house_search, :method => :delete, :data => { :confirm => t('.confirm') }
 
 %br
 
-= link_to 'New Open house search', new_open_house_search_path
+= link_to t('.new'), new_open_house_search_path

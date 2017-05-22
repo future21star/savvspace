@@ -2,7 +2,7 @@
   %h1
     Latest articles
     - if policy(Article).create?
-      %span.small= link_to("Create New...", new_article_path, class: "small")
+      %span.small= link_to(t('.new'), new_article_path, class: "small")
 
   .article-list.col-md-8
     = render partial: "article", collection: @articles, spacer_template: 'article_spacer'

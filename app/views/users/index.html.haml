@@ -13,10 +13,10 @@
       - @users.each do |user|
         %tr
           %td= user.email
-          %td= link_to 'Show', user
-          %td= link_to 'Edit', edit_user_path(user)
-          %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= link_to t('.show'), user
+          %td= link_to t('.edit'), edit_user_path(user)
+          %td= link_to t('.dDestroy'), user, :method => :delete, :data => { :confirm => t('.confirm') }
 
   %br
 
-  = link_to 'New User', new_user_path
+  = link_to t('.new'), new_user_path

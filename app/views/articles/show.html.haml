@@ -12,7 +12,7 @@
       %h1
         = @article.title
         - if policy(@article).edit?
-          = link_to("Edit...", edit_article_path, class: "small")
+          = link_to(t('.edit'), edit_article_path, class: "small")
 
       .media-left
         - if @article.author.profile.avatar
