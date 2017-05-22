@@ -174,7 +174,7 @@ en:
     title: "A modern take on Finding Home."
 
   message:
-    sign_up: "Hello, new user signed up on Savvspace using the following email: %{email}"
+    sign_up: "Ka-ching! New user on Savvspace: %{email}"
 
   activerecord:
     errors:
