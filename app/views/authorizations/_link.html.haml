@@ -1,0 +1,4 @@
+- if user.role?('trailblazer')
+  %td.authorization-link[user]= link_to('Remove', delete_authorization_path(user, 'trailblazer'), method: :delete, remote: true, confirm: 'Are you sure?')
+- else
+  %td.authorization-link[user]= button_to('Grant', create_authorization_path(user, 'trailblazer'), mathod: :post, remote: true)

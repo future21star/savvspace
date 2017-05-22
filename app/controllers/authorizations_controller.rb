@@ -1,33 +1,38 @@
 class AuthorizationsController < ApplicationController
   before_action :require_admin
+  before_action :set_user
 
   def create
-    user = User.find(params[:user_id])
-    role_name =  params[:role_name]
-
     respond_to do |format|
-      if user.grant_role(role_name)
+      if @user.grant_role(role_name)
         format.html { redirect_to users_path }
-        format.js
-        format.json { render :show, status: :created, location: @authorization }
+        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
-        format.json { render json: @authorization.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    user = User.find(params[:user_id])
-    role_name =  params[:role_name]
-
-    user.remove_role(role_name)
-
     respond_to do |format|
-      format.html { redirect_to users_path }
-      format.js
-      format.json { head :no_content }
+      if @user.remove_role(role_name)
+        format.html { redirect_to users_path }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def role_name
+    params[:role_name]
+  end
 end

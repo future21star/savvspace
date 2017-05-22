@@ -8,7 +8,7 @@
         %th
         %th
         %th
-        %th
+        %th Trailblazer Role
 
     %tbody
       - @users.each do |user|
@@ -18,10 +18,7 @@
           %td= link_to t('.edit'), edit_user_path(user)
           %td= link_to t('.destroy'), user, method: :delete, data: { confirm: t('.confirm') }
 
-          - if user.role?('trailblazer')
-            %td= link_to('Remove Trailblazer', delete_authorization_path(user, 'trailblazer'), method: :delete, confirm: 'Are you sure?')
-          - else
-            %td= button_to('Make Trailblazer', create_authorization_path(user, 'trailblazer'), mathod: :post)
+          = render partial: 'authorizations/link', locals: {user: user}
 
   %br
 
