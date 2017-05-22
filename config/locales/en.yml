@@ -361,6 +361,10 @@ en:
       back: Back
     shared:
       save: Save
+  trailblazers:
+    index:
+      title: Community Trailblazers
+
   welcome:
     index:
       trailblazers: Trailblazers
