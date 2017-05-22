@@ -22,3 +22,39 @@
     color: $dark-gray;
   }
 }
+
+.property{
+  .carousel-inner > .item > img, .carousel-inner > .item > a > img{
+    width: 100%;
+  }
+  .carousel-indicators{
+    // left: 5%;
+    // margin-left: 0px;
+    // width: 90%;
+    position: relative;
+    left: 0px;
+    margin-left: 0px;
+    width: 100%;
+    margin-top: 30px;
+    li{
+      width: 4.7%;
+      height: 40px;
+      text-indent: inherit;
+      border: none;
+      img{
+        width: 100%;
+        border-radius: 3px;
+        &:hover{
+          box-shadow: -3px 3px 10px;
+          // border: solid 1px lightgreen;
+        }
+      }
+    }
+    li.active{
+      img{
+        box-shadow: -3px 3px 10px;
+      }
+    }
+
+  }
+}
