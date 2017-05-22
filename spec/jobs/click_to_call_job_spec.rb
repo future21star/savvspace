@@ -8,9 +8,8 @@ RSpec.describe ClickToCallJob, type: :job do
   end
 
   before do
-    FakeWeb.register_uri(:post,
-                         %r|api.twilio.com/2010-04-01/Accounts/#{ENV.fetch('TWILIO_SID')}/Calls.json|,
-                         :response => create_call_response)
+    stub_request(:post, %r|api.twilio.com/2010-04-01/Accounts/#{ENV.fetch('TWILIO_SID')}/Calls.json|).
+      to_return(create_call_response)
   end
 
   describe "#execute" do

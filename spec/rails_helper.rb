@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'pundit/matchers'
+require 'webmock/rspec'
 
 if ENV['CIRCLE_ARTIFACTS']
   dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")
@@ -22,11 +23,11 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  # config.extend VCR::RSpec::Macros
+  config.extend VCR::RSpec::Macros
 end
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.hook_into :webmock # or :fakeweb
-  c.allow_http_connections_when_no_cassette = true
+  c.allow_http_connections_when_no_cassette = false
 end
