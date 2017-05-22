@@ -340,6 +340,7 @@ en:
       notice: Vendor was successfully destroyed.
     index:
       create: Create New...
+      vendors: Vendors
     new:
       back: Back
     edit:
