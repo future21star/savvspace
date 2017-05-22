@@ -16,9 +16,9 @@
             %li.call-to-action.guest-only
               = link_to(t('views.navbar.sign_up'), new_user_registration_path, class: 'signup icon icon-lock', id: 'signup')
           %li
-            = link_to(t('views.navbar.help'), '#')
+            = link_to(t('views.navbar.help'), help_path)
           %li
-            = link_to(t('views.navbar.faqs'), '#')
+            = link_to(t('views.navbar.faqs'), faqs_path)
           - if user_signed_in?
             %li
               = link_to(conversations_path, remote: true) do

@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge"}
-    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}
+    %meta{'http-equiv' => 'X-UA-Compatible', content: 'IE=edge'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
 
     = render 'application/favicon'
 
@@ -13,21 +13,21 @@
     = stylesheet_link_tag    '//fonts.googleapis.com/css?family=Montserrat:300,400,600,700'
     = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_KEY']}"
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = javascript_include_tag "https://js.stripe.com/v2/", "https://js.stripe.com/v3/"
+    = javascript_include_tag 'https://js.stripe.com/v2/', 'https://js.stripe.com/v3/'
     = stripe_javascript_tag
     = cloudinary_js_config
     = csrf_meta_tags
 
-    = render partial: "layouts/heap_analytics"
+    = render partial: 'layouts/heap_analytics'
 
   %body{class: [controller.controller_name, (user_signed_in? ? 'authenticated' : 'guest')], id: controller.action_name}
 
     = render 'layouts/flash'
-    #modal.modal.fade{role: "dialog", tabindex: "-1"}
+    #modal.modal.fade{role: 'dialog', tabindex: '-1'}
 
     #main
       .container
-        = render partial: "layouts/marketing_top_nav"
+        = render partial: 'layouts/marketing_top_nav'
 
       #main-container
         = yield
@@ -39,25 +39,27 @@
           .col-md-6
             %ul.list-inline
               %li
-                = link_to("Help + FAQs", "#")
+                = link_to('Help', help_path)
               %li
-                = link_to("Contact", contact_path)
+                = link_to('FAQs', faqs_path)
+              %li
+                = link_to('Contact', contact_path)
               - if user_signed_in?
                 %li
-                  = link_to("My Profile", user_profile_path(current_user))
+                  = link_to('My Profile', user_profile_path(current_user))
               %li
-                = link_to("Businesses", vendors_path)
+                = link_to('Businesses', vendors_path)
               %li
-                = link_to("Articles", articles_path)
-              %li
-                = link_to("Find a House", "#")
+                = link_to('Articles', articles_path)
+              -# %li
+              -#   = link_to('Find a House', '#')
           .col-md-4
             &copy; 2017 Savvspace.
             All Rights Reserved
 
           .col-md-2.text-right.social-links
-            %a.icon.icon-facebook{href: "https://www.facebook.com/rachaelbissig", target: "_blank"}
-            %a.icon.icon-twitter{href: "#"}
-            %a.icon.icon-instagram{href: "https://www.instagram.com/rachaelbissigrealestate/", target: "_blank"}
+            %a.icon.icon-facebook{href: 'https://www.facebook.com/rachaelbissig', target: '_blank'}
+            %a.icon.icon-twitter{href: 'https://twitter.com/savvspace', target: '_blank'}
+            %a.icon.icon-instagram{href: 'https://www.instagram.com/rachaelbissigrealestate/', target: '_blank'}
 
     = javascript_include_tag '/dist/toolkit.min.js', 'data-turbolinks-track' => true
