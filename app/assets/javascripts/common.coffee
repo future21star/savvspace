@@ -21,6 +21,22 @@ $(document).on "turbolinks:load", ->
   $('.attachinary-input').attachinary()
 
   $('.carousel').carousel()
+  # handles the carousel thumbnails
+  $('[id^=carousel-selector-]').click ->
+    id_selector = $(this).attr('id')
+    id = id_selector.substr(id_selector.length - 1)
+    id = parseInt(id)
+    $('.carousel').carousel id
+    $('[id^=carousel-selector-]').removeClass 'selected'
+    $(this).addClass 'selected'
+
+  # when the carousel slides, auto update
+  $('.carousel').on 'slid', (e) ->
+    id = $('.item.active').data('slide-number')
+    id = parseInt(id)
+    $('[id^=carousel-selector-]').removeClass 'selected'
+    $('[id=carousel-selector-' + id + ']').addClass 'selected'
+
   $.cloudinary.responsive()
   $('.wysihtml5-sandbox').css("resize", "vertical")
   $("[data-toggle=dropdown]").dropdown()
