@@ -142,11 +142,18 @@ en:
       notice: Feature request was successfully updated.
     destroy:
       notice: Feature request was successfully destroyed.
+    new:
+      title: Sign Up for IDX Access
     edit:
+      title: Editing Feature Request
       show: Show
       back: Back
     shared:
       submit: Request Access
+      placeholder:
+        agent_name: Agent Name
+        broker_name: Broker Name
+        broker_email: Broker Email
   features:
     create:
       notice: Feature was successfully created.
