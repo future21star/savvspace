@@ -17,6 +17,13 @@ module Permissible
     grant_role(role.name, authorizable)
   end
 
+  def remove_role(role_name, authorizable = nil)
+    return true unless role?(role_name, authorizable)
+
+    authorizations.find_by(role: Role.find_by(name: role_name),
+                           authorizable: authorizable).destroy
+  end
+
   def role?(role_name, authorizable = nil)
     authorizations.exists?(roles: { name: role_name },
                            authorizable: authorizable)

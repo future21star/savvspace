@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  post 'users/:user_id/authorizations/:role_name', to: 'authorizations#create', as: :create_authorization
+  delete 'users/:user_id/authorizations/:role_name', to: 'authorizations#destroy', as: :delete_authorization
+
   resources :phone_calls
   resources :services
 
