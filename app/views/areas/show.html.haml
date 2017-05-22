@@ -31,13 +31,13 @@
     %nav
       %ul.nav.nav-pills.nav-justified
         %li.active
-          = link_to("Articles", "#")
+          = link_to(t(".articles"), "#")
         %li
-          = link_to("Vendors", "#")
+          = link_to(t(".vendors"), "#")
         %li
-          = link_to("Photos", "#")
+          = link_to(t(".photos"), "#")
         %li
-          = link_to("Map", "#")
+          = link_to(t(".map"), "#")
 
 #articles.container
   - if @area.articles.empty?

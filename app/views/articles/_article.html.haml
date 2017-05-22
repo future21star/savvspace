@@ -14,12 +14,12 @@
     %h3.m-y-0= link_to(article.title, article)
     %p.author-byline
       %span.icon.icon-new-message
-      = link_to(article.author.profile.name, article.author.profile, title: "Author Profile")
+      = link_to(article.author.profile.name, article.author.profile, title: t('articles.shared.author_profile'))
       %span.icon.icon-clock
       - if article.updated_at.today?
-        = article.updated_at.strftime("%l:%M %P")
+        = article.updated_at.strftime(t("articles.shared.format_time"))
       - else
-        = article.updated_at.strftime("%b %d, %Y")
+        = article.updated_at.strftime(t("articles.shared.format_date"))
       %span.icon.icon-chat
       0
     %p.summary= strip_tags(article.body).truncate(150)

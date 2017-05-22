@@ -16,6 +16,6 @@
     .modal-body
       = simple_form_for([@conversation, Message.new], remote: true) do |f|
         .form-group
-          = f.input_field :body, :placeholder => "Message", label: false, class: "form-control"
+          = f.input_field :body, :placeholder => t('conversations.show.message'), label: false, class: "form-control"
         .form-group.text-right.m-b-0
-          = f.submit "Send", class: "btn btn-primary btn-sm"
+          = f.submit t('conversations.show.send'), class: "btn btn-primary btn-sm"

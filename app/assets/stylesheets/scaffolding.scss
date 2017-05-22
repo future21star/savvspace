@@ -12,9 +12,6 @@ body#edit, body#new {
   form .field {
     @extend .form-group;
   }
-  input[type=text] {
-    @extend .form-control;
-  }
   input[type=submit] {
     @extend .btn;
     @extend .btn-primary;

@@ -14,10 +14,10 @@
       %tr
         %td= favorite_item.favorite
         %td= favorite_item.user
-        %td= link_to 'Show', favorite_item
-        %td= link_to 'Edit', edit_favorite_item_path(favorite_item)
-        %td= link_to 'Destroy', favorite_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('.show'), favorite_item
+        %td= link_to t('.edit'), edit_favorite_item_path(favorite_item)
+        %td= link_to t('.destroy'), favorite_item, :method => :delete, :data => { :confirm => t('.confirm') }
 
 %br
 
-= link_to 'New Favorite item', new_favorite_item_path
+= link_to t('.new'), new_favorite_item_path

@@ -30,6 +30,22 @@ en:
       notice: Ambassadorship was successfully updated.
     destroy:
       notice: Ambassadorship was successfully destroyed.
+    index:
+      new: New Ambassadorship
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+    shared:
+      delete: Delete Ambassadorship
   areas:
     create:
       notice: Area was successfully created.
@@ -37,6 +53,21 @@ en:
       notice: Area was successfully updated.
     destroy:
       notice: Area was successfully destroyed.
+    index:
+      new: Create New...
+    new:
+    edit:
+    show:
+      articles: Articles
+      vendors: Vendors
+      photos: Photos
+      map: Map
+    shared:
+      general: General
+      ambassador: Ambassador
+      articles: Articles
+      cancel: Cancel
+      new_article: New Article
   article_categories:
     create:
       notice: Article category was successfully created.
@@ -44,6 +75,20 @@ en:
       notice: Article category was successfully updated.
     destroy:
       notice: Article category was successfully destroyed.
+    index:
+      new: New Article category
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
   articles:
     create:
       notice: Article was successfully created.
@@ -51,6 +96,27 @@ en:
       notice: Article was successfully updated.
     destroy:
       notice: Article was successfully destroyed.
+    index:
+      new: Create New...
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit...
+    shared:
+      format_time: "%l:%M %P"
+      format_date: "%b %d, %Y"
+      author_profile: Author Profile
+      read_more: ">> READ MORE"
+  authorizations:
+    remove: Remove
+    grant: Grant
+  conversations:
+    show:
+      send: Send
+      message: Message
   favorite_items:
     create:
       notice: Favorite item was successfully created.
@@ -58,6 +124,20 @@ en:
       notice: Favorite item was successfully updated.
     destroy:
       notice: Favorite item was successfully destroyed.
+    index:
+      new: New Favorite item
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+    edit:
+      show: Show
+      back: Back
   feature_requests:
     create:
       notice: Feature request was successfully created.
@@ -65,6 +145,18 @@ en:
       notice: Feature request was successfully updated.
     destroy:
       notice: Feature request was successfully destroyed.
+    new:
+      title: Sign Up for IDX Access
+    edit:
+      title: Editing Feature Request
+      show: Show
+      back: Back
+    shared:
+      submit: Request Access
+      placeholder:
+        agent_name: Agent Name
+        broker_name: Broker Name
+        broker_email: Broker Email
   features:
     create:
       notice: Feature was successfully created.
@@ -72,6 +164,39 @@ en:
       notice: Feature was successfully updated.
     destroy:
       notice: Feature was successfully destroyed.
+    index:
+      new: New Feature
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+  open_house_searches:
+    index:
+      new: New Open house search
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+    shared:
+      search: Search
+      this_property: This Property
+      all_favorites: All Favorites
   phone_calls:
     create:
       notice: Phone call was successfully created.
@@ -79,6 +204,18 @@ en:
       notice: Phone call was successfully updated.
     destroy:
       notice: Phone call was successfully destroyed.
+    index:
+      new: New Phone call
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
   profiles:
     create:
       notice: Profile was successfully created.
@@ -86,6 +223,19 @@ en:
       notice: Profile was successfully updated.
     destroy:
       notice: Profile was successfully destroyed.
+    index:
+      new: New Profile
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    shared:
+      services: Services
+      products: Products
+      articles: Articles
+      photos: Photos
   property_notes:
     create:
       notice: Property note was successfully created.
@@ -93,6 +243,29 @@ en:
       notice: Property note was successfully updated.
     destroy:
       notice: Property note was successfully destroyed.
+    index:
+      new: New Property note
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+    shared:
+      save: Save
+      cancel: Cancel
+  property_searches:
+    shared:
+      search: Search
+      more: More
+      this_property: This Property
+      all_favorites: All Favorites
   ratings:
     create:
       notice: Rating was successfully created.
@@ -107,6 +280,20 @@ en:
       notice: Service was successfully updated.
     destroy:
       notice: Service was successfully destroyed.
+    index:
+      new: New Service
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
   users:
     create:
       notice: User was successfully created.
@@ -114,6 +301,46 @@ en:
       notice: User was successfully updated.
     destroy:
       notice: User was successfully destroyed.
+    index:
+      new: New User
+      show: Show
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+      create_new_business: Create New Business
+      selling_on_savvspace: selling on Savvspace
+      becoming_an_author: becoming an Author
+      showing_your_properties: showing your properties
+      filling_out_your_profile: filling out your profile
+    shared:
+      resend_confirmation_instructions: Resend confirmation instructions
+      confirm_my_account: Confirm my account
+      change_my_password: Change my password
+      unlock_my_account: Unlock my account
+      new_password: New password
+      confirm_your_new_password: Confirm your new password
+      send_me_reset_password_instructions: Send me reset password instructions
+      leave_it_blank: leave it blank if you don't want to change it
+      we_need_your_current_password: we need your current password to confirm your changes
+      update: Update
+      cancel_my_account: Cancel my account
+      confirm: Are you sure?
+      back: Back
+      sign_up: Sign up
+      log_in: Log in
+      forgot_your_password: Forgot your password?
+      confirmation_instructions: Didn't receive confirmation instructions?
+      unlock_instructions: Didn't receive unlock instructions?
+      sign_in_with: "Sign in with %{provider}"
+      resend_unlock_instructions: Resend unlock instructions
   vendors:
     create:
       notice: Vendor was successfully created.
@@ -121,10 +348,54 @@ en:
       notice: Vendor was successfully updated.
     destroy:
       notice: Vendor was successfully destroyed.
-
-
+    index:
+      create: Create New...
+      vendors: Vendors
+    new:
+      back: Back
+    edit:
+      show: Show
+      back: Back
+    show:
+      edit: Edit
+      back: Back
+    shared:
+      save: Save
+  welcome:
+    index:
+      trailblazers: Trailblazers
+      areas: Areas
+      articles: Articles
+      vendors: Vendors
+    shared:
+      rachael_bissig: Rachael Bissig
+      format_date: "%B %d, %Y"
+      category: Category
+  views:
+    messages:
+      format_time: "%l:%M%P"
+    common:
+      format_date: "%b %d, %Y"
+    navbar:
+      login: Login
+      sign_up: Sign Up
+      help: Help
+      faqs: FAQS
+      site_admin: Site Admin
+      home: Home
+      profile: Profile
+      logout: Logout
+      my_profile: My Profile
+      areas: Areas
+      articles: Articles
+      arailblazers: Trailblazers
+      vendors: Vendors
+      join_the_network: Join the Network
+      my_home: My Home
+      homeowners: Homeowners
+      about: About
+      contact: Contact
   search: search
-
   homepage:
     heading_1: |
       Stay up-to-date on what's new around you.
@@ -172,6 +443,9 @@ en:
 
   hero:
     title: "A modern take on Finding Home."
+
+  message:
+    sign_up: "Ka-ching! New user on Savvspace: %{email}"
 
   activerecord:
     errors:
