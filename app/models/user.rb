@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   after_create :create_profile
   after_commit :send_sign_up_message, on: :create
 
+  def visiting_different_profile?(profile)
+    self.profile != profile
+  end
+
   private
 
   def send_sign_up_message
