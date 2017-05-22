@@ -1,7 +1,5 @@
-%h1 Editing feature_request
-
-= render 'form'
+= render 'form', title: t('feature_requests.edit.title'), desc: nil
 
 = link_to t('.show'), @feature_request
 \|
-= link_to t('.back'), feature_requests_path
+= link_to t('.back'), feature_feature_requests_path(@feature_request)
