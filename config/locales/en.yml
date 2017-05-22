@@ -173,6 +173,9 @@ en:
   hero:
     title: "A modern take on Finding Home."
 
+  message:
+    sign_up: "Ka-ching! New user on Savvspace: %{email}"
+
   activerecord:
     errors:
       models:
