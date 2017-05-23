@@ -32,8 +32,4 @@ module Searchable
   def offset
     @offset ||= 0
   end
-
-  def favorite?
-    favorite
-  end
 end

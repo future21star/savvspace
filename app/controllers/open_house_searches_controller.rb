@@ -14,7 +14,6 @@ class OpenHouseSearchesController < ApplicationController
     @property_search.update(from_dates_list: date_params[:from_dates_list])
 
     @profile = @property_search.profile
-    @favorite = @property_search.favorite
 
     respond_to do |format|
       format.js
@@ -27,7 +26,7 @@ class OpenHouseSearchesController < ApplicationController
   def search_params
     params.require(:open_house_search)
           .permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds,
-                  :max_beds, :to_date, :mls_server_id, :profile_id, :favorite)
+                  :max_beds, :to_date, :mls_server_id, :profile_id)
           .merge(mls_server: MlsServer.first)
           .inject({}) { |hash, (k, v)| hash.update(k => v.blank? ? nil : v) }
   end

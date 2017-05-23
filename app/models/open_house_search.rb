@@ -9,11 +9,6 @@ class OpenHouseSearch < ActiveRecord::Base
     scope = scope.where(['list_price >= ?', min_price]) if min_price.present?
     scope = scope.where(['list_price <= ?', max_price]) if max_price.present?
 
-    if favorite?
-      scope = scope.joins(:favorite_items)
-                   .where(favorite_items: { user: profile.profiled })
-    end
-
     scope
   end
 
