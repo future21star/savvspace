@@ -9,6 +9,7 @@
       = form_for(favorite, remote: true) do |f|
         = f.hidden_field :favorite_type
         = f.hidden_field :favorite_id
+        = f.hidden_field :referrer_profile_id, value: referrer_id
         %button.btn.link-unstyled{type: 'submit'}
           %span.icon.icon-heart-outlined
           Favorite
