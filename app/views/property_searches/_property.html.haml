@@ -39,7 +39,7 @@
     .panel-footer.p-x-0
       .btn-group.btn-group-justified
         .btn-group{role: "group"}
-          = render partial: "favorite_items/link", locals: {item: property}
+          = render partial: "favorite_items/link", locals: {item: property, referrer_id: @profile.try(:id)}
         .btn-group{role: "group"}
           - unless user_signed_in?
             = link_to(new_user_session_path, class: "btn link-unstyled") do

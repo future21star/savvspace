@@ -72,6 +72,6 @@ class FavoriteItemsController < ApplicationController
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def favorite_item_params
-    params.require(:favorite_item).permit(:favorite_id, :favorite_type, :user_id)
+    params.require(:favorite_item).permit(:favorite_id, :favorite_type, :user_id, :referrer_profile_id)
   end
 end
