@@ -41,13 +41,13 @@
                 - if user_signed_in?
                   - if current_user.favorite_items.properties.any?
                     %li
-                      = link_to favorite_properties_path do
+                      = link_to favorites_path(item_type: 'property') do
                         Favorite Properties
                         %span.badge= current_user.favorite_items.properties.count
 
                   - if current_user.favorite_items.open_houses.any?
                     %li
-                      = link_to favorite_open_houses_path do
+                      = link_to favorites_path(item_type: 'open_house') do
                         Favorite Open Houses
                         %span.badge= current_user.favorite_items.open_houses.count
 
