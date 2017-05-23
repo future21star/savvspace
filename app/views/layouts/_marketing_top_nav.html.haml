@@ -38,7 +38,21 @@
                 - else
                   %li= link_to(t('views.navbar.profile'), edit_user_profile_path(current_user))
 
+                - if user_signed_in?
+                  - if current_user.favorite_items.properties.any?
+                    %li
+                      = link_to favorites_path(item_type: 'property') do
+                        Favorite Properties
+                        %span.badge= current_user.favorite_items.properties.count
+
+                  - if current_user.favorite_items.open_houses.any?
+                    %li
+                      = link_to favorites_path(item_type: 'open_house') do
+                        Favorite Open Houses
+                        %span.badge= current_user.favorite_items.open_houses.count
+
                 %li= link_to(t('views.navbar.logout'), destroy_user_session_path, method: :delete)
+
       .row
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?

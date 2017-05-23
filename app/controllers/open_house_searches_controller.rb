@@ -23,7 +23,6 @@ class OpenHouseSearchesController < ApplicationController
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def search_params
     params.require(:open_house_search)
           .permit(:neighborhood, :sort_by, :min_price, :max_price, :min_beds,
