@@ -1,6 +1,7 @@
 class Vendor < ActiveRecord::Base
   has_many :authorizations, as: :authorizable, dependent: :destroy
-
+  has_many :service_areas
+  has_many :areas, through: :service_areas
   has_one :profile, as: :profiled, dependent: :destroy
   after_create :create_vendor_profile
 
