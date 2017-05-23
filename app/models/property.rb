@@ -6,7 +6,7 @@ class Property < ActiveRecord::Base
 
   validates :internal_mls_id, presence: true
 
-  scope :favored_by, ->(user) { joins(:favorite_items).where(favorite_items: { user: user }) }
+  scope :favored_by, (->(user) { joins(:favorite_items).where(favorite_items: { user: user }) })
 
   def new_listing?
     status && status.casecmp('active') && days_on_market < 14
