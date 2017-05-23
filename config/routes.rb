@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
   resources :property_searches
   get 'ivr/click_to_call', format: :xml
-
-  get 'idx/', to: 'idx#index'
-
+  
   resources :subscriptions, only: [:index]
 
   devise_for :users
