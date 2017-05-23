@@ -1,5 +1,1 @@
-%h1 Sign Up for IDX Access
-
-%p.description= @feature.description
-
-= render 'form'
+= render 'form', title: t('feature_requests.new.title'), desc: @feature.description

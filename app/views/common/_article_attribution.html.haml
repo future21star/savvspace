@@ -9,7 +9,7 @@
   - else
     \|
   %span.date
-    = article.updated_at.strftime("%b %d, %Y")
+    = article.updated_at.strftime(t('views.common.format_date'))
   \|
   %span.category
     - if article.category

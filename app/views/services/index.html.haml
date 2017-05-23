@@ -18,10 +18,10 @@
         %td= service.name
         %td= service.description
         %td= service.price
-        %td= link_to 'Show', service
-        %td= link_to 'Edit', edit_service_path(service)
-        %td= link_to 'Destroy', service, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to t('.show'), service
+        %td= link_to t('.edit'), edit_service_path(service)
+        %td= link_to t('.destroy'), service, :method => :delete, :data => { :confirm => t('.confirm') }
 
 %br
 
-= link_to 'New Service', new_service_path
+= link_to t('.new'), new_service_path

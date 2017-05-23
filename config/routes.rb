@@ -18,12 +18,13 @@ Rails.application.routes.draw do
 
   resources :property_searches
   get 'ivr/click_to_call', format: :xml
-
-  get 'idx/', to: 'idx#index'
-
+  
   resources :subscriptions, only: [:index]
 
   devise_for :users
+
+  post 'users/:user_id/authorizations/:role_name', to: 'authorizations#create', as: :create_authorization
+  delete 'users/:user_id/authorizations/:role_name', to: 'authorizations#destroy', as: :delete_authorization
 
   resources :phone_calls
   resources :services
@@ -74,6 +75,9 @@ Rails.application.routes.draw do
   get '/home' => 'welcome#index', as: :home
   get '/about' => 'welcome#about', as: :about
   get '/contact' => 'welcome#contact', as: :contact
+
+  get '/help' => 'help#show', as: :help
+  get '/faqs' => 'f_a_qs#index', as: :faqs
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

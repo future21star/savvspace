@@ -12,13 +12,13 @@
         %ul.nav.navbar-nav.navbar-right
           - unless current_user.present?
             %li.guest-only
-              = link_to('Login', new_user_session_path, class: 'login icon icon-lock', id: 'signin')
+              = link_to(t('views.navbar.login'), new_user_session_path, class: 'login icon icon-lock', id: 'signin')
             %li.call-to-action.guest-only
-              = link_to('Sign Up', new_user_registration_path, class: 'signup icon icon-lock', id: 'signup')
+              = link_to(t('views.navbar.sign_up'), new_user_registration_path, class: 'signup icon icon-lock', id: 'signup')
           %li
-            = link_to('Help', '#')
+            = link_to(t('views.navbar.help'), help_path)
           %li
-            = link_to('FAQS', '#')
+            = link_to(t('views.navbar.faqs'), faqs_path)
           - if user_signed_in?
             %li
               = link_to(conversations_path, remote: true) do
@@ -31,12 +31,12 @@
                 %span.caret
               %ul.dropdown-menu
                 - if current_user.role?('admin')
-                  %li= link_to('Site Admin', dashboard_path)
-                %li= link_to('Home', user_path(current_user))
+                  %li= link_to(t('views.navbar.site_admin'), dashboard_path)
+                %li= link_to(t('views.navbar.home'), user_path(current_user))
                 - if current_user.profile.name
-                  %li= link_to('Profile', user_profile_path(current_user))
+                  %li= link_to(t('views.navbar.profile'), user_profile_path(current_user))
                 - else
-                  %li= link_to('Profile', edit_user_profile_path(current_user))
+                  %li= link_to(t('views.navbar.profile'), edit_user_profile_path(current_user))
 
                 - if user_signed_in?
                   - if current_user.favorite_items.properties.any?
@@ -51,31 +51,31 @@
                         Favorite Open Houses
                         %span.badge= current_user.favorite_items.open_houses.count
 
-                %li= link_to('Logout', destroy_user_session_path, method: :delete)
+                %li= link_to(t('views.navbar.logout'), destroy_user_session_path, method: :delete)
 
       .row
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li
-              = link_to('My Profile', user_profile_path(current_user))
+              = link_to(t('views.navbar.my_profile'), user_profile_path(current_user))
           %li
-            = link_to('Areas', areas_path)
+            = link_to(t('views.navbar.areas'), areas_path)
           %li
-            = link_to('Articles', articles_path)
+            = link_to(t('views.navbar.articles'), articles_path)
           %li
-            = link_to('Trailblazers', trailblazers_path)
+            = link_to(t('views.navbar.trailblazers'), trailblazers_path)
           %li
-            = link_to('Vendors', vendors_path)
+            = link_to(t('views.navbar.vendors'), vendors_path)
           - unless user_signed_in?
             %li
-              = link_to('Join the Network', new_user_registration_path)
+              = link_to(t('views.navbar.join_the_network'), new_user_registration_path)
           - if user_signed_in?
             %li
-              = link_to('My Home', '#')
+              = link_to(t('views.navbar.my_home'), '#')
           - else
             %li
-              = link_to('Homeowners', '#')
+              = link_to(t('views.navbar.homeowners'), '#')
           %li
-            = link_to('About', about_path)
+            = link_to(t('views.navbar.about'), about_path)
           %li
-            = link_to('Contact', contact_path)
+            = link_to(t('views.navbar.contact'), contact_path)

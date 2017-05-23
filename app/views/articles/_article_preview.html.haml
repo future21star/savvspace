@@ -7,16 +7,16 @@
       \|
     %span.date
       - if article_preview.updated_at.today?
-        = article_preview.updated_at.strftime("%l:%M %P")
+        = article_preview.updated_at.strftime(t("articles.shared.format_time"))
       - else
-        = article_preview.updated_at.strftime("%b %d, %Y")
+        = article_preview.updated_at.strftime(t("articles.shared.format_date"))
     \|
     %span.author
       By
-      = link_to(article_preview.author.profile.name, article_preview.author.profile, title: "Author Profile")
+      = link_to(article_preview.author.profile.name, article_preview.author.profile, title: t('articles.shared.author_profile'))
 
   %h4.title= link_to(article_preview.title, article_preview)
   .abstract
     %p= article_preview.body.truncate(300)
   .link
-    = link_to(">> READ MORE", article_preview)
+    = link_to(t('articles.shared.read_more'), article_preview)

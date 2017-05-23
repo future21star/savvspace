@@ -37,14 +37,10 @@
         .row
           - if @property.photos.present?
             #property-carousel.carousel.slide.p-x-0
-              %ol.carousel-indicators
-                - @property.photos.each_with_index do |photo, index|
-                  %li{data: {target: "#property-carousel", slide_to: index}, class: index.zero? ? "active" : nil}
-
               .carousel-inner{role: "listbox"}
                 - @property.photos.each_with_index do |photo, index|
                   .item{class: index.zero? ? "active" : nil}
-                    = cl_image_tag(photo, type: :fetch, height: 615, width: 820, crop: :lfill, responsive: true, quality: :auto, flags: "lossy", responsive_placeholder: "blank")
+                    = cl_image_tag(photo, type: :fetch, height: 615, width: 820, crop: :fill, responsive: true, quality: :auto, flags: "lossy", responsive_placeholder: "blank")
 
               %a.left.carousel-control{href: "#property-carousel", data: {slide: "prev"}, role: "button"}
                 %span.glyphicon.glyphicon-chevron-left{aria: {hidden: true}}
@@ -53,6 +49,12 @@
               %a.right.carousel-control{href: "#property-carousel", data: {slide: "next"}, role: "button"}
                 %span.glyphicon.glyphicon-chevron-right{aria: {hidden: true}}
                 %span.sr-only Next
+
+              %ul.carousel-indicators.hidden-sm.hidden-xs
+                - @property.photos.each_with_index do |photo, index|
+                  %li{data: {target: "#property-carousel", slide_to: index}, class: index.zero? ? "active" : nil}
+                    = cl_image_tag(photo, type: :fetch, height: 50, width: 50, crop: :lfill, responsive: true, quality: :auto, flags: "lossy", responsive_placeholder: "blank")
+
 
           %p.listing_agent.small
             = @property.listing_member_name

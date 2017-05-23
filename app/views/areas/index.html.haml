@@ -2,7 +2,7 @@
   %h1
     Areas
     - if policy(Area).create?
-      %span.small= link_to("Create New...", new_area_path, class: "small")
+      %span.small= link_to(t(".new"), new_area_path, class: "small")
 
   - @areas.in_groups_of(3, false) do |group|
     .row

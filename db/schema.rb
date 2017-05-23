@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517132430) do
+ActiveRecord::Schema.define(version: 20170523144801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20170517132430) do
     t.integer  "area_id"
     t.integer  "user_id"
     t.string   "title"
+    t.text     "body"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "article_category_id"
-    t.text     "body"
   end
 
   add_index "articles", ["area_id"], name: "index_articles_on_area_id", using: :btree
@@ -378,6 +378,16 @@ ActiveRecord::Schema.define(version: 20170517132430) do
 
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "service_areas", force: :cascade do |t|
+    t.integer  "vendor_id"
+    t.integer  "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "service_areas", ["area_id"], name: "index_service_areas_on_area_id", using: :btree
+  add_index "service_areas", ["vendor_id"], name: "index_service_areas_on_vendor_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.integer  "vendor_id"
     t.string   "name"
@@ -443,5 +453,7 @@ ActiveRecord::Schema.define(version: 20170517132430) do
   add_foreign_key "property_searches", "mls_servers"
   add_foreign_key "property_searches", "profiles"
   add_foreign_key "ratings", "users"
+  add_foreign_key "service_areas", "areas"
+  add_foreign_key "service_areas", "vendors"
   add_foreign_key "services", "vendors"
 end

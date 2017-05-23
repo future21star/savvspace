@@ -2,6 +2,6 @@
   <small class="text-muted">
     <%= link_to(message.from.name, message.from) %>
     at
-    <%= message.created_at.strftime("%l:%M%P") %>
+    <%= message.created_at.strftime(t('views.messages.format_time')) %>
   </small>
 </div>

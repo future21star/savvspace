@@ -12,7 +12,7 @@
     %small.text-muted
       = link_to(message.from.name, message.from)
       at
-      = message.created_at.strftime("%l:%M%P")
+      = message.created_at.strftime(t('.views.messages.format_time'))
     - if message.from.profiled == current_user
       %a.media-right{href: "#"}
         = profile_image(message.from.profiled)

@@ -2,16 +2,16 @@
 .byline
   %span.category
     - if ArticleCategory.any?
-      = link_to("Category", article_category_articles_path(ArticleCategory.first))
+      = link_to(t('.category'), article_category_articles_path(ArticleCategory.first))
   \|
-  %span.date= Date.today.strftime("%B %d, %Y")
+  %span.date= Date.today.strftime(t('welcome.shared.format_date'))
   \|
   %span.author
     By
-    = link_to("Rachael Bissig", profiles_path(1))
+    = link_to(t('welcome.shared.rachael_bissig'), profiles_path(1))
 
 %h4.title= title
 .abstract
   %p
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla sodales metus, scelerisque fringilla diam congue ut. Aliquam ut lorem libero, sit amet congue lacus. Proin mauris sem, iaculis in rhoncus at, mollis et nisl. Aenean et elit at diam congue dignissim. Fusce pulvinar elit ante, eu pretium ligula. Mauris non blandit metus. Nunc pharetra lacus id diam tempus eget ultrices libero viverra. Mauris consequat, orci in consequat accumsan, diam justo fringilla orci, vitae pulvinar risus augue et orci. 
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla sodales metus, scelerisque fringilla diam congue ut. Aliquam ut lorem libero, sit amet congue lacus. Proin mauris sem, iaculis in rhoncus at, mollis et nisl. Aenean et elit at diam congue dignissim. Fusce pulvinar elit ante, eu pretium ligula. Mauris non blandit metus. Nunc pharetra lacus id diam tempus eget ultrices libero viverra. Mauris consequat, orci in consequat accumsan, diam justo fringilla orci, vitae pulvinar risus augue et orci.
 .link
