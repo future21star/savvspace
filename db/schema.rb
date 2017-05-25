@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20170523180112) do
     t.integer  "area_id"
     t.integer  "user_id"
     t.string   "title"
+    t.text     "body"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "article_category_id"
-    t.text     "body"
   end
 
   add_index "articles", ["area_id"], name: "index_articles_on_area_id", using: :btree

@@ -19,9 +19,9 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: postgres
-  port: 5432
-  host: herokuPostgresql
+  # username: postgres
+  # port: 5432
+  # host: herokuPostgresql
 
 development:
   <<: *default
